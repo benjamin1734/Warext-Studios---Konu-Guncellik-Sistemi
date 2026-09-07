@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 3
+          fetch-depth: 5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -24,7 +24,7 @@ jobs:
       - name: Apply micro voting widget
         shell: bash
         run: |
-          git show HEAD^^:.github/workflows/thread-freshness-ui-104.yml > /tmp/thread-freshness-ui-104-source.yml
+          git show 68a0a0454819aa5dc86cd59a5a9b1f0af4b899e3:.github/workflows/thread-freshness-ui-104.yml > /tmp/thread-freshness-ui-104-source.yml
           python3 <<'PY'
           from pathlib import Path
           old = Path('/tmp/thread-freshness-ui-104-source.yml').read_text(encoding='utf-8')
@@ -32,7 +32,11 @@ jobs:
           end = "\n          PY\n"
           code = old.split(start, 1)[1].split(end, 1)[0]
           code = '\n'.join(line[10:] if line.startswith('          ') else line for line in code.splitlines())
-          code = code.replace("              if count != 1:\n                  raise SystemExit(f'could not disable legacy modification: {key}')", "              if count == 0 and f'modification_key=\"{key}\"' not in mods_text:\n                  raise SystemExit(f'legacy modification missing: {key}')")
+          needle = "    if count != 1:\n        raise SystemExit(f'could not disable legacy modification: {key}')"
+          replacement = "    if count == 0 and f'modification_key=\"{key}\"' not in mods_text:\n        raise SystemExit(f'legacy modification missing: {key}')"
+          if needle not in code:
+              raise SystemExit('legacy migration guard patch target missing')
+          code = code.replace(needle, replacement, 1)
           exec(compile(code, '<thread-freshness-ui-104>', 'exec'), {})
           PY
 
