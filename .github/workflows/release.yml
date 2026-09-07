@@ -1,40 +1,85 @@
-name: Nihai Paket
+name: Nihai Paket ve GitHub Release
 
 on:
   push:
     branches:
       - main
-  pull_request:
+    paths:
+      - 'upload/src/addons/WarextStudios/ThreadFreshness/addon.json'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: dom, simplexml
-      - run: find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
-      - run: php tests/status_calculator.php
-      - run: php tests/eligibility.php
-      - run: php tests/version_summary.php
-      - run: php tests/revalidation.php
-      - run: php tests/moderator_status.php
-      - run: php tests/notification_status.php
-      - run: php tests/failure_reason.php
-      - run: php tests/template_structure.php
-      - run: php tests/security_static.php
-      - run: php tests/release_static.php
-      - run: php tests/release_data.php
-      - run: php tools/prepare_release.php
-      - run: cd build/release && zip -qr ../Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip .
-      - run: unzip -t build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
-      - run: unzip -Z1 build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip | grep -q '^upload/'
-      - run: unzip -Z1 build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip | grep -q '^upload/src/addons/WarextStudios/ThreadFreshness/addon.json$'
+
+      - name: Sürümü oku
+        id: meta
+        shell: bash
+        run: |
+          VERSION=$(php -r '$j=json_decode(file_get_contents("upload/src/addons/WarextStudios/ThreadFreshness/addon.json"), true); echo $j["version_string"] ?? "";')
+          test -n "$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "zip=XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-$VERSION.zip" >> "$GITHUB_OUTPUT"
+
+      - name: PHP lint
+        run: find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Testler
+        run: |
+          php tests/status_calculator.php
+          php tests/eligibility.php
+          php tests/version_summary.php
+          php tests/revalidation.php
+          php tests/moderator_status.php
+          php tests/notification_status.php
+          php tests/failure_reason.php
+          php tests/template_structure.php
+          php tests/security_static.php
+          php tests/release_static.php
+          php tests/release_data.php
+          php tests/hotfix_101.php
+
+      - name: Kurulum paketini hazırla
+        run: |
+          php tools/prepare_release.php
+          cd build/release
+          zip -qr "../${{ steps.meta.outputs.zip }}" .
+          cd ../..
+          unzip -t "build/${{ steps.meta.outputs.zip }}"
+          unzip -Z1 "build/${{ steps.meta.outputs.zip }}" | grep -q '^upload/'
+          unzip -Z1 "build/${{ steps.meta.outputs.zip }}" | grep -q '^upload/src/addons/WarextStudios/ThreadFreshness/addon.json$'
+
       - uses: actions/upload-artifact@v4
         with:
-          name: Warext-Studios-Konu-Guncellik-Sistemi-1.0.0
-          path: build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
+          name: ${{ steps.meta.outputs.zip }}
+          path: build/${{ steps.meta.outputs.zip }}
           if-no-files-found: error
+
+      - name: GitHub Release yayınla
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          VERSION: ${{ steps.meta.outputs.version }}
+          ZIP: build/${{ steps.meta.outputs.zip }}
+        shell: bash
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+              echo "::error::${TAG} zaten mevcut. Yeni kod sürümü için addon.json version_string/version_id değerlerini yükseltin."
+              exit 1
+            fi
+            gh release upload "$TAG" "$ZIP" --clobber
+          else
+            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --generate-notes
+          fi
