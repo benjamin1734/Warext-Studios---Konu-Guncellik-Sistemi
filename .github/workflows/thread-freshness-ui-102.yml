@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 4
+          fetch-depth: 5
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -26,7 +26,7 @@ jobs:
       - name: Apply compact UI redesign
         shell: bash
         run: |
-          git show HEAD^^^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-source.yml
+          git show HEAD^^^^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-source.yml
           python3 <<'PY'
           from pathlib import Path
 
@@ -42,7 +42,13 @@ jobs:
           mods = Path('upload/src/addons/WarextStudios/ThreadFreshness/_data/template_modifications.xml')
           text = mods.read_text(encoding='utf-8')
           text = text.replace(' · Açılış: &lt;xf:date', ' · Oy verme açılış tarihi: &lt;xf:date')
+          text = text.replace("Konu sahibi: geçerli", "Konu sahibi: hâlâ geçerli")
           mods.write_text(text, encoding='utf-8')
+
+          hotfix = Path('tests/hotfix_101.php')
+          h = hotfix.read_text(encoding='utf-8')
+          h = h.replace('if (str_contains($dashboard, "UPDATE xf_forum SET wrxt_freshness_enabled = 0\');\n\n            if ($forumIds)"))', 'if (str_contains($dashboard, "UPDATE xf_forum SET wrxt_freshness_enabled = 0\');\\n\\n            if (\\$forumIds)"))')
+          hotfix.write_text(h, encoding='utf-8')
           PY
 
       - name: Validate
