@@ -4,7 +4,14 @@ $root = dirname(__DIR__);
 $source = $root . '/upload';
 $build = $root . '/build';
 $stage = $build . '/release';
-$zipName = 'Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip';
+$addonData = json_decode((string)file_get_contents($root . '/upload/src/addons/WarextStudios/ThreadFreshness/addon.json'), true);
+$version = trim((string)($addonData['version_string'] ?? ''));
+if ($version === '' || !preg_match('/^[0-9A-Za-z._-]+$/', $version))
+{
+    fwrite(STDERR, "Geçersiz addon sürümü.\n");
+    exit(1);
+}
+$zipName = 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-' . $version . '.zip';
 
 function wrxtRemove(string $path): void
 {

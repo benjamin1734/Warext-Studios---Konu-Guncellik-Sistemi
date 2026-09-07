@@ -8,7 +8,7 @@
 
 ## Doğrudan ACP kurulumu
 
-1. GitHub ana dizinindeki `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip` dosyasını indirin.
+1. GitHub ana dizinindeki `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip` dosyasını indirin.
 2. ZIP dosyasını çıkartmayın.
 3. XenForo ACP → Add-ons → Install/upgrade from archive ekranını açın.
 4. İndirdiğiniz ZIP dosyasını seçip yükleyin.
@@ -27,7 +27,7 @@ Arşivin kökünde `upload/` klasörü bulunur. Eklenti dosyaları `upload/src/a
 
 ## Yükseltme
 
-- Aynı `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip` paketini ACP üzerinden yükleyebilirsiniz.
+- Aynı `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip` paketini ACP üzerinden yükleyebilirsiniz.
 - Manuel SQL çalıştırmayın. Gerekli kolon ve indeks işlemleri `Setup.php` üzerinden yürütülür.
 - Eski geliştirme/alpha yapılarından gelen kurulumlarda gerekli migration adımları otomatik çalışır.
 - Yeniden hesaplama gerektiren durumlarda eklenti ilgili job'u otomatik olarak kuyruğa alır.
