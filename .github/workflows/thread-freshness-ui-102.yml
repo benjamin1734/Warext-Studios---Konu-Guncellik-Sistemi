@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 3
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -26,18 +26,18 @@ jobs:
       - name: Apply compact UI redesign
         shell: bash
         run: |
-          git show HEAD^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-prev.yml
+          git show HEAD^^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-source.yml
           python3 <<'PY'
           from pathlib import Path
-          import textwrap
 
-          old = Path('/tmp/thread-freshness-ui-102-prev.yml').read_text(encoding='utf-8')
+          old = Path('/tmp/thread-freshness-ui-102-source.yml').read_text(encoding='utf-8')
           start = "          python3 <<'PY'\n"
           end = "\n          PY\n"
           if start not in old:
-              raise SystemExit('Previous embedded UI migration script not found')
+              raise SystemExit('Embedded UI migration script not found')
           code = old.split(start, 1)[1].split(end, 1)[0]
-          exec(compile(textwrap.dedent(code), '<thread-freshness-ui-102>', 'exec'), {})
+          code = '\n'.join(line[10:] if line.startswith('          ') else line for line in code.splitlines())
+          exec(compile(code, '<thread-freshness-ui-102>', 'exec'), {})
           PY
 
       - name: Validate
