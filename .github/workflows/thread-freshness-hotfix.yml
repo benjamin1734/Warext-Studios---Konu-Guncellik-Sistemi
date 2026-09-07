@@ -5,14 +5,13 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/thread-freshness-hotfix.yml'
+      - .github/workflows/thread-freshness-hotfix.yml
 
 permissions:
   contents: write
 
 env:
-  VERSION: '1.0.1'
-  VERSION_ID: '1010170'
+  VERSION: 1.0.1
 
 jobs:
   hotfix:
@@ -27,10 +26,10 @@ jobs:
           php-version: '8.4'
           extensions: dom, simplexml
 
-      - name: Apply 1.0.1 fixes
+      - name: Apply fixes
         shell: bash
         run: |
-          python3 <<'PY'
+          cat > /tmp/wrxt_hotfix.py <<'PY'
           from pathlib import Path
           import hashlib
           import json
@@ -38,13 +37,13 @@ jobs:
           root = Path('.')
           addon = root / 'upload/src/addons/WarextStudios/ThreadFreshness'
 
-          def replace_once(path: Path, old: str, new: str):
+          def replace_once(path, old, new):
+              path = Path(path)
               text = path.read_text(encoding='utf-8')
               if old not in text:
-                  raise SystemExit(f'Expected text not found in {path}: {old[:120]!r}')
+                  raise SystemExit('Expected text not found in %s: %r' % (path, old[:120]))
               path.write_text(text.replace(old, new, 1), encoding='utf-8')
 
-          # 1) Critical repository error: Repository has no $app property.
           repo = addon / 'Repository/ThreadFreshness.php'
           replace_once(
               repo,
@@ -52,43 +51,41 @@ jobs:
               "\\XF::app()->service(\n            'WarextStudios\\ThreadFreshness:ThreadFreshness\\Notifier'\n        )->notify($threadId, $oldStatus, $newStatus, $triggerType, $userId);"
           )
 
-          # 2) Forum edit save: filter request input once and attach it to FormAction canonically.
           forum_controller = addon / 'XF/Admin/Controller/Forum.php'
           forum_controller.write_text(r'''<?php
 
-namespace WarextStudios\ThreadFreshness\XF\Admin\Controller;
+          namespace WarextStudios\ThreadFreshness\XF\Admin\Controller;
 
-use XF\Entity\AbstractNode;
-use XF\Entity\Node;
-use XF\Mvc\FormAction;
+          use XF\Entity\AbstractNode;
+          use XF\Entity\Node;
+          use XF\Mvc\FormAction;
 
-class Forum extends XFCP_Forum
-{
-    protected function saveTypeData(FormAction $form, Node $node, AbstractNode $data)
-    {
-        parent::saveTypeData($form, $node, $data);
+          class Forum extends XFCP_Forum
+          {
+              protected function saveTypeData(FormAction $form, Node $node, AbstractNode $data)
+              {
+                  parent::saveTypeData($form, $node, $data);
 
-        $input = $this->filter([
-            'wrxt_freshness_enabled' => 'bool',
-            'wrxt_freshness_days' => 'uint',
-            'wrxt_freshness_versions' => 'str',
-            'wrxt_freshness_age_mode' => 'str'
-        ]);
+                  $input = $this->filter([
+                      'wrxt_freshness_enabled' => 'bool',
+                      'wrxt_freshness_days' => 'uint',
+                      'wrxt_freshness_versions' => 'str',
+                      'wrxt_freshness_age_mode' => 'str'
+                  ]);
 
-        $input['wrxt_freshness_days'] = max(1, min(3650, (int)$input['wrxt_freshness_days']));
-        $input['wrxt_freshness_versions'] = trim((string)$input['wrxt_freshness_versions']);
-        $input['wrxt_freshness_age_mode'] = in_array(
-            (string)$input['wrxt_freshness_age_mode'],
-            ['meaningful', 'last_post'],
-            true
-        ) ? (string)$input['wrxt_freshness_age_mode'] : 'meaningful';
+                  $input['wrxt_freshness_days'] = max(1, min(3650, (int)$input['wrxt_freshness_days']));
+                  $input['wrxt_freshness_versions'] = trim((string)$input['wrxt_freshness_versions']);
+                  $input['wrxt_freshness_age_mode'] = in_array(
+                      (string)$input['wrxt_freshness_age_mode'],
+                      ['meaningful', 'last_post'],
+                      true
+                  ) ? (string)$input['wrxt_freshness_age_mode'] : 'meaningful';
 
-        $form->basicEntitySave($data, $input);
-    }
-}
-''', encoding='utf-8')
+                  $form->basicEntitySave($data, $input);
+              }
+          }
+          ''', encoding='utf-8')
 
-          # 3) Central category/forum save: avoid full-table rewrite/lock and always rollback on failure.
           dashboard = addon / 'Admin/Controller/Dashboard.php'
           old_tx = r'''            $forumIds = array_values(array_unique(array_filter($forumIds)));
             $db->beginTransaction();
@@ -152,7 +149,6 @@ class Forum extends XFCP_Forum
 '''
           replace_once(dashboard, old_tx, new_tx)
 
-          # 4) Owner claim UI: remove the wide submit row and keep a compact, clear button.
           mods = addon / '_data/template_modifications.xml'
           replace_once(
               mods,
@@ -160,49 +156,45 @@ class Forum extends XFCP_Forum
               '&lt;xf:button type="submit" class="button--primary"&gt;{{ $thread.hasWrxtFreshnessOwnerClaim() ? \'Doğrulamayı kaldır\' : \'Konu sahibi: hâlâ geçerli\' }}&lt;/xf:button&gt;'
           )
 
-          # 5) Version metadata.
           addon_json = addon / 'addon.json'
           meta = json.loads(addon_json.read_text(encoding='utf-8'))
           meta['version_id'] = 1010170
           meta['version_string'] = '1.0.1'
           addon_json.write_text(json.dumps(meta, ensure_ascii=False, indent=4) + '\n', encoding='utf-8')
 
-          # 6) Release tests follow the real add-on version and guard the reported regressions.
           for test_path in [root / 'tests/release_data.php', root / 'tests/release_static.php']:
               text = test_path.read_text(encoding='utf-8')
-              text = text.replace("1010072", "1010170").replace("1.0.0", "1.0.1")
+              text = text.replace('1010072', '1010170').replace('1.0.0', '1.0.1')
               test_path.write_text(text, encoding='utf-8')
 
           release_static = root / 'tests/release_static.php'
           text = release_static.read_text(encoding='utf-8')
           marker = "$repo = (string)file_get_contents($addon . '/Repository/ThreadFreshness.php');\n"
           guard = r'''$repo = (string)file_get_contents($addon . '/Repository/ThreadFreshness.php');
-if (str_contains($repo, '$this->app->service(') || !str_contains($repo, '\\XF::app()->service('))
-{
-    throw new RuntimeException('Repository service factory regression still exists');
-}
+          if (str_contains($repo, '$this->app->service(') || !str_contains($repo, '\\XF::app()->service('))
+          {
+              throw new RuntimeException('Repository service factory regression still exists');
+          }
 
-$adminForumController = (string)file_get_contents($addon . '/XF/Admin/Controller/Forum.php');
-if (!str_contains($adminForumController, 'basicEntitySave') || str_contains($adminForumController, '$form->setup(function()'))
-{
-    throw new RuntimeException('Forum settings save flow is not using the stable FormAction path');
-}
+          $adminForumController = (string)file_get_contents($addon . '/XF/Admin/Controller/Forum.php');
+          if (!str_contains($adminForumController, 'basicEntitySave') || str_contains($adminForumController, '$form->setup(function()'))
+          {
+              throw new RuntimeException('Forum settings save flow is not using the stable FormAction path');
+          }
 
-if (!str_contains($dashboard, 'catch (\\Throwable $e)') || !str_contains($dashboard, '$db->rollback()'))
-{
-    throw new RuntimeException('ACP forum/category transaction rollback guard is missing');
-}
-if (str_contains($mods, 'xf:submitrow submit="{{ $thread.hasWrxtFreshnessOwnerClaim()'))
-{
-    throw new RuntimeException('Owner claim action still uses the oversized submit row');
-}
-'''
+          if (!str_contains($dashboard, 'catch (\\Throwable $e)') || !str_contains($dashboard, '$db->rollback()'))
+          {
+              throw new RuntimeException('ACP forum/category transaction rollback guard is missing');
+          }
+          if (str_contains($mods, 'xf:submitrow submit="{{ $thread.hasWrxtFreshnessOwnerClaim()'))
+          {
+              throw new RuntimeException('Owner claim action still uses the oversized submit row');
+          }
+          '''
           if marker not in text:
               raise SystemExit('release_static repository marker not found')
-          text = text.replace(marker, guard, 1)
-          release_static.write_text(text, encoding='utf-8')
+          release_static.write_text(text.replace(marker, guard, 1), encoding='utf-8')
 
-          # 7) Dynamic package generation + real GitHub Releases publishing for all future versions.
           prepare = root / 'tools/prepare_release.php'
           replace_once(
               prepare,
@@ -210,115 +202,49 @@ if (str_contains($mods, 'xf:submitrow submit="{{ $thread.hasWrxtFreshnessOwnerCl
               "$addonData = json_decode((string)file_get_contents($root . '/upload/src/addons/WarextStudios/ThreadFreshness/addon.json'), true);\n$version = trim((string)($addonData['version_string'] ?? ''));\nif ($version === '' || !preg_match('/^[0-9A-Za-z._-]+$/', $version))\n{\n    fwrite(STDERR, \"Geçersiz addon sürümü.\\n\");\n    exit(1);\n}\n$zipName = 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-' . $version . '.zip';"
           )
 
-          release_yml = root / '.github/workflows/release.yml'
-          release_yml.write_text(r'''name: Nihai Paket ve GitHub Release
-
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'upload/src/addons/WarextStudios/ThreadFreshness/addon.json'
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          extensions: dom, simplexml
-
-      - name: Read version
-        id: meta
-        shell: bash
-        run: |
-          VERSION=$(php -r '$j=json_decode(file_get_contents("upload/src/addons/WarextStudios/ThreadFreshness/addon.json"), true); echo $j["version_string"] ?? "";')
-          test -n "$VERSION"
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "zip=XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-$VERSION.zip" >> "$GITHUB_OUTPUT"
-          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
-
-      - run: find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
-      - run: php tests/status_calculator.php
-      - run: php tests/eligibility.php
-      - run: php tests/version_summary.php
-      - run: php tests/revalidation.php
-      - run: php tests/moderator_status.php
-      - run: php tests/notification_status.php
-      - run: php tests/failure_reason.php
-      - run: php tests/template_structure.php
-      - run: php tests/security_static.php
-      - run: php tests/release_static.php
-      - run: php tests/release_data.php
-      - run: php tools/prepare_release.php
-
-      - name: Build install ZIP
-        shell: bash
-        run: |
-          cd build/release
-          zip -qr "../${{ steps.meta.outputs.zip }}" .
-          cd ../..
-          unzip -t "build/${{ steps.meta.outputs.zip }}"
-          unzip -Z1 "build/${{ steps.meta.outputs.zip }}" | grep -q '^upload/'
-          unzip -Z1 "build/${{ steps.meta.outputs.zip }}" | grep -q '^upload/src/addons/WarextStudios/ThreadFreshness/addon.json$'
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.meta.outputs.zip }}
-          path: build/${{ steps.meta.outputs.zip }}
-          if-no-files-found: error
-
-      - name: Publish GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.meta.outputs.tag }}
-          VERSION: ${{ steps.meta.outputs.version }}
-          ZIP: build/${{ steps.meta.outputs.zip }}
-        shell: bash
-        run: |
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$ZIP" --clobber
-          else
-            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --generate-notes
-          fi
-''', encoding='utf-8')
-
-          # 8) Changelog and docs.
           changelog = root / 'CHANGELOG.md'
           cl = changelog.read_text(encoding='utf-8')
-          section = '''# Değişiklik Günlüğü\n\n## 1.0.1 Stable - Hata Düzeltme\n\n- Konu sahibi “hâlâ geçerli” işleminde `ThreadFreshness::$app` tanımsız property hatası giderildi; notifier servisi XenForo uygulama factory üzerinden oluşturuluyor.\n- ACP forum düzenleme kaydı tek seferlik input filtreleme + `FormAction::basicEntitySave()` akışına taşındı.\n- ACP kategori/forum toplu kaydında gereksiz tüm tablo güncellemesi kaldırıldı; yalnızca değişen forumlar yazılıyor ve hata halinde transaction kesin olarak rollback ediliyor.\n- Konu sahibi doğrulama aksiyonundaki geniş submit alanı kaldırılarak normal boyutlu, daha anlaşılır bir butona dönüştürüldü.\n- Eklenti sürümü `1.0.1` / `1010170` olarak yükseltildi.\n- Paket üretimi sürüm bilgisini `addon.json` üzerinden dinamik okuyor; GitHub Actions artık gerçek GitHub **Releases** kaydı ve kurulabilir ZIP asset'i oluşturuyor.\n\n'''
-          if not cl.startswith('# Değişiklik Günlüğü\n\n'):
+          header = '# Değişiklik Günlüğü\n\n'
+          section = '''## 1.0.1 Stable - Hata Düzeltme
+
+          - Konu sahibi “hâlâ geçerli” işleminde `ThreadFreshness::$app` tanımsız property hatası giderildi.
+          - ACP forum düzenleme kaydı tek seferlik input filtreleme + `FormAction::basicEntitySave()` akışına taşındı.
+          - ACP kategori/forum toplu kaydında gereksiz tüm tablo güncellemesi kaldırıldı; yalnızca değişen forumlar yazılıyor ve hata halinde transaction rollback ediliyor.
+          - Konu sahibi doğrulama aksiyonundaki geniş submit alanı normal boyutlu ve daha anlaşılır bir butona dönüştürüldü.
+          - Eklenti sürümü `1.0.1` / `1010170` olarak yükseltildi.
+          - Paket üretimi sürüm bilgisini `addon.json` üzerinden dinamik okuyacak hale getirildi.
+
+          '''
+          if not cl.startswith(header):
               raise SystemExit('Unexpected CHANGELOG header')
-          changelog.write_text(section + cl[len('# Değişiklik Günlüğü\n\n'):], encoding='utf-8')
+          changelog.write_text(header + section + cl[len(header):], encoding='utf-8')
 
           readme = root / 'README.md'
           r = readme.read_text(encoding='utf-8')
           r = r.replace('**1.0.0 Stable - Nihai Sürüm**', '**1.0.1 Stable - Hata Düzeltme**')
           r = r.replace('XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip', 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip')
-          r = r.replace('https://github.com/benjamin1734/Warext-Studios---Konu-G-ncellik-Sistemi/raw/refs/heads/main/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip', 'https://raw.githubusercontent.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/main/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip')
           r = r.replace('Bu paket resmi **1.0.0 Stable** sürümüdür.', 'Bu paket resmi **1.0.1 Stable** sürümüdür.')
           readme.write_text(r, encoding='utf-8')
 
           install = root / 'docs/INSTALL.md'
-          install.write_text(install.read_text(encoding='utf-8').replace('XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip', 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip'), encoding='utf-8')
+          install.write_text(
+              install.read_text(encoding='utf-8').replace(
+                  'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip',
+                  'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip'
+              ),
+              encoding='utf-8'
+          )
 
-          # 9) Refresh source hashes after all add-on source changes.
           hashes = {}
           for path in sorted(addon.rglob('*')):
               if not path.is_file() or path.name == 'hashes.json':
                   continue
-              rel = path.relative_to(addon).as_posix()
-              hashes[rel] = hashlib.sha256(path.read_bytes()).hexdigest()
+              hashes[path.relative_to(addon).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
           (addon / 'hashes.json').write_text(json.dumps(hashes, indent=4, sort_keys=True) + '\n', encoding='utf-8')
           PY
+          python3 /tmp/wrxt_hotfix.py
 
-      - name: Validate source
+      - name: Validate
         shell: bash
         run: |
           find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
@@ -334,7 +260,7 @@ jobs:
           php tests/release_static.php
           php tests/release_data.php
 
-      - name: Build 1.0.1 package
+      - name: Build package
         shell: bash
         run: |
           php tools/prepare_release.php
@@ -344,21 +270,21 @@ jobs:
           unzip -t build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip
           unzip -Z1 build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip | grep -q '^upload/'
           unzip -Z1 build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip | grep -q '^upload/src/addons/WarextStudios/ThreadFreshness/addon.json$'
-          cp build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip ./XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip
-          cp build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip ./releases/Warext-Studios-Konu-Guncellik-Sistemi-${VERSION}.zip
+          cp build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip
+          cp build/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-${VERSION}.zip releases/Warext-Studios-Konu-Guncellik-Sistemi-${VERSION}.zip
 
-      - name: Commit final source and package
+      - name: Commit final update
         shell: bash
         run: |
           rm -f .github/workflows/thread-freshness-hotfix.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'v1.0.1: kritik hata düzeltmeleri ve GitHub Release'
+          git commit -m 'v1.0.1: hata düzeltmeleri ve yeni paket'
           git push origin HEAD:main
           echo "FINAL_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
-      - name: Publish v1.0.1 GitHub Release
+      - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -368,5 +294,5 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$ZIP" --clobber
           else
-            gh release create "$TAG" "$ZIP" --target "$FINAL_SHA" --title "Warext Studios Konu Güncellik ${VERSION}" --notes "1.0.1 hata düzeltme sürümü: konu sahibi doğrulama hatası, ACP kategori/forum kayıt kararlılığı, kompakt doğrulama butonu ve gerçek GitHub Releases dağıtımı."
+            gh release create "$TAG" "$ZIP" --target "$FINAL_SHA" --title "Warext Studios Konu Güncellik ${VERSION}" --notes "Kritik hata düzeltmeleri, ACP kayıt kararlılığı, kompakt konu sahibi doğrulama butonu ve sürüm yükseltmesi."
           fi
