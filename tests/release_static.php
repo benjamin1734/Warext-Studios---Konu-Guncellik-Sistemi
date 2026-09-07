@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.0' || ($addonJson['version_id'] ?? 0) !== 1010071)
+if (($addonJson['version_string'] ?? '') !== '1.0.0' || ($addonJson['version_id'] ?? 0) !== 1010072)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -158,6 +158,23 @@ $freshnessController = (string)file_get_contents($addon . '/Pub/Controller/Fresh
 if (!str_contains($freshnessController, 'mb_substr') || !str_contains($freshnessController, '0, 100'))
 {
     throw new RuntimeException('Public search query length guard is missing');
+}
+
+$threadEntity = (string)file_get_contents($addon . '/XF/Entity/Thread.php');
+foreach (['getWrxtFreshnessEligibleDate', 'getWrxtFreshnessDaysUntilEligible'] as $needle)
+{
+    if (!str_contains($threadEntity, $needle))
+    {
+        throw new RuntimeException('Thread eligibility display helper is missing: ' . $needle);
+    }
+}
+if (!str_contains($mods, '$thread.isWrxtFreshnessEnabled()') || !str_contains($mods, 'Oy verme açılış tarihi'))
+{
+    throw new RuntimeException('Pre-eligibility thread panel is missing');
+}
+if (!str_contains($adminNav, 'wrxtThreadFreshnessForums') || !str_contains($dashboard, 'actionForums'))
+{
+    throw new RuntimeException('Central forum/category settings are missing');
 }
 
 echo "OK\n";

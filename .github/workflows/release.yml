@@ -7,19 +7,11 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: UX kaynaklarını uygula
-        run: |
-          tar -xzf .ux-patch.tar.gz
-          python .ux_apply.py
-          rm -f .ux_apply.py
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -46,22 +38,3 @@ jobs:
           name: Warext-Studios-Konu-Guncellik-Sistemi-1.0.0
           path: build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
           if-no-files-found: error
-      - name: Doğrulanan kaynakları branch'e yaz
-        if: github.event_name == 'pull_request' && github.head_ref == 'ux-validation'
-        run: |
-          cp build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip /tmp/wrxt.zip
-          git fetch origin "${{ github.head_ref }}"
-          git checkout "${{ github.head_ref }}"
-          tar -xzf .ux-patch.tar.gz
-          python .ux_apply.py
-          cp /tmp/wrxt.zip XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.0.zip
-          mkdir -p releases
-          cp /tmp/wrxt.zip releases/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
-          rm -f .ux_apply.py .ux-patch.tar.gz
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m v1.0.0
-            git push origin HEAD:"${{ github.head_ref }}"
-          fi
