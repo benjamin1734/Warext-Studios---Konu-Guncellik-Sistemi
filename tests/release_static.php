@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.2' || ($addonJson['version_id'] ?? 0) !== 1010270)
+if (($addonJson['version_string'] ?? '') !== '1.0.3' || ($addonJson['version_id'] ?? 0) !== 1010370)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -168,6 +168,25 @@ foreach (['getWrxtFreshnessEligibleDate', 'getWrxtFreshnessDaysUntilEligible'] a
         throw new RuntimeException('Thread eligibility display helper is missing: ' . $needle);
     }
 }
+if (!str_contains($mods, 'wrxtFreshness-voteButtons') || !str_contains($mods, 'wrxtFreshness-help') || !str_contains($mods, 'warext/thread_freshness.js'))
+{
+    throw new RuntimeException('Responsive side voting widget is missing');
+}
+if (str_contains($mods, 'modification_key="wrxt_thread_freshness_replacement"') || str_contains($mods, 'modification_key="wrxt_thread_freshness_moderator"'))
+{
+    throw new RuntimeException('Legacy standalone freshness panels still exist');
+}
+$templatesData = (string)file_get_contents($addon . '/_data/templates.xml');
+if (!str_contains($templatesData, 'wrxt_thread_freshness.less'))
+{
+    throw new RuntimeException('Freshness widget stylesheet template is missing');
+}
+$widgetJs = $root . '/upload/js/warext/thread_freshness.js';
+if (!is_file($widgetJs) || !str_contains((string)file_get_contents($widgetJs), "document.querySelector('.p-title')"))
+{
+    throw new RuntimeException('Freshness widget responsive placement script is missing');
+}
+
 if (!str_contains($mods, '$thread.isWrxtFreshnessEnabled()') || !str_contains($mods, 'Oy verme açılış tarihi'))
 {
     throw new RuntimeException('Pre-eligibility thread panel is missing');

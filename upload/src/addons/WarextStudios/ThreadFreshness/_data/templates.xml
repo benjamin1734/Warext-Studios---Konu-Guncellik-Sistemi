@@ -180,4 +180,173 @@
         &lt;xf:submitrow submit="Kaydet" /&gt;
     &lt;/div&gt;
 &lt;/xf:form&gt;</template>
+  <template type="public" title="wrxt_thread_freshness.less" version_id="1010370" version_string="1.0.3">.wrxtFreshness {
+    width: 350px;
+    max-width: 100%;
+    margin: 10px 0 16px auto;
+    position: relative;
+    z-index: 1;
+}
+.wrxtFreshness .block-container {
+    border-radius: 8px;
+    overflow: visible;
+}
+.wrxtFreshness-main {
+    padding: 12px 13px 10px;
+}
+.wrxtFreshness-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+}
+.wrxtFreshness-heading {
+    min-width: 0;
+}
+.wrxtFreshness-title {
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.25;
+}
+.wrxtFreshness-status {
+    margin-top: 5px;
+}
+.wrxtFreshness-help {
+    position: relative;
+    flex: 0 0 auto;
+}
+.wrxtFreshness-help summary,
+.wrxtFreshness-results summary,
+.wrxtFreshness-advanced summary,
+.wrxtFreshness-manage summary {
+    cursor: pointer;
+}
+.wrxtFreshness-help summary {
+    list-style: none;
+    width: 24px;
+    height: 24px;
+    border: 1px solid @xf-borderColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: @xf-textColorMuted;
+    user-select: none;
+}
+.wrxtFreshness-help summary::-webkit-details-marker { display: none; }
+.wrxtFreshness-helpBody {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 285px;
+    padding: 10px 12px;
+    border: 1px solid @xf-borderColor;
+    border-radius: 7px;
+    background: @xf-contentBg;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    z-index: 20;
+    font-size: 12px;
+    line-height: 1.45;
+}
+.wrxtFreshness-helpBody p {
+    margin: 5px 0 0;
+}
+.wrxtFreshness-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: @xf-textColorMuted;
+}
+.wrxtFreshness-replacement {
+    margin-top: 9px;
+    padding: 7px 8px;
+    border-radius: 6px;
+    background: fade(@xf-linkColor, 8%);
+    font-size: 12px;
+}
+.wrxtFreshness-voteForm {
+    margin-top: 10px;
+}
+.wrxtFreshness-voteButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+.wrxtFreshness-voteButtons .button {
+    width: 100%;
+    justify-content: center;
+}
+.wrxtFreshness-note {
+    margin-top: 8px;
+    color: @xf-textColorMuted;
+    font-size: 11px;
+    line-height: 1.35;
+}
+.wrxtFreshness-ownerForm {
+    margin-top: 7px;
+}
+.wrxtFreshness-ownerForm .button {
+    min-height: 0;
+    padding: 2px 0;
+    font-size: 11px;
+}
+.wrxtFreshness-advanced,
+.wrxtFreshness-results,
+.wrxtFreshness-manage {
+    margin-top: 8px;
+    font-size: 11px;
+}
+.wrxtFreshness-advanced &gt; summary,
+.wrxtFreshness-results &gt; summary,
+.wrxtFreshness-manage &gt; summary {
+    color: @xf-textColorMuted;
+}
+.wrxtFreshness-fields,
+.wrxtFreshness-resultsBody,
+.wrxtFreshness-manageBody {
+    margin-top: 8px;
+    display: grid;
+    gap: 8px;
+}
+.wrxtFreshness-fields label {
+    display: grid;
+    gap: 4px;
+}
+.wrxtFreshness-fields label &gt; span {
+    color: @xf-textColorMuted;
+}
+.wrxtFreshness-manage {
+    border-top: 1px solid @xf-borderColor;
+    padding: 8px 13px 10px;
+    margin-top: 0;
+}
+.wrxtFreshness-manageForm {
+    display: grid;
+    gap: 6px;
+}
+.wrxtFreshness-manageForm + .wrxtFreshness-manageForm {
+    padding-top: 8px;
+    border-top: 1px solid @xf-borderColor;
+}
+.wrxtFreshness-suggestions {
+    display: grid;
+    gap: 4px;
+}
+.wrxtFreshness-main--waiting {
+    padding-bottom: 12px;
+}
+@media (max-width: 650px) {
+    .wrxtFreshness {
+        width: 100%;
+        margin: 10px 0 14px;
+    }
+    .wrxtFreshness-helpBody {
+        width: min(285px, calc(100vw - 42px));
+    }
+}
+</template>
 </templates>

@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## 1.0.3 Stable - Yan Oylama Paneli
+
+- Konu altındaki ortalanmış geniş güncellik kartı kaldırıldı; panel konu başlığı alanının sağında küçük bir oylama kartı olarak konumlandırıldı.
+- Mobil görünümde aynı kart başlığın hemen altına tam genişlikte taşınıyor.
+- “Çalıştı / Çalışmadı” oylaması iki doğrudan aksiyona indirildi; sürüm, neden, açıklama ve alternatif konu alanları isteğe bağlı ayrıntı bölümüne alındı.
+- Soru işareti üzerinden açılan kısa bilgilendirme alanı eklendi.
+- Güncel çözüm yönlendirmesi, moderatör doğrulaması ve yönetici yönlendirme araçları ayrı büyük paneller yerine aynı küçük kartın yönetim bölümüne taşındı.
+- Sonuç ve sürüm ayrıntıları varsayılan olarak kapalı tutularak konu görünümündeki görsel yük azaltıldı.
+
 ## 1.0.2 Stable - Arayüz İyileştirmesi
 
 - Konu güncellik alanı geniş mavi başlıklı panel görünümünden çıkarılarak 760px maksimum genişlikte kompakt karta dönüştürüldü.
