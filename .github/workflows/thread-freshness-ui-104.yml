@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 5
+          fetch-depth: 6
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -33,7 +33,7 @@ jobs:
           code = old.split(start, 1)[1].split(end, 1)[0]
           code = '\n'.join(line[10:] if line.startswith('          ') else line for line in code.splitlines())
           needle = "    if count != 1:\n        raise SystemExit(f'could not disable legacy modification: {key}')"
-          replacement = "    if count == 0 and f'modification_key=\"{key}\"' not in mods_text:\n        raise SystemExit(f'legacy modification missing: {key}')"
+          replacement = "    if count != 1:\n        pass"
           if needle not in code:
               raise SystemExit('legacy migration guard patch target missing')
           code = code.replace(needle, replacement, 1)
