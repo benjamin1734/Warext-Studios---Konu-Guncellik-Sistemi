@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 3
+          fetch-depth: 4
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -26,7 +26,7 @@ jobs:
       - name: Apply compact UI redesign
         shell: bash
         run: |
-          git show HEAD^^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-source.yml
+          git show HEAD^^^:.github/workflows/thread-freshness-ui-102.yml > /tmp/thread-freshness-ui-102-source.yml
           python3 <<'PY'
           from pathlib import Path
 
@@ -38,6 +38,11 @@ jobs:
           code = old.split(start, 1)[1].split(end, 1)[0]
           code = '\n'.join(line[10:] if line.startswith('          ') else line for line in code.splitlines())
           exec(compile(code, '<thread-freshness-ui-102>', 'exec'), {})
+
+          mods = Path('upload/src/addons/WarextStudios/ThreadFreshness/_data/template_modifications.xml')
+          text = mods.read_text(encoding='utf-8')
+          text = text.replace(' · Açılış: &lt;xf:date', ' · Oy verme açılış tarihi: &lt;xf:date')
+          mods.write_text(text, encoding='utf-8')
           PY
 
       - name: Validate
