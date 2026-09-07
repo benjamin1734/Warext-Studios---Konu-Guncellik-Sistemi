@@ -25,3 +25,4 @@ jobs:
       - run: php tests/security_static.php
       - run: php tests/release_static.php
       - run: php tests/release_data.php
+      - run: php tests/hotfix_101.php
