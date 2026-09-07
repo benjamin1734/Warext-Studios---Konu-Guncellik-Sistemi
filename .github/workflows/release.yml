@@ -1,0 +1,40 @@
+name: Nihai Paket
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, simplexml
+      - run: find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: php tests/status_calculator.php
+      - run: php tests/eligibility.php
+      - run: php tests/version_summary.php
+      - run: php tests/revalidation.php
+      - run: php tests/moderator_status.php
+      - run: php tests/notification_status.php
+      - run: php tests/failure_reason.php
+      - run: php tests/template_structure.php
+      - run: php tests/security_static.php
+      - run: php tests/release_static.php
+      - run: php tests/release_data.php
+      - run: php tools/prepare_release.php
+      - run: cd build/release && zip -qr ../Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip .
+      - run: unzip -t build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
+      - run: unzip -Z1 build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip | grep -q '^upload/'
+      - run: unzip -Z1 build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip | grep -q '^upload/src/addons/WarextStudios/ThreadFreshness/addon.json$'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Warext-Studios-Konu-Guncellik-Sistemi-1.0.0
+          path: build/Warext-Studios-Konu-Guncellik-Sistemi-1.0.0.zip
+          if-no-files-found: error
