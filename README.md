@@ -10,7 +10,7 @@ XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama eklen
 
 **Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip`
 
-**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-G-ncellik-Sistemi/raw/refs/heads/main/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip
+**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.0.1/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.1.zip
 
 Bu ZIP'i çıkartmadan doğrudan XenForo ACP → Add-ons → Install/upgrade from archive ekranından seçip yükleyin.
 
