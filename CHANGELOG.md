@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## 1.0.2 Stable - Arayüz İyileştirmesi
+
+- Konu güncellik alanı geniş mavi başlıklı panel görünümünden çıkarılarak 760px maksimum genişlikte kompakt karta dönüştürüldü.
+- Başlık, durum rozeti ve konu sahibi doğrulama aksiyonu tek satırda/toplu alanda gösteriliyor.
+- Oy istatistikleri yatay ve daha az yer kaplayan özet biçimine geçirildi.
+- Ayrıntılı sürüm ve hata nedenleri gerektiğinde açılan “Doğrulama ayrıntıları” alanına taşındı.
+- Güncel çözüm yönlendirme alanı büyük form görünümünden çıkarıldı; konu ID + Kaydet işlemi tek satırlık kompakt kontrole dönüştürüldü.
+- Ön doğrulama görünümü de aynı kompakt tasarıma uyarlandı.
+
 ## 1.0.1 Stable - Hata Düzeltme
 
 - Konu sahibi “hâlâ geçerli” işlemindeki `ThreadFreshness::$app` tanımsız property hatası giderildi.

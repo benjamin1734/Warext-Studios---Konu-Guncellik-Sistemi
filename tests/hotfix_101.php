@@ -19,9 +19,7 @@ if (!str_contains($dashboard, 'catch (\\Throwable $e)') || !str_contains($dashbo
 {
     throw new RuntimeException('ACP bulk save rollback regression');
 }
-if (str_contains($dashboard, "UPDATE xf_forum SET wrxt_freshness_enabled = 0');
-
-            if ($forumIds)"))
+if (str_contains($dashboard, "UPDATE xf_forum SET wrxt_freshness_enabled = 0');\n\n            if (\$forumIds)"))
 {
     throw new RuntimeException('ACP bulk save still rewrites the entire forum table');
 }

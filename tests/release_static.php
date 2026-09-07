@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.1' || ($addonJson['version_id'] ?? 0) !== 1010170)
+if (($addonJson['version_string'] ?? '') !== '1.0.2' || ($addonJson['version_id'] ?? 0) !== 1010270)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
