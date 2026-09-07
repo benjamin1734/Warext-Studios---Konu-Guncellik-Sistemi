@@ -1,5 +1,16 @@
 # Değişiklik Günlüğü
 
+## 1.0.4 Stable - Mikro Oylama Kartı
+
+- Masaüstü güncellik kartı 310px genişliğinde mikro karta indirildi.
+- Varsayılan görünüm yalnızca durum, çok kısa oy özeti ve gerekiyorsa iki oy butonunu gösteriyor.
+- Oy kullanamayan üyelerde gereksiz “şartları karşılamıyorsunuz” satırı kaldırıldı.
+- Konu sahibi doğrulaması küçük “Sahibi doğruladı” durumuna dönüştürüldü; kaldırma işlemi üç nokta menüsüne taşındı.
+- Bilgi metni soru işareti açılır penceresinde tutuldu.
+- Moderatör, güncel konu ve konu sahibi işlemleri ayrı bir büyük Yönetim satırı yerine üç nokta açılır menüsüne taşındı.
+- Sonuç ayrıntıları yalnızca gerçekten neden/sürüm sonucu bulunduğunda görünür.
+- Mobil görünüm konu başlığının altında tam genişlikte, düşük yükseklikte devam eder.
+
 ## 1.0.3 Stable - Yan Oylama Paneli
 
 - Konu altındaki ortalanmış geniş güncellik kartı kaldırıldı; panel konu başlığı alanının sağında küçük bir oylama kartı olarak konumlandırıldı.
