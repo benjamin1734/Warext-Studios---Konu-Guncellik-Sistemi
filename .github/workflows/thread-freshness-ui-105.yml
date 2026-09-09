@@ -20,16 +20,18 @@ jobs:
           php-version: '8.4'
           extensions: dom, simplexml
 
-      - name: Apply clearer interactive controls
+      - name: Apply UI polish and version metadata
         shell: bash
         run: |
           python3 <<'PY'
           from pathlib import Path
           import html
+          import json
           import re
 
           root = Path('.')
-          templates_path = root / 'upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml'
+          addon_root = root / 'upload/src/addons/WarextStudios/ThreadFreshness'
+          templates_path = addon_root / '_data/templates.xml'
           text = templates_path.read_text(encoding='utf-8')
 
           pattern = re.compile(r'(<template type="public" title="wrxt_thread_freshness\.less"[^>]*>)(.*?)(</template>)', re.S)
@@ -40,7 +42,7 @@ jobs:
           css = html.unescape(match.group(2))
           marker = '/* v1.0.5 clearer interactive controls */'
           if marker in css:
-              css = css.split(marker, 1)[0].rstrip() + '\n'
+              css = css.split(marker, 1)[0].rstrip()
 
           override = r'''
 
@@ -54,7 +56,7 @@ jobs:
     border: 1px solid @xf-borderColor;
     border-radius: 8px;
     background: @xf-contentBg;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .10);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
     overflow: visible;
 }
 
@@ -64,6 +66,7 @@ jobs:
 
 .wrxtFreshness-top {
     gap: 8px;
+    align-items: center;
 }
 
 .wrxtFreshness-heading {
@@ -85,7 +88,7 @@ jobs:
     padding: 2px 7px;
     border: 1px solid @xf-borderColor;
     border-radius: 999px;
-    background: @xf-contentAltBg;
+    background: rgba(127, 127, 127, .10);
     color: @xf-textColor;
     font-size: 10px;
     font-weight: 600;
@@ -93,6 +96,8 @@ jobs:
 }
 
 .wrxtFreshness-icons {
+    display: flex;
+    align-items: center;
     gap: 5px;
 }
 
@@ -102,20 +107,20 @@ jobs:
     justify-content: center;
     box-sizing: border-box;
     list-style: none !important;
-    width: 27px;
-    height: 27px;
+    min-width: 54px;
+    height: 28px;
     margin: 0;
-    padding: 0;
+    padding: 0 8px;
     border: 1px solid @xf-borderColor;
     border-radius: 7px;
-    background: @xf-contentAltBg;
+    background: rgba(127, 127, 127, .10);
     color: @xf-linkColor;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 0;
     font-weight: 700;
     line-height: 1;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .10);
-    transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+    transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease, box-shadow .15s ease;
 }
 
 .wrxtFreshness-pop > summary::marker {
@@ -127,12 +132,51 @@ jobs:
     display: none;
 }
 
+.wrxtFreshness-help > summary::before {
+    content: '?';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 10px;
+    line-height: 1;
+}
+
+.wrxtFreshness-help > summary::after {
+    content: 'Bilgi';
+    font-size: 11px;
+    line-height: 1;
+}
+
+.wrxtFreshness-actions > summary {
+    min-width: 72px;
+}
+
+.wrxtFreshness-actions > summary::before {
+    content: '•••';
+    margin-right: 5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.wrxtFreshness-actions > summary::after {
+    content: 'İşlemler';
+    font-size: 11px;
+    line-height: 1;
+}
+
 .wrxtFreshness-pop > summary:hover,
 .wrxtFreshness-pop > summary:focus-visible {
-    background: @xf-contentBg;
-    color: @xf-linkColor;
+    background: rgba(127, 127, 127, .18);
+    border-color: @xf-linkColor;
     outline: none;
     transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
 }
 
 .wrxtFreshness-pop[open] > summary {
@@ -140,12 +184,6 @@ jobs:
     border-color: @xf-linkColor;
     color: @xf-contentBg;
     transform: none;
-}
-
-.wrxtFreshness-actions > summary {
-    width: 34px;
-    border-radius: 7px;
-    letter-spacing: 1px;
 }
 
 .wrxtFreshness-meta {
@@ -164,7 +202,7 @@ jobs:
     padding: 2px 7px;
     border: 1px solid @xf-borderColor;
     border-radius: 999px;
-    background: @xf-contentAltBg;
+    background: rgba(127, 127, 127, .08);
     line-height: 1.2;
 }
 
@@ -188,10 +226,12 @@ jobs:
     font-size: 11px;
     font-weight: 600;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .10);
+    transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .wrxtFreshness-voteButtons .button:hover {
     transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
 }
 
 .wrxtFreshness-more > summary {
@@ -207,7 +247,7 @@ jobs:
 
 .wrxtFreshness-more > summary:hover {
     border-color: @xf-borderColor;
-    background: @xf-contentAltBg;
+    background: rgba(127, 127, 127, .08);
     color: @xf-textColor;
 }
 
@@ -220,53 +260,58 @@ jobs:
     }
 
     .wrxtFreshness-pop > summary {
-        width: 30px;
-        height: 30px;
-    }
-
-    .wrxtFreshness-actions > summary {
-        width: 36px;
+        height: 32px;
     }
 }
 '''
           css = css.rstrip() + override + '\n'
           escaped_css = html.escape(css, quote=False)
-
           opening = re.sub(r'version_id="\d+"', 'version_id="1010570"', match.group(1))
           opening = re.sub(r'version_string="[^"]+"', 'version_string="1.0.5"', opening)
           text = text[:match.start()] + opening + escaped_css + match.group(3) + text[match.end():]
           templates_path.write_text(text, encoding='utf-8')
 
+          addon_path = addon_root / 'addon.json'
+          addon = json.loads(addon_path.read_text(encoding='utf-8'))
+          addon['version_id'] = 1010570
+          addon['version_string'] = '1.0.5'
+          addon_path.write_text(json.dumps(addon, ensure_ascii=False, indent=4) + '\n', encoding='utf-8')
+
+          release_test = root / 'tests/release_data.php'
+          test_text = release_test.read_text(encoding='utf-8')
+          test_text = test_text.replace("!== 1010470 || ($addon['version_string'] ?? '') !== '1.0.4'", "!== 1010570 || ($addon['version_string'] ?? '') !== '1.0.5'")
+          release_test.write_text(test_text, encoding='utf-8')
+
           changelog = root / 'CHANGELOG.md'
-          if changelog.exists():
-              current = changelog.read_text(encoding='utf-8')
-              section = '''## 1.0.5 Stable - Belirgin Kontroller\n\n- Yardım ve işlem kontrolleri gerçek buton görünümüne taşındı; varsayılan details ok işaretleri tamamen kaldırıldı.\n- Kart genişliği tarayıcı/LESS uyumluluğu için min() yerine sabit genişlik + max-width modeliyle düzenlendi.\n- Durum, oy sayıları ve konu sahibi doğrulaması okunabilir rozet/chip yapısına geçirildi.\n- Oy butonlarının yükseklik, boşluk, köşe ve hover durumları belirginleştirildi.\n- Mobil dokunma hedefleri büyütüldü; masaüstü kart kompakt tutuldu.\n\n'''
-              heading = '# Değişiklik Günlüğü\n\n'
-              if current.startswith(heading) and '## 1.0.5 Stable' not in current:
-                  current = heading + section + current[len(heading):]
-              changelog.write_text(current, encoding='utf-8')
+          current = changelog.read_text(encoding='utf-8')
+          heading = '# Değişiklik Günlüğü\n\n'
+          section = '''## 1.0.5 Stable - Belirgin Kontroller\n\n- Yardım ve işlem alanları “Bilgi” ve “İşlemler” etiketli gerçek buton görünümüne taşındı.\n- Tarayıcının varsayılan details ok işaretleri tamamen kaldırıldı.\n- Durum, oy sayıları ve konu sahibi doğrulaması okunabilir rozet/chip yapısına geçirildi.\n- Oy butonlarının yükseklik, boşluk, köşe, hover ve gölge durumları belirginleştirildi.\n- Kart genişliği sabit genişlik + max-width modeliyle güvenilir biçimde kompakt tutuldu.\n- Mobil dokunma hedefleri büyütüldü.\n\n'''
+          if current.startswith(heading) and '## 1.0.5 Stable' not in current:
+              current = heading + section + current[len(heading):]
+          changelog.write_text(current, encoding='utf-8')
 
           readme = root / 'README.md'
-          if readme.exists():
-              r = readme.read_text(encoding='utf-8')
-              r = r.replace('XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.4.zip', 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.5.zip')
-              r = r.replace('/releases/download/v1.0.4/', '/releases/download/v1.0.5/')
-              r = r.replace('**1.0.4 Stable - Mikro Oylama Kartı**', '**1.0.5 Stable - Belirgin Kontroller**', 1)
-              r = r.replace('Bu paket resmi **1.0.4 Stable** sürümüdür.', 'Bu paket resmi **1.0.5 Stable** sürümüdür.')
-              readme.write_text(r, encoding='utf-8')
+          r = readme.read_text(encoding='utf-8')
+          r = r.replace('XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.4.zip', 'XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.5.zip')
+          r = r.replace('/releases/download/v1.0.4/', '/releases/download/v1.0.5/')
+          r = r.replace('**1.0.4 Stable - Mikro Oylama Kartı**', '**1.0.5 Stable - Belirgin Kontroller**', 1)
+          r = r.replace('Bu paket resmi **1.0.4 Stable** sürümüdür.', 'Bu paket resmi **1.0.5 Stable** sürümüdür.')
+          readme.write_text(r, encoding='utf-8')
           PY
 
-      - name: Validate XML and template tests
+      - name: Validate
         shell: bash
         run: |
-          php -r '$x=simplexml_load_file("upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml"); if(!$x){exit(1);} echo "Templates XML OK\n";'
+          find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
           php tests/template_structure.php
+          php tests/release_data.php
+          php -r '$x=simplexml_load_file("upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml"); if(!$x){exit(1);} echo "Templates XML OK\n";'
 
-      - name: Commit UI polish
+      - name: Commit 1.0.5
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml CHANGELOG.md README.md
-          git commit -m 'ui: make ThreadFreshness controls clearly interactive for 1.0.5'
+          git add upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml upload/src/addons/WarextStudios/ThreadFreshness/addon.json tests/release_data.php CHANGELOG.md README.md
+          git commit -m 'v1.0.5: make freshness controls clearly interactive'
           git push
