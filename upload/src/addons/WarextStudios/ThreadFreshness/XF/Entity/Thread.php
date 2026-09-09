@@ -142,19 +142,7 @@ class Thread extends XFCP_Thread
             return false;
         }
 
-        $vote = $this->getWrxtFreshnessVisitorVoteEntity();
-        if (!$vote)
-        {
-            return true;
-        }
-
-        $voteDate = max((int)$vote->vote_date, (int)$vote->updated_date);
-        if ($voteDate < $this->getWrxtFreshnessReferenceDate())
-        {
-            return true;
-        }
-
-        return $visitor->hasPermission('wrxtFreshness', 'changeVote');
+        return true;
     }
 
     public function canWrxtFreshnessModerate(): bool

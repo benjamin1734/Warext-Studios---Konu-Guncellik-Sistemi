@@ -1,5 +1,12 @@
 # Değişiklik Günlüğü
 
+## 1.0.7 Stable - Başlık Hizası ve Oy Değiştirme
+
+- Masaüstünde konu güncellik paneli konu başlığıyla aynı satırda sağ tarafa hizalandı.
+- Mobilde panel başlığın hemen altında tam genişlikte kalacak şekilde responsive yerleşim güncellendi.
+- Kullanıcıların aynı doğrulama döngüsünde kendi oylarını daha sonra değiştirebilmesi sağlandı.
+- ACP ana başlık ve alt menü ikonları XenForo çekirdeğinde bulunan uyumlu Font Awesome ikonlarıyla değiştirildi.
+
 ## 1.0.6 Stable - Oylama Arayüzü Yenilemesi
 
 - Çalıştı / Çalışmadı aksiyonları seçilebilir, seçildiğinde içi dolan iki seçenekli kontrol yapısına geçirildi.

@@ -110,10 +110,6 @@ class Vote extends AbstractService
             {
                 $voteDate = max((int)$entity->vote_date, (int)$entity->updated_date);
                 $isStaleCycleVote = $voteDate < (int)$this->thread->getWrxtFreshnessReferenceDate();
-                if (!$isStaleCycleVote && !$this->user->hasPermission('wrxtFreshness', 'changeVote'))
-                {
-                    throw new \LogicException('Permission denied');
-                }
             }
             else
             {

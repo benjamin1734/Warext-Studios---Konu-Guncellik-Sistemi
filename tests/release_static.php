@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.6' || ($addonJson['version_id'] ?? 0) !== 1010670)
+if (($addonJson['version_string'] ?? '') !== '1.0.7' || ($addonJson['version_id'] ?? 0) !== 1010770)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -200,12 +200,23 @@ if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, 
 {
     throw new RuntimeException('Two-step selectable vote UI is missing');
 }
-foreach (['fa-chart-line', 'fa-folder-tree', 'fa-sliders'] as $icon)
+foreach (['fa-history', 'fa-chart-line', 'fa-comments', 'fa-cog'] as $icon)
 {
     if (!str_contains($adminNav, $icon))
     {
         throw new RuntimeException('ACP navigation icon missing: ' . $icon);
     }
+}
+
+$voteService = (string)file_get_contents($addon . '/Service/ThreadFreshness/Vote.php');
+if (str_contains($threadEntity, "hasPermission('wrxtFreshness', 'changeVote')") || str_contains($voteService, "hasPermission('wrxtFreshness', 'changeVote')"))
+{
+    throw new RuntimeException('Vote changing is still restricted by legacy changeVote permission');
+}
+$widgetJsSource = (string)file_get_contents($widgetJs);
+if (!str_contains($widgetJsSource, 'title.appendChild(widget)') || !str_contains($widgetJsSource, "title.insertAdjacentElement('afterend', widget)"))
+{
+    throw new RuntimeException('Desktop title-row / mobile below-title placement is missing');
 }
 
 echo "OK\n";
