@@ -90,6 +90,7 @@ for rel in [root / 'tests/release_data.php', root / 'tests/release_static.php']:
 
 release_static = root / 'tests/release_static.php'
 s = release_static.read_text(encoding='utf-8')
+s = s.replace("!str_contains($mods, 'Oyu kaydet')", "!str_contains($mods, \"'Güncelle' : 'Kaydet'\")")
 marker = "$widgetJsSource = (string)file_get_contents($widgetJs);"
 extra = '''if (str_contains($mods, 'Bu çözüm sende çalıştı mı?') || str_contains($mods, 'Seçimini yap, ardından oyu kaydet.') || str_contains($mods, 'Çözüm hâlâ geçerli') || str_contains($mods, 'Çözüm artık geçersiz'))
 {
