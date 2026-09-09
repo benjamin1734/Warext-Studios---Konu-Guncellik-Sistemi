@@ -51,5 +51,3 @@ jobs:
                   tests/release_static.php tests/release_data.php CHANGELOG.md README.md
           git commit -m 'v1.0.8: enable vote updates and owner voting after unverify'
           git push
-
-# retry after adapting migration to the current 1.0.7 code
