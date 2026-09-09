@@ -79,7 +79,7 @@ release_data.write_text(s, encoding='utf-8')
 
 release_static = root / 'tests/release_static.php'
 s = release_static.read_text(encoding='utf-8').replace('1010870', '1010970').replace("'1.0.8'", "'1.0.9'")
-s = s.replace("if (!str_contains($threadEntity, '$ownerClaimActive') || !str_contains($threadEntity, '$allowOwnThread = !$ownThread || !$ownerClaimActive'))\n{\n    throw new RuntimeException('Owner vote unlock after removing owner verification is missing');\n}", "if (!str_contains($threadEntity, 'return !$this->hasWrxtFreshnessOwnerClaim();'))\n{\n    throw new RuntimeException('Owner vote controls do not unlock after removing owner verification');\n}\nif (str_contains($voteService, \"if (!$this->user->hasPermission('wrxtFreshness', 'vote'))\"))\n{\n    throw new RuntimeException('Vote service still blocks the topic owner after owner verification is removed');\n}")
+s = s.replace("if (!str_contains($threadEntity, '$ownerClaimActive') || !str_contains($threadEntity, '$allowOwnThread = !$ownThread || !$ownerClaimActive'))\n{\n    throw new RuntimeException('Owner vote unlock after removing owner verification is missing');\n}", "if (!str_contains($threadEntity, 'return !$this->hasWrxtFreshnessOwnerClaim();'))\n{\n    throw new RuntimeException('Owner vote controls do not unlock after removing owner verification');\n}\nif (str_contains($voteService, \"if (!\\$this->user->hasPermission('wrxtFreshness', 'vote'))\"))\n{\n    throw new RuntimeException('Vote service still blocks the topic owner after owner verification is removed');\n}")
 release_static.write_text(s, encoding='utf-8')
 
 changelog = root / 'CHANGELOG.md'
