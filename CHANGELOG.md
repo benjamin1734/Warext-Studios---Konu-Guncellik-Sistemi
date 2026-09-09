@@ -1,5 +1,12 @@
 # Değişiklik Günlüğü
 
+## 1.0.9 Stable - Oylama Kutularının Görünürlük Düzeltmesi
+
+- Konu sahibi doğrulamayı kaldırdıktan sonra Çalıştı / Çalışmadı seçim kutuları artık kesin olarak görünür.
+- Konu sahibinin normal topluluk oylamasına geçişi artık oy izni, minimum mesaj ve hesap yaşı koşullarına takılmaz; konu sahibi doğrulaması ile topluluk oyu aynı anda kullanılamaz.
+- Diğer kullanıcılar için oy izni, minimum mesaj ve minimum hesap yaşı korumaları aynen devam eder.
+- Oy değiştirme ve Oyunu güncelle akışı korunur.
+
 ## 1.0.8 Stable - Oy Güncelleme ve Sahip Akışı
 
 - Konu sahibi doğrulamasını kaldırdıktan sonra konu sahibi normal topluluk oylamasına katılabilir.

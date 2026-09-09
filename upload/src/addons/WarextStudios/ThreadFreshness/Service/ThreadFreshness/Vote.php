@@ -72,11 +72,6 @@ class Vote extends AbstractService
         {
             throw new \LogicException('Permission denied');
         }
-        if (!$this->user->hasPermission('wrxtFreshness', 'vote'))
-        {
-            throw new \LogicException('Permission denied');
-        }
-
         $ownThread = (int)$this->thread->user_id === (int)$this->user->user_id;
         if ($ownThread && $this->thread->hasWrxtFreshnessOwnerClaim())
         {

@@ -121,26 +121,28 @@ class Thread extends XFCP_Thread
         }
 
         $visitor = \XF::visitor();
-        $ownThread = (int)$visitor->user_id > 0 && (int)$visitor->user_id === (int)$this->user_id;
-        $ownerClaimActive = $ownThread && $this->hasWrxtFreshnessOwnerClaim();
-        $allowOwnThread = !$ownThread || !$ownerClaimActive;
+        if ((int)$visitor->user_id <= 0)
+        {
+            return false;
+        }
 
-        if (!Eligibility::canVisitorVote(
+        $ownThread = (int)$visitor->user_id === (int)$this->user_id;
+        if ($ownThread)
+        {
+            return !$this->hasWrxtFreshnessOwnerClaim();
+        }
+
+        return Eligibility::canVisitorVote(
             (int)$visitor->user_id,
             (int)$this->user_id,
             (int)$visitor->register_date,
             (int)$visitor->message_count,
             $visitor->hasPermission('wrxtFreshness', 'vote'),
-            $allowOwnThread,
+            true,
             (int)(\XF::options()->wrxtFreshnessMinAccountDays ?? 7),
             (int)(\XF::options()->wrxtFreshnessMinMessages ?? 3),
             \XF::$time
-        ))
-        {
-            return false;
-        }
-
-        return true;
+        );
     }
 
     public function canWrxtFreshnessModerate(): bool

@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.8' || ($addonJson['version_id'] ?? 0) !== 1010870)
+if (($addonJson['version_string'] ?? '') !== '1.0.9' || ($addonJson['version_id'] ?? 0) !== 1010970)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -213,9 +213,13 @@ if (str_contains($threadEntity, "hasPermission('wrxtFreshness', 'changeVote')") 
 {
     throw new RuntimeException('Vote changing is still restricted by legacy changeVote permission');
 }
-if (!str_contains($threadEntity, '$ownerClaimActive') || !str_contains($threadEntity, '$allowOwnThread = !$ownThread || !$ownerClaimActive'))
+if (!str_contains($threadEntity, 'return !$this->hasWrxtFreshnessOwnerClaim();'))
 {
-    throw new RuntimeException('Owner vote unlock after removing owner verification is missing');
+    throw new RuntimeException('Owner vote controls do not unlock after removing owner verification');
+}
+if (str_contains($voteService, "if (!\$this->user->hasPermission('wrxtFreshness', 'vote'))"))
+{
+    throw new RuntimeException('Vote service still blocks the topic owner after owner verification is removed');
 }
 if (!str_contains($mods, 'Oyunu güncelle') || !str_contains($mods, 'Seçimini değiştirip yeniden kaydedebilirsin.'))
 {
