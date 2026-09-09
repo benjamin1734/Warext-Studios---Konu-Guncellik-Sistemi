@@ -1,6 +1,5 @@
 <?php
 
-// Release trigger: v1.0.5 UI polish
 $root = __DIR__ . '/../upload/src/addons/WarextStudios/ThreadFreshness';
 $required = [
     'class_extensions.xml',
