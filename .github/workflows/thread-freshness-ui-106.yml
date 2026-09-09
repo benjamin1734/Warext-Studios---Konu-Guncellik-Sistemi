@@ -22,6 +22,20 @@ jobs:
       - name: Apply v1.0.6 redesign
         run: python3 tools/thread_freshness_ui_106.py
 
+      - name: Update regression guard
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('tests/release_static.php')
+          s = p.read_text(encoding='utf-8')
+          old = "if (!str_contains($mods, 'wrxtFreshness-voteButtons') || !str_contains($mods, 'wrxtFreshness-help') || !str_contains($mods, 'warext/thread_freshness.js'))"
+          new = "if ((!str_contains($mods, 'wrxtFreshness-voteButtons') && !str_contains($mods, 'wrxtFreshness-choiceSurface')) || !str_contains($mods, 'wrxtFreshness-help') || !str_contains($mods, 'warext/thread_freshness.js'))"
+          if old not in s:
+              raise SystemExit('responsive widget guard not found')
+          p.write_text(s.replace(old, new), encoding='utf-8')
+          PY
+
       - name: Validate
         run: |
           find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
