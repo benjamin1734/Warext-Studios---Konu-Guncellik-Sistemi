@@ -106,12 +106,7 @@ class Vote extends AbstractService
                 ->where('user_id', $this->user->user_id)
                 ->fetchOne();
 
-            if ($entity)
-            {
-                $voteDate = max((int)$entity->vote_date, (int)$entity->updated_date);
-                $isStaleCycleVote = $voteDate < (int)$this->thread->getWrxtFreshnessReferenceDate();
-            }
-            else
+            if (!$entity)
             {
                 $entity = $em->create('WarextStudios\ThreadFreshness:Vote');
                 $entity->thread_id = $this->thread->thread_id;
