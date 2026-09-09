@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## 1.0.10 Stable - Kompakt Oylama Alanı
+
+- Oylama alanındaki açıklama başlığı ve yardımcı metinler kaldırıldı.
+- Çalıştı / Çalışmadı seçimleri geniş kartlar yerine küçük XenForo uyumlu seçim butonlarına dönüştürüldü.
+- Seçili butonun dolu renk durumu korunur; oy yalnızca Kaydet/Güncelle butonuyla işlenir.
+- Kaydet/Güncelle butonu seçimlerin yanına alınarak panel yüksekliği belirgin şekilde azaltıldı.
+- Oy ayrıntısı bağlantısı kısaltıldı ve isteğe bağlı alanlar kapalı kalmaya devam eder.
+- Masaüstü kart genişliği 340px'e düşürüldü; mobil görünüm kompakt şekilde korunur.
+
 ## 1.0.9 Stable - Oylama Kutularının Görünürlük Düzeltmesi
 
 - Konu sahibi doğrulamayı kaldırdıktan sonra Çalıştı / Çalışmadı seçim kutuları artık kesin olarak görünür.

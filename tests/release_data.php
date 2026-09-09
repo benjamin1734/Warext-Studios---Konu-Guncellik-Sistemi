@@ -31,7 +31,7 @@ foreach ($required as $file)
 }
 
 $addon = json_decode((string)file_get_contents($root . '/addon.json'), true);
-if (($addon['version_id'] ?? 0) !== 1010970 || ($addon['version_string'] ?? '') !== '1.0.9')
+if (($addon['version_id'] ?? 0) !== 1011070 || ($addon['version_string'] ?? '') !== '1.0.10')
 {
     fwrite(STDERR, "Sürüm metadata hatalı\n");
     exit(1);

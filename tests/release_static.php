@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.9' || ($addonJson['version_id'] ?? 0) !== 1010970)
+if (($addonJson['version_string'] ?? '') !== '1.0.10' || ($addonJson['version_id'] ?? 0) !== 1011070)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -196,7 +196,7 @@ if (!str_contains($adminNav, 'wrxtThreadFreshnessForums') || !str_contains($dash
     throw new RuntimeException('Central forum/category settings are missing');
 }
 
-if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, 'Oyu kaydet') || !str_contains($mods, 'required="required"'))
+if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, "'Güncelle' : 'Kaydet'") || !str_contains($mods, 'required="required"'))
 {
     throw new RuntimeException('Two-step selectable vote UI is missing');
 }
@@ -221,9 +221,18 @@ if (str_contains($voteService, "if (!\$this->user->hasPermission('wrxtFreshness'
 {
     throw new RuntimeException('Vote service still blocks the topic owner after owner verification is removed');
 }
-if (!str_contains($mods, 'Oyunu güncelle') || !str_contains($mods, 'Seçimini değiştirip yeniden kaydedebilirsin.'))
+if (!str_contains($mods, "'Güncelle' : 'Kaydet'"))
 {
     throw new RuntimeException('Vote update UX is missing');
+}
+
+if (str_contains($mods, 'Bu çözüm sende çalıştı mı?') || str_contains($mods, 'Seçimini yap, ardından oyu kaydet.') || str_contains($mods, 'Çözüm hâlâ geçerli') || str_contains($mods, 'Çözüm artık geçersiz'))
+{
+    throw new RuntimeException('Verbose vote UI text still exists');
+}
+if (!str_contains($mods, "'Güncelle' : 'Kaydet'") || !str_contains($templatesData, 'grid-template-columns:minmax(0,1fr) auto') || !str_contains($templatesData, 'min-height:32px'))
+{
+    throw new RuntimeException('Compact vote UI contract is missing');
 }
 
 $widgetJsSource = (string)file_get_contents($widgetJs);
