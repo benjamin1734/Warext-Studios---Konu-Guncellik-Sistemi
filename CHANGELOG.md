@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## 1.0.5 Stable - Belirgin Kontroller
+
+- Yardım ve işlem alanları “Bilgi” ve “İşlemler” etiketli gerçek buton görünümüne taşındı.
+- Tarayıcının varsayılan details ok işaretleri tamamen kaldırıldı.
+- Durum, oy sayıları ve konu sahibi doğrulaması okunabilir rozet/chip yapısına geçirildi.
+- Oy butonlarının yükseklik, boşluk, köşe, hover ve gölge durumları belirginleştirildi.
+- Kart genişliği sabit genişlik + max-width modeliyle güvenilir biçimde kompakt tutuldu.
+- Mobil dokunma hedefleri büyütüldü.
+
 ## 1.0.4 Stable - Mikro Oylama Kartı
 
 - Masaüstü güncellik kartı 310px genişliğinde mikro karta indirildi.

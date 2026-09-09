@@ -4,13 +4,13 @@ XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama eklen
 
 ## Sürüm
 
-**1.0.4 Stable - Mikro Oylama Kartı**
+**1.0.5 Stable - Belirgin Kontroller**
 
 ## Doğrudan XenForo ACP kurulumu
 
-**Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.4.zip`
+**Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.5.zip`
 
-**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.0.4/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.4.zip
+**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.0.5/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.5.zip
 
 Bu ZIP'i çıkartmadan doğrudan XenForo ACP → Add-ons → Install/upgrade from archive ekranından seçip yükleyin.
 
@@ -54,7 +54,7 @@ Arşiv kurucusunun açık olması gerekir:
 
 ## Kurulum
 
-`XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.4.zip` paketini XenForo yönetim panelindeki arşivden eklenti kurma/yükseltme ekranından yükleyin.
+`XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.0.5.zip` paketini XenForo yönetim panelindeki arşivden eklenti kurma/yükseltme ekranından yükleyin.
 
 Kurulumdan sonra:
 
@@ -66,7 +66,7 @@ Kurulumdan sonra:
 
 ## Sürüm notu
 
-Bu paket resmi **1.0.4 Stable** sürümüdür. Denetim sırasında kullanılan dahili XenForo `version_id` değeri geriye çekilmemiştir; bu sayede daha önce test paketini kurmuş sistemlerde sürüm düşürme riski oluşturulmaz.
+Bu paket resmi **1.0.5 Stable** sürümüdür. Denetim sırasında kullanılan dahili XenForo `version_id` değeri geriye çekilmemiştir; bu sayede daha önce test paketini kurmuş sistemlerde sürüm düşürme riski oluşturulmaz.
 
 ## Veri tabanı
 
