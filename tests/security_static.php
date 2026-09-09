@@ -119,7 +119,7 @@ foreach (['FOR UPDATE', 'beginTransaction', 'rollback', 'preloadThreadData', 'ge
 }
 
 $vote = (string)file_get_contents($root . '/Service/ThreadFreshness/Vote.php');
-foreach (['FailureReason::isValid', 'alternative_thread_id', 'getWrxtFreshnessReferenceDate'] as $needle)
+foreach (['FailureReason::isValid', 'alternative_thread_id'] as $needle)
 {
     if (strpos($vote, $needle) === false)
     {
