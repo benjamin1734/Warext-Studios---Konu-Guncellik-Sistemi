@@ -1,5 +1,13 @@
 # Değişiklik Günlüğü
 
+## 1.1.0 Stable - Yandan Açılan Oy Ayrıntıları
+
+- Oy ayrıntıları artık masaüstünde ana güncellik kartını aşağı doğru büyütmek yerine kartın solunda ayrı bir panel olarak açılır.
+- Yan panel sürüm, neden, açıklama ve güncel konu ID alanlarını aynı form içinde tutar; oy kaydetme/güncelleme davranışı değişmez.
+- 900px ve altındaki ekranlarda ayrıntılar ortalanmış, arka planı karartan responsive bir sheet/modal görünümünde açılır.
+- Mobil ayrıntı paneline kapatma düğmesi, arka plana tıklayarak kapatma ve Escape ile kapatma desteği eklendi.
+- Masaüstü widget genişliği JavaScript tarafında da 340px ile eşitlendi.
+
 ## 1.0.10 Stable - Kompakt Oylama Alanı
 
 - Oylama alanındaki açıklama başlığı ve yardımcı metinler kaldırıldı.

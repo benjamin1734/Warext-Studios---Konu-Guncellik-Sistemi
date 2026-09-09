@@ -177,6 +177,7 @@ $0</replace>
                   &lt;details class="wrxtFreshness-more wrxtFreshness-voteDetails"&gt;
                       &lt;summary class="button button--link wrxtFreshness-moreButton"&gt;＋ Ayrıntı&lt;/summary&gt;
                       &lt;div class="wrxtFreshness-fields"&gt;
+                          &lt;div class="wrxtFreshness-fieldsHead"&gt;&lt;strong&gt;Oy ayrıntısı&lt;/strong&gt;&lt;button type="button" class="button button--link wrxtFreshness-fieldsClose" data-wrxt-detail-close="1" aria-label="Kapat"&gt;✕&lt;/button&gt;&lt;/div&gt;
                           &lt;label&gt;&lt;span&gt;Sürüm&lt;/span&gt;
                               &lt;xf:if is="$wrxtVersions"&gt;
                                   &lt;xf:select name="version" value="{{ $wrxtVoteEntity ? $wrxtVoteEntity.version : '' }}"&gt;
