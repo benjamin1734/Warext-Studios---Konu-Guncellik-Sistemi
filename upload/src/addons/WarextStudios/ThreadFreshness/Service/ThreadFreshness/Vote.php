@@ -78,10 +78,7 @@ class Vote extends AbstractService
         }
 
         $ownThread = (int)$this->thread->user_id === (int)$this->user->user_id;
-        if ($ownThread && !(
-            (bool)(\XF::options()->wrxtFreshnessAllowOwnThread ?? false)
-            && $this->user->hasPermission('wrxtFreshness', 'voteOwn')
-        ))
+        if ($ownThread && $this->thread->hasWrxtFreshnessOwnerClaim())
         {
             throw new \LogicException('Permission denied');
         }

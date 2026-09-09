@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## 1.0.8 Stable - Oy Güncelleme ve Sahip Akışı
+
+- Konu sahibi doğrulamasını kaldırdıktan sonra konu sahibi normal topluluk oylamasına katılabilir.
+- Mevcut oylar sonradan değiştirilebilir; Çalıştı seçimi ileride Çalışmadı olarak veya tersi yönde güncellenebilir.
+- Mevcut oy olduğunda ana buton “Oyunu güncelle” olarak görünür.
+- Konu sahibi doğrulamasını kaldırma işlemi tam sayfa yenilemeyle sonuçlanır; rozet ve oy kutuları anında doğru duruma geçer.
+- Masaüstünde güncellik kartının konu başlığıyla aynı satırdaki yerleşimi korunur; mobilde başlığın altına iner.
+- ACP navigasyon ikonları XenForo ile daha uyumlu Font Awesome adlarıyla güncellendi.
+
 ## 1.0.7 Stable - Başlık Hizası ve Oy Değiştirme
 
 - Masaüstünde konu güncellik paneli konu başlığıyla aynı satırda sağ tarafa hizalandı.

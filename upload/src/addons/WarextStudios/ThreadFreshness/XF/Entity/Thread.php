@@ -122,10 +122,8 @@ class Thread extends XFCP_Thread
 
         $visitor = \XF::visitor();
         $ownThread = (int)$visitor->user_id > 0 && (int)$visitor->user_id === (int)$this->user_id;
-        $allowOwnThread = !$ownThread || (
-            (bool)(\XF::options()->wrxtFreshnessAllowOwnThread ?? false)
-            && $visitor->hasPermission('wrxtFreshness', 'voteOwn')
-        );
+        $ownerClaimActive = $ownThread && $this->hasWrxtFreshnessOwnerClaim();
+        $allowOwnThread = !$ownThread || !$ownerClaimActive;
 
         if (!Eligibility::canVisitorVote(
             (int)$visitor->user_id,

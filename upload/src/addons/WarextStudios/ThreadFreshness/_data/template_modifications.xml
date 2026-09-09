@@ -112,7 +112,7 @@ $0</replace>
                           &lt;summary class="button button--link wrxtFreshness-toolButton" title="İşlemler" aria-label="İşlemler"&gt;&lt;span aria-hidden="true"&gt;⚙&lt;/span&gt; İşlemler&lt;/summary&gt;
                           &lt;div class="wrxtFreshness-popBody wrxtFreshness-popBody--actions"&gt;
                               &lt;xf:if is="$thread.canWrxtFreshnessOwnerClaim()"&gt;
-                                  &lt;xf:form action="{{ link('threads/freshness-owner-claim', $thread) }}" ajax="true"&gt;
+                                  &lt;xf:form action="{{ link('threads/freshness-owner-claim', $thread) }}"&gt;
                                       &lt;xf:hiddenval name="claimed"&gt;{{ $thread.hasWrxtFreshnessOwnerClaim() ? 0 : 1 }}&lt;/xf:hiddenval&gt;
                                       &lt;xf:button type="submit" class="button--link"&gt;{{ $thread.hasWrxtFreshnessOwnerClaim() ? 'Doğrulamayı kaldır' : 'Konu sahibi: hâlâ geçerli' }}&lt;/xf:button&gt;
                                   &lt;/xf:form&gt;
@@ -207,8 +207,8 @@ $0</replace>
                       &lt;/div&gt;
                   &lt;/details&gt;
                   &lt;div class="wrxtFreshness-saveBar"&gt;
-                      &lt;span class="wrxtFreshness-saveHint"&gt;Oy, Kaydet butonuna bastığınızda işlenir.&lt;/span&gt;
-                      &lt;xf:button type="submit" class="button--primary wrxtFreshness-saveButton"&gt;Oyu kaydet&lt;/xf:button&gt;
+                      &lt;span class="wrxtFreshness-saveHint"&gt;{{ $wrxtVisitorVote ? 'Seçimini değiştirip yeniden kaydedebilirsin.' : 'Seçimini yaptıktan sonra kaydet.' }}&lt;/span&gt;
+                      &lt;xf:button type="submit" class="button--primary wrxtFreshness-saveButton"&gt;{{ $wrxtVisitorVote ? 'Oyunu güncelle' : 'Oyu kaydet' }}&lt;/xf:button&gt;
                   &lt;/div&gt;
               &lt;/xf:form&gt;
           &lt;/xf:if&gt;
