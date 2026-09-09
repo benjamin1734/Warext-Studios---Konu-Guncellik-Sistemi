@@ -8,11 +8,10 @@ addon = root / 'upload/src/addons/WarextStudios/ThreadFreshness'
 def replace_once(path: Path, old: str, new: str):
     text = path.read_text(encoding='utf-8')
     if old not in text:
-        raise SystemExit(f'Expected block not found in {path}: {old[:90]!r}')
+        raise SystemExit(f'Expected block not found in {path}: {old[:100]!r}')
     path.write_text(text.replace(old, new, 1), encoding='utf-8')
 
-# 1) Thread owner: owner verification and community vote are mutually exclusive.
-#    Once owner verification is removed, the owner may vote normally.
+# Thread owner may use community voting after removing the owner-verification flag.
 thread_path = addon / 'XF/Entity/Thread.php'
 old = '''        $visitor = \\XF::visitor();
         $ownThread = (int)$visitor->user_id > 0 && (int)$visitor->user_id === (int)$this->user_id;
@@ -20,63 +19,16 @@ old = '''        $visitor = \\XF::visitor();
             (bool)(\\XF::options()->wrxtFreshnessAllowOwnThread ?? false)
             && $visitor->hasPermission('wrxtFreshness', 'voteOwn')
         );
-
-        if (!Eligibility::canVisitorVote(
-            (int)$visitor->user_id,
-            (int)$this->user_id,
-            (int)$visitor->register_date,
-            (int)$visitor->message_count,
-            $visitor->hasPermission('wrxtFreshness', 'vote'),
-            $allowOwnThread,
-            (int)(\\XF::options()->wrxtFreshnessMinAccountDays ?? 7),
-            (int)(\\XF::options()->wrxtFreshnessMinMessages ?? 3),
-            \\XF::$time
-        ))
-        {
-            return false;
-        }
-
-        $vote = $this->getWrxtFreshnessVisitorVoteEntity();
-        if (!$vote)
-        {
-            return true;
-        }
-
-        $voteDate = max((int)$vote->vote_date, (int)$vote->updated_date);
-        if ($voteDate < $this->getWrxtFreshnessReferenceDate())
-        {
-            return true;
-        }
-
-        return $visitor->hasPermission('wrxtFreshness', 'changeVote');
 '''
 new = '''        $visitor = \\XF::visitor();
         $ownThread = (int)$visitor->user_id > 0 && (int)$visitor->user_id === (int)$this->user_id;
         $ownerClaimActive = $ownThread && $this->hasWrxtFreshnessOwnerClaim();
         $allowOwnThread = !$ownThread || !$ownerClaimActive;
-
-        if (!Eligibility::canVisitorVote(
-            (int)$visitor->user_id,
-            (int)$this->user_id,
-            (int)$visitor->register_date,
-            (int)$visitor->message_count,
-            $visitor->hasPermission('wrxtFreshness', 'vote'),
-            $allowOwnThread,
-            (int)(\\XF::options()->wrxtFreshnessMinAccountDays ?? 7),
-            (int)(\\XF::options()->wrxtFreshnessMinMessages ?? 3),
-            \\XF::$time
-        ))
-        {
-            return false;
-        }
-
-        // A valid voter may update their vote later. This is intentional: a
-        // solution that works today can stop working after a future update.
-        return true;
 '''
 replace_once(thread_path, old, new)
 
-# 2) Vote service must use the same rule and must allow updating an existing vote.
+# Vote changing is already unrestricted in 1.0.7. Make the service use the same
+# owner-verification rule as the entity permission check.
 vote_path = addon / 'Service/ThreadFreshness/Vote.php'
 old = '''        $ownThread = (int)$this->thread->user_id === (int)$this->user->user_id;
         if ($ownThread && !(
@@ -95,23 +47,7 @@ new = '''        $ownThread = (int)$this->thread->user_id === (int)$this->user->
 '''
 replace_once(vote_path, old, new)
 
-old = '''            if ($entity)
-            {
-                $voteDate = max((int)$entity->vote_date, (int)$entity->updated_date);
-                $isStaleCycleVote = $voteDate < (int)$this->thread->getWrxtFreshnessReferenceDate();
-                if (!$isStaleCycleVote && !$this->user->hasPermission('wrxtFreshness', 'changeVote'))
-                {
-                    throw new \\LogicException('Permission denied');
-                }
-            }
-            else
-'''
-new = '''            if (!$entity)
-'''
-replace_once(vote_path, old, new)
-
-# 3) Front-end UX: owner-claim removal performs a full refresh so controls update
-#    immediately, and existing votes clearly become an update action.
+# Owner verification removal should visibly refresh the widget immediately.
 mods_path = addon / '_data/template_modifications.xml'
 replace_once(
     mods_path,
@@ -124,20 +60,19 @@ replace_once(
     '&lt;span class="wrxtFreshness-saveHint"&gt;{{ $wrxtVisitorVote ? \'Seçimini değiştirip yeniden kaydedebilirsin.\' : \'Seçimini yaptıktan sonra kaydet.\' }}&lt;/span&gt;\n                      &lt;xf:button type="submit" class="button--primary wrxtFreshness-saveButton"&gt;{{ $wrxtVisitorVote ? \'Oyunu güncelle\' : \'Oyu kaydet\' }}&lt;/xf:button&gt;'
 )
 
-# 4) Use Font Awesome names that are broadly compatible with XenForo ACP.
+# ACP navigation: use conservative XenForo/Font Awesome icon names.
 nav_path = addon / '_data/admin_navigation.xml'
 nav = nav_path.read_text(encoding='utf-8')
 nav = nav.replace('icon="fa-chart-line"', 'icon="fa-chart-bar"')
 nav_path.write_text(nav, encoding='utf-8')
 
-# 5) Version bump.
+# Version bump.
 meta_path = addon / 'addon.json'
 meta = json.loads(meta_path.read_text(encoding='utf-8'))
 meta['version_id'] = 1010870
 meta['version_string'] = '1.0.8'
 meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-# Public LESS template version metadata.
 templates_path = addon / '_data/templates.xml'
 t = templates_path.read_text(encoding='utf-8')
 t = t.replace('title="wrxt_thread_freshness.less" version_id="1010770" version_string="1.0.7"',
@@ -152,7 +87,6 @@ for rel in [root / 'tests/release_data.php', root / 'tests/release_static.php']:
                   "['fa-history', 'fa-chart-bar', 'fa-comments', 'fa-cog']")
     rel.write_text(s, encoding='utf-8')
 
-# Strengthen regression checks for this exact bug.
 release_static = root / 'tests/release_static.php'
 s = release_static.read_text(encoding='utf-8')
 marker = '''$widgetJsSource = (string)file_get_contents($widgetJs);'''
@@ -172,11 +106,10 @@ if extra not in s:
     s = s.replace(marker, extra + marker, 1)
 release_static.write_text(s, encoding='utf-8')
 
-# Changelog + README.
 changelog = root / 'CHANGELOG.md'
 c = changelog.read_text(encoding='utf-8')
 header = '# Değişiklik Günlüğü\n\n'
-section = '''## 1.0.8 Stable - Oy Güncelleme ve Sahip Akışı\n\n- Konu sahibi doğrulamasını kaldırdıktan sonra konu sahibi normal topluluk oylamasına katılabilir.\n- Mevcut oylar artık sonradan değiştirilebilir; Çalıştı seçimi ileride Çalışmadı olarak veya tersi yönde güncellenebilir.\n- Mevcut oy olduğunda ana buton “Oyunu güncelle” olarak görünür.\n- Konu sahibi doğrulamasını kaldırma işlemi tam sayfa yenilemeyle sonuçlanır; rozet ve oy kutuları anında doğru duruma geçer.\n- Masaüstünde güncellik kartının konu başlığıyla aynı satırdaki yerleşimi korunur; mobilde başlığın altına iner.\n- ACP navigasyon ikonları XenForo ile daha uyumlu Font Awesome adlarıyla güncellendi.\n\n'''
+section = '''## 1.0.8 Stable - Oy Güncelleme ve Sahip Akışı\n\n- Konu sahibi doğrulamasını kaldırdıktan sonra konu sahibi normal topluluk oylamasına katılabilir.\n- Mevcut oylar sonradan değiştirilebilir; Çalıştı seçimi ileride Çalışmadı olarak veya tersi yönde güncellenebilir.\n- Mevcut oy olduğunda ana buton “Oyunu güncelle” olarak görünür.\n- Konu sahibi doğrulamasını kaldırma işlemi tam sayfa yenilemeyle sonuçlanır; rozet ve oy kutuları anında doğru duruma geçer.\n- Masaüstünde güncellik kartının konu başlığıyla aynı satırdaki yerleşimi korunur; mobilde başlığın altına iner.\n- ACP navigasyon ikonları XenForo ile daha uyumlu Font Awesome adlarıyla güncellendi.\n\n'''
 if c.startswith(header) and '## 1.0.8 Stable' not in c:
     changelog.write_text(header + section + c[len(header):], encoding='utf-8')
 
