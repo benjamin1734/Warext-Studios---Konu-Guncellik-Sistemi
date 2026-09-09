@@ -1,5 +1,6 @@
 name: ThreadFreshness 1.0.10
 
+# retry 2
 on:
   push:
     branches: [main]
