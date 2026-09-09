@@ -1,0 +1,45 @@
+name: ThreadFreshness 1.0.10
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/thread-freshness-1010.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, simplexml
+      - name: Apply
+        run: python3 tools/thread_freshness_1010.py
+      - name: Validate
+        run: |
+          find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
+          php tests/status_calculator.php
+          php tests/eligibility.php
+          php tests/version_summary.php
+          php tests/revalidation.php
+          php tests/moderator_status.php
+          php tests/notification_status.php
+          php tests/failure_reason.php
+          php tests/template_structure.php
+          php tests/security_static.php
+          php tests/release_static.php
+          php tests/release_data.php
+          php tests/hotfix_101.php
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add upload/src/addons/WarextStudios/ThreadFreshness/_data/template_modifications.xml upload/src/addons/WarextStudios/ThreadFreshness/_data/templates.xml upload/src/addons/WarextStudios/ThreadFreshness/addon.json tests/release_static.php tests/release_data.php CHANGELOG.md README.md
+          git commit -m 'v1.0.10: compact vote controls and reduce panel height'
+          git push
