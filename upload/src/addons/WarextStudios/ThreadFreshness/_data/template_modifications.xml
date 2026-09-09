@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <template_modifications>
   <modification type="admin" template="forum_edit" modification_key="wrxt_thread_freshness_forum_edit" description="Forum bazlı konu güncellik ayarlarını ekler" execution_order="10" enabled="1" action="str_replace">
     <find>&lt;xf:option name="allow_posting"</find>
@@ -79,7 +79,7 @@ $0</replace>
     &lt;xf:set var="$wrxtReplacement" value="{$thread.getWrxtFreshnessReplacementThread()}" /&gt;
     &lt;xf:set var="$wrxtSuggestions" value="{$thread.getWrxtFreshnessAlternativeSuggestions()}" /&gt;
 
-    &lt;div class="wrxtFreshness" id="wrxt-thread-freshness"&gt;
+    &lt;div class="wrxtFreshness" id="wrxt-thread-freshness" style="width:100%;max-width:360px;margin:8px 0 12px auto;"&gt;
         &lt;div class="block-container"&gt;
   &lt;xf:if is="$thread.isWrxtFreshnessEligible()"&gt;
       &lt;div class="wrxtFreshness-main"&gt;
@@ -100,7 +100,7 @@ $0</replace>
               &lt;/div&gt;
               &lt;div class="wrxtFreshness-icons"&gt;
                   &lt;details class="wrxtFreshness-pop wrxtFreshness-help"&gt;
-                      &lt;summary title="Bu sistem ne işe yarar?" aria-label="Bu sistem ne işe yarar?"&gt;?&lt;/summary&gt;
+                      &lt;summary class="button button--link wrxtFreshness-toolButton" title="Bu sistem ne işe yarar?" aria-label="Bu sistem ne işe yarar?"&gt;&lt;span aria-hidden="true"&gt;ⓘ&lt;/span&gt; Bilgi&lt;/summary&gt;
                       &lt;div class="wrxtFreshness-popBody"&gt;
                           &lt;strong&gt;Bu çözüm hâlâ geçerli mi?&lt;/strong&gt;
                           &lt;p&gt;Konu güncellik eşiğini geçti. Çözümü gerçekten denediyseniz sonucu bildirin.&lt;/p&gt;
@@ -109,7 +109,7 @@ $0</replace>
                   &lt;/details&gt;
                   &lt;xf:if is="$thread.canWrxtFreshnessOwnerClaim() OR $thread.canWrxtFreshnessModerate() OR $thread.canWrxtFreshnessManageReplacement()"&gt;
                       &lt;details class="wrxtFreshness-pop wrxtFreshness-actions"&gt;
-                          &lt;summary title="İşlemler" aria-label="İşlemler"&gt;•••&lt;/summary&gt;
+                          &lt;summary class="button button--link wrxtFreshness-toolButton" title="İşlemler" aria-label="İşlemler"&gt;&lt;span aria-hidden="true"&gt;⚙&lt;/span&gt; İşlemler&lt;/summary&gt;
                           &lt;div class="wrxtFreshness-popBody wrxtFreshness-popBody--actions"&gt;
                               &lt;xf:if is="$thread.canWrxtFreshnessOwnerClaim()"&gt;
                                   &lt;xf:form action="{{ link('threads/freshness-owner-claim', $thread) }}" ajax="true"&gt;
@@ -158,12 +158,28 @@ $0</replace>
 
           &lt;xf:if is="$thread.canWrxtFreshnessVote()"&gt;
               &lt;xf:form action="{{ link('threads/freshness-vote', $thread) }}" ajax="true" class="wrxtFreshness-voteForm"&gt;
-                  &lt;div class="wrxtFreshness-voteButtons"&gt;
-                      &lt;xf:button type="submit" name="vote" value="1" class="button--primary"&gt;✓ Çalıştı&lt;/xf:button&gt;
-                      &lt;xf:button type="submit" name="vote" value="-1"&gt;✕ Çalışmadı&lt;/xf:button&gt;
+                  &lt;div class="wrxtFreshness-votePrompt"&gt;
+                      &lt;strong&gt;Bu çözüm sende çalıştı mı?&lt;/strong&gt;
+                      &lt;span&gt;Seçimini yap, ardından oyu kaydet.&lt;/span&gt;
                   &lt;/div&gt;
-                  &lt;details class="wrxtFreshness-more"&gt;
-                      &lt;summary&gt;Oy ayrıntısı&lt;/summary&gt;
+                  &lt;div class="wrxtFreshness-choiceGroup" role="radiogroup" aria-label="Çözüm sonucu"&gt;
+                      &lt;label class="wrxtFreshness-choice wrxtFreshness-choice--yes"&gt;
+                          &lt;input class="wrxtFreshness-choiceInput" type="radio" name="vote" value="1" required="required" checked="{{ $wrxtVisitorVote == 1 ? 'checked' : '' }}" /&gt;
+                          &lt;span class="button button--link wrxtFreshness-choiceSurface"&gt;
+                              &lt;span class="wrxtFreshness-choiceMark" aria-hidden="true"&gt;✓&lt;/span&gt;
+                              &lt;span class="wrxtFreshness-choiceText"&gt;&lt;b&gt;Çalıştı&lt;/b&gt;&lt;small&gt;Çözüm hâlâ geçerli&lt;/small&gt;&lt;/span&gt;
+                          &lt;/span&gt;
+                      &lt;/label&gt;
+                      &lt;label class="wrxtFreshness-choice wrxtFreshness-choice--no"&gt;
+                          &lt;input class="wrxtFreshness-choiceInput" type="radio" name="vote" value="-1" required="required" checked="{{ $wrxtVisitorVote == -1 ? 'checked' : '' }}" /&gt;
+                          &lt;span class="button button--link wrxtFreshness-choiceSurface"&gt;
+                              &lt;span class="wrxtFreshness-choiceMark" aria-hidden="true"&gt;✕&lt;/span&gt;
+                              &lt;span class="wrxtFreshness-choiceText"&gt;&lt;b&gt;Çalışmadı&lt;/b&gt;&lt;small&gt;Çözüm artık geçersiz&lt;/small&gt;&lt;/span&gt;
+                          &lt;/span&gt;
+                      &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;details class="wrxtFreshness-more wrxtFreshness-voteDetails"&gt;
+                      &lt;summary class="button button--link wrxtFreshness-moreButton"&gt;＋ Oy ayrıntısı&lt;/summary&gt;
                       &lt;div class="wrxtFreshness-fields"&gt;
                           &lt;label&gt;&lt;span&gt;Sürüm&lt;/span&gt;
                               &lt;xf:if is="$wrxtVersions"&gt;
@@ -190,6 +206,10 @@ $0</replace>
                           &lt;label&gt;&lt;span&gt;Güncel konu ID&lt;/span&gt;&lt;xf:numberbox name="alternative_thread_id" value="{{ $wrxtVoteEntity ? $wrxtVoteEntity.alternative_thread_id : 0 }}" min="0" /&gt;&lt;/label&gt;
                       &lt;/div&gt;
                   &lt;/details&gt;
+                  &lt;div class="wrxtFreshness-saveBar"&gt;
+                      &lt;span class="wrxtFreshness-saveHint"&gt;Oy, Kaydet butonuna bastığınızda işlenir.&lt;/span&gt;
+                      &lt;xf:button type="submit" class="button--primary wrxtFreshness-saveButton"&gt;Oyu kaydet&lt;/xf:button&gt;
+                  &lt;/div&gt;
               &lt;/xf:form&gt;
           &lt;/xf:if&gt;
 
@@ -214,7 +234,7 @@ $0</replace>
           &lt;div class="wrxtFreshness-top"&gt;
               &lt;div class="wrxtFreshness-heading"&gt;&lt;strong class="wrxtFreshness-title"&gt;Güncellik oylaması&lt;/strong&gt;&lt;span class="label"&gt;{$thread.getWrxtFreshnessDaysUntilEligible()} gün&lt;/span&gt;&lt;/div&gt;
               &lt;details class="wrxtFreshness-pop wrxtFreshness-help"&gt;
-                  &lt;summary title="Bilgi"&gt;?&lt;/summary&gt;
+                  &lt;summary class="button button--link wrxtFreshness-toolButton" title="Bilgi"&gt;&lt;span aria-hidden="true"&gt;ⓘ&lt;/span&gt; Bilgi&lt;/summary&gt;
                   &lt;div class="wrxtFreshness-popBody"&gt;&lt;strong&gt;Henüz açılmadı&lt;/strong&gt;&lt;p&gt;Oy verme açılış tarihi: &lt;xf:date time="{$thread.getWrxtFreshnessEligibleDate()}" /&gt;&lt;/p&gt;&lt;/div&gt;
               &lt;/details&gt;
           &lt;/div&gt;

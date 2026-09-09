@@ -1,5 +1,13 @@
 # Değişiklik Günlüğü
 
+## 1.0.6 Stable - Oylama Arayüzü Yenilemesi
+
+- Çalıştı / Çalışmadı aksiyonları seçilebilir, seçildiğinde içi dolan iki seçenekli kontrol yapısına geçirildi.
+- Oyun gönderilmesi için ayrı bir “Oyu kaydet” butonu eklendi.
+- Bilgi, İşlemler ve Oy ayrıntısı kontrolleri XenForo buton görünümüne geçirildi.
+- Widget masaüstünde kompakt, mobilde tam genişlik olacak şekilde sağlamlaştırıldı.
+- ACP alt menülerine Genel Bakış, Forum/Kategori Ayarları ve Ayarlar ikonları eklendi.
+
 ## 1.0.5 Stable - Belirgin Kontroller
 
 - Yardım ve işlem alanları “Bilgi” ve “İşlemler” etiketli gerçek buton görünümüne taşındı.

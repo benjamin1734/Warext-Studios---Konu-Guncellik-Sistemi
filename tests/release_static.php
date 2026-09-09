@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.0.5' || ($addonJson['version_id'] ?? 0) !== 1010570)
+if (($addonJson['version_string'] ?? '') !== '1.0.6' || ($addonJson['version_id'] ?? 0) !== 1010670)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -168,7 +168,7 @@ foreach (['getWrxtFreshnessEligibleDate', 'getWrxtFreshnessDaysUntilEligible'] a
         throw new RuntimeException('Thread eligibility display helper is missing: ' . $needle);
     }
 }
-if (!str_contains($mods, 'wrxtFreshness-voteButtons') || !str_contains($mods, 'wrxtFreshness-help') || !str_contains($mods, 'warext/thread_freshness.js'))
+if ((!str_contains($mods, 'wrxtFreshness-voteButtons') && !str_contains($mods, 'wrxtFreshness-choiceSurface')) || !str_contains($mods, 'wrxtFreshness-help') || !str_contains($mods, 'warext/thread_freshness.js'))
 {
     throw new RuntimeException('Responsive side voting widget is missing');
 }
@@ -194,6 +194,18 @@ if (!str_contains($mods, '$thread.isWrxtFreshnessEnabled()') || !str_contains($m
 if (!str_contains($adminNav, 'wrxtThreadFreshnessForums') || !str_contains($dashboard, 'actionForums'))
 {
     throw new RuntimeException('Central forum/category settings are missing');
+}
+
+if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, 'Oyu kaydet') || !str_contains($mods, 'required="required"'))
+{
+    throw new RuntimeException('Two-step selectable vote UI is missing');
+}
+foreach (['fa-chart-line', 'fa-folder-tree', 'fa-sliders'] as $icon)
+{
+    if (!str_contains($adminNav, $icon))
+    {
+        throw new RuntimeException('ACP navigation icon missing: ' . $icon);
+    }
 }
 
 echo "OK\n";
