@@ -1,4 +1,4 @@
-name: ThreadFreshness 1.0.10 compact
+name: ThreadFreshness 1.0.10 compact final
 
 on:
   push:
@@ -20,7 +20,9 @@ jobs:
           php-version: '8.4'
           extensions: dom, simplexml
       - name: Apply
-        run: python3 tools/thread_freshness_1010.py
+        run: |
+          python3 tools/thread_freshness_1010.py
+          python3 tools/thread_freshness_1010_fix.py
       - name: Validate
         run: |
           find upload/src/addons/WarextStudios/ThreadFreshness tools tests -name '*.php' -print0 | xargs -0 -n1 php -l
