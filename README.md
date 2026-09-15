@@ -71,3 +71,79 @@ Bu paket resmi **1.1.0 Stable** sürümüdür. Denetim sırasında kullanılan d
 ## Veri tabanı
 
 Manuel SQL içe aktarma gerekmez. Kurulum, yükseltme ve kaldırma şema işlemleri `Setup.php` üzerinden yürütülür.
+
+---
+
+# English
+
+Warext Studios Thread Freshness System is a community-driven XenForo 2.3 add-on for validating whether forum threads, solutions, and technical information are still current and working.
+
+## Version
+
+**1.1.0 Stable - Title alignment and vote changing**
+
+## Direct XenForo ACP installation
+
+**Ready-to-install ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip`
+
+**One-click download:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.1.0/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip
+
+Upload this ZIP directly from XenForo ACP → Add-ons → Install/upgrade from archive without extracting it.
+
+The archive installer must be enabled:
+
+`$config['enableAddOnArchiveInstaller'] = true;`
+
+## Main features
+
+- Per-forum enablement and waiting period
+- Per-forum age calculation using either `Meaningful update` or `Every latest post`
+- Meaningful-update mode can consider thread-owner posts, first-post edits, and the selected solution post for question threads
+- Community voting for worked / did not work
+- One user / one vote, vote changing, and voting again in a new verification cycle
+- Account-age and post-count requirements
+- Voting on your own thread requires both the ACP switch and the user-group permission
+- Version-based verification results
+- Negative-vote reasons and reason distribution
+- Selectable up-to-date alternative thread recommendation
+- Non-binding “still valid” confirmation from the thread owner
+- Current, probably current, uncertain, suspicious, not working, revalidating, and unverified states
+- State engine combining raw vote count with time-weighted percentages
+- ACP-configurable status thresholds
+- Older votes gradually receive less weight
+- Automatic revalidation
+- Thread-list badges and status filters
+- Moderator verification with the ability to return to the community result
+- Notifications and web push for critical status changes
+- Redirect/reference to the current solution thread
+- Current Solutions search page
+- ACP summaries for content health, critical threads, and recent negative feedback
+- Concurrent vote locking
+- Orphan-record cleanup
+- Automated PHP 8.4 tests
+- Release package containing installable `_data` XML and `hashes.json`
+
+## Requirements
+
+- XenForo 2.3.0+
+- PHP 8.1+
+
+## Installation
+
+Upload `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip` through XenForo ACP's archive-based add-on install/upgrade screen.
+
+After installation:
+
+1. Enable the system from the add-on options.
+2. Configure user-group permissions for voting, changing votes, voting on own threads, and moderator verification.
+3. Enable freshness verification from the relevant forum's edit screen.
+4. Configure the waiting period, age-calculation method, and version list when needed.
+5. Adjust status-calculation thresholds in ACP options if required.
+
+## Release note
+
+This package is the official **1.1.0 Stable** release. The internal XenForo `version_id` used during testing has not been rolled back, preventing downgrade conflicts on systems that previously installed a test build.
+
+## Database
+
+No manual SQL import is required. Installation, upgrade, and uninstall schema operations are handled through `Setup.php`.
