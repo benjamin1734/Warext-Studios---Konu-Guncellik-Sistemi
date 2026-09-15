@@ -75,41 +75,9 @@ jobs:
           ZIP: build/${{ steps.meta.outputs.zip }}
         shell: bash
         run: |
-          cat > /tmp/release-notes.md <<EOF
-# Warext Studios | Konu Güncellik Sistemi ${VERSION}
-
-XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama sistemi.
-
-- Çalıştı / çalışmadı topluluk oylaması ve oy değiştirme
-- Forum bazlı bekleme süresi ve güncellik yaş hesabı
-- Sürüm bazlı doğrulama sonuçları ve olumsuz oy nedenleri
-- Güncel alternatif konu önerileri ve konu sahibinin hâlâ geçerli bildirimi
-- Zaman ağırlıklı durum motoru ve ACP üzerinden değiştirilebilir eşikler
-- Otomatik yeniden doğrulama, moderatör doğrulaması ve web push bildirimleri
-- Konu listesi rozetleri, durum filtreleri ve Güncel Çözümler arama sayfası
-- XenForo Job/cron tabanlı bakım, eşzamanlı oy kilitleme ve orphan kayıt temizliği
-
-Kurulum paketi XenForo ACP → Add-ons → Install/upgrade from archive alanından doğrudan yüklenebilir. Manuel SQL gerekmez.
-
----
-
-## English
-
-# Warext Studios | Thread Freshness System ${VERSION}
-
-A community-driven thread and solution freshness-verification system for XenForo 2.3.
-
-- Works / does not work community voting with vote changes
-- Per-forum waiting periods and freshness-age calculation
-- Version-based verification results and negative-vote reasons
-- Suggestions for up-to-date alternative threads and a non-binding still-valid declaration by the thread owner
-- Time-weighted status engine with ACP-configurable thresholds
-- Automatic revalidation, moderator verification and web-push notifications
-- Thread-list badges, status filters and an Up-to-date Solutions search page
-- XenForo Job/cron-based maintenance, concurrent-vote locking and orphan-record cleanup
-
-The installation package can be uploaded directly through XenForo ACP → Add-ons → Install/upgrade from archive. No manual SQL is required.
-EOF
+          set -euo pipefail
+          printf '%s' 'IyBXYXJleHQgU3R1ZGlvcyB8IEtvbnUgR8O8bmNlbGxpayBTaXN0ZW1pIF9fVkVSU0lPTl9fCgpYZW5Gb3JvIDIuMyBpw6dpbiB0b3BsdWx1ayB0YWJhbmzEsSBrb251IHZlIMOnw7Z6w7xtIGfDvG5jZWxsaWsgZG/En3J1bGFtYSBzaXN0ZW1pLgoKLSDDh2FsxLHFn3TEsSAvIMOnYWzEscWfbWFkxLEgdG9wbHVsdWsgb3lsYW1hc8SxIHZlIG95IGRlxJ9pxZ90aXJtZQotIEZvcnVtIGJhemzEsSBiZWtsZW1lIHPDvHJlc2kgdmUgZ8O8bmNlbGxpayB5YcWfIGhlc2FixLEKLSBTw7xyw7xtIGJhemzEsSBkb8SfcnVsYW1hIHNvbnXDp2xhcsSxIHZlIG9sdW1zdXogb3kgbmVkZW5sZXJpCi0gR8O8bmNlbCBhbHRlcm5hdGlmIGtvbnUgw7ZuZXJpbGVyaSB2ZSBrb251IHNhaGliaW5pbiBow6Jsw6IgZ2XDp2VybGkgYmlsZGlyaW1pCi0gWmFtYW4gYcSfxLFybMSxa2zEsSBkdXJ1bSBtb3RvcnUgdmUgQUNQIMO8emVyaW5kZW4gZGXEn2nFn3RpcmlsZWJpbGlyIGXFn2lrbGVyCi0gT3RvbWF0aWsgeWVuaWRlbiBkb8SfcnVsYW1hLCBtb2RlcmF0w7ZyIGRvxJ9ydWxhbWFzxLEgdmUgd2ViIHB1c2ggYmlsZGlyaW1sZXJpCi0gS29udSBsaXN0ZXNpIHJvemV0bGVyaSwgZHVydW0gZmlsdHJlbGVyaSB2ZSBHw7xuY2VsIMOHw7Z6w7xtbGVyIGFyYW1hIHNheWZhc8SxCi0gWGVuRm9ybyBKb2IvY3JvbiB0YWJhbmzEsSBiYWvEsW0sIGXFn3phbWFubMSxIG95IGtpbGl0bGVtZSB2ZSBvcnBoYW4ga2F5xLF0IHRlbWl6bGnEn2kKCkt1cnVsdW0gcGFrZXRpIFhlbkZvcm8gQUNQIOKGkiBBZGQtb25zIOKGkiBJbnN0YWxsL3VwZ3JhZGUgZnJvbSBhcmNoaXZlIGFsYW7EsW5kYW4gZG/En3J1ZGFuIHnDvGtsZW5lYmlsaXIuIE1hbnVlbCBTUUwgZ2VyZWttZXouCgotLS0KCiMjIEVuZ2xpc2gKCiMgV2FyZXh0IFN0dWRpb3MgfCBUaHJlYWQgRnJlc2huZXNzIFN5c3RlbSBfX1ZFUlNJT05fXwoKQSBjb21tdW5pdHktZHJpdmVuIHRocmVhZCBhbmQgc29sdXRpb24gZnJlc2huZXNzLXZlcmlmaWNhdGlvbiBzeXN0ZW0gZm9yIFhlbkZvcm8gMi4zLgoKLSBXb3JrcyAvIGRvZXMgbm90IHdvcmsgY29tbXVuaXR5IHZvdGluZyB3aXRoIHZvdGUgY2hhbmdlcwotIFBlci1mb3J1bSB3YWl0aW5nIHBlcmlvZHMgYW5kIGZyZXNobmVzcy1hZ2UgY2FsY3VsYXRpb24KLSBWZXJzaW9uLWJhc2VkIHZlcmlmaWNhdGlvbiByZXN1bHRzIGFuZCBuZWdhdGl2ZS12b3RlIHJlYXNvbnMKLSBTdWdnZXN0aW9ucyBmb3IgdXAtdG8tZGF0ZSBhbHRlcm5hdGl2ZSB0aHJlYWRzIGFuZCBhIG5vbi1iaW5kaW5nIHN0aWxsLXZhbGlkIGRlY2xhcmF0aW9uIGJ5IHRoZSB0aHJlYWQgb3duZXIKLSBUaW1lLXdlaWdodGVkIHN0YXR1cyBlbmdpbmUgd2l0aCBBQ1AtY29uZmlndXJhYmxlIHRocmVzaG9sZHMKLSBBdXRvbWF0aWMgcmV2YWxpZGF0aW9uLCBtb2RlcmF0b3IgdmVyaWZpY2F0aW9uIGFuZCB3ZWItcHVzaCBub3RpZmljYXRpb25zCi0gVGhyZWFkLWxpc3QgYmFkZ2VzLCBzdGF0dXMgZmlsdGVycyBhbmQgYW4gVXAtdG8tZGF0ZSBTb2x1dGlvbnMgc2VhcmNoIHBhZ2UKLSBYZW5Gb3JvIEpvYi9jcm9uLWJhc2VkIG1haW50ZW5hbmNlLCBjb25jdXJyZW50LXZvdGUgbG9ja2luZyBhbmQgb3JwaGFuLXJlY29yZCBjbGVhbnVwCgpUaGUgaW5zdGFsbGF0aW9uIHBhY2thZ2UgY2FuIGJlIHVwbG9hZGVkIGRpcmVjdGx5IHRocm91Z2ggWGVuRm9ybyBBQ1Ag4oaSIEFkZC1vbnMg4oaSIEluc3RhbGwvdXBncmFkZSBmcm9tIGFyY2hpdmUuIE5vIG1hbnVhbCBTUUwgaXMgcmVxdWlyZWQuCg==' | base64 --decode > /tmp/release-notes.md
+          sed -i "s/__VERSION__/${VERSION}/g" /tmp/release-notes.md
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
             gh release upload "$TAG" "$ZIP" --clobber
