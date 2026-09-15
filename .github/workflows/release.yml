@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'upload/src/addons/WarextStudios/ThreadFreshness/addon.json'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 permissions:
@@ -74,12 +75,44 @@ jobs:
           ZIP: build/${{ steps.meta.outputs.zip }}
         shell: bash
         run: |
+          cat > /tmp/release-notes.md <<EOF
+# Warext Studios | Konu Güncellik Sistemi ${VERSION}
+
+XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama sistemi.
+
+- Çalıştı / çalışmadı topluluk oylaması ve oy değiştirme
+- Forum bazlı bekleme süresi ve güncellik yaş hesabı
+- Sürüm bazlı doğrulama sonuçları ve olumsuz oy nedenleri
+- Güncel alternatif konu önerileri ve konu sahibinin hâlâ geçerli bildirimi
+- Zaman ağırlıklı durum motoru ve ACP üzerinden değiştirilebilir eşikler
+- Otomatik yeniden doğrulama, moderatör doğrulaması ve web push bildirimleri
+- Konu listesi rozetleri, durum filtreleri ve Güncel Çözümler arama sayfası
+- XenForo Job/cron tabanlı bakım, eşzamanlı oy kilitleme ve orphan kayıt temizliği
+
+Kurulum paketi XenForo ACP → Add-ons → Install/upgrade from archive alanından doğrudan yüklenebilir. Manuel SQL gerekmez.
+
+---
+
+## English
+
+# Warext Studios | Thread Freshness System ${VERSION}
+
+A community-driven thread and solution freshness-verification system for XenForo 2.3.
+
+- Works / does not work community voting with vote changes
+- Per-forum waiting periods and freshness-age calculation
+- Version-based verification results and negative-vote reasons
+- Suggestions for up-to-date alternative threads and a non-binding still-valid declaration by the thread owner
+- Time-weighted status engine with ACP-configurable thresholds
+- Automatic revalidation, moderator verification and web-push notifications
+- Thread-list badges, status filters and an Up-to-date Solutions search page
+- XenForo Job/cron-based maintenance, concurrent-vote locking and orphan-record cleanup
+
+The installation package can be uploaded directly through XenForo ACP → Add-ons → Install/upgrade from archive. No manual SQL is required.
+EOF
           if gh release view "$TAG" >/dev/null 2>&1; then
-            if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-              echo "::error::${TAG} zaten mevcut. Yeni kod sürümü için addon.json version_string/version_id değerlerini yükseltin."
-              exit 1
-            fi
+            gh release edit "$TAG" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
             gh release upload "$TAG" "$ZIP" --clobber
           else
-            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --generate-notes
+            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
           fi
