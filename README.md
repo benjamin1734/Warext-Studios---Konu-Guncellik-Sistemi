@@ -1,4 +1,6 @@
-# Warext Studios - Konu Güncellik Sistemi
+# Warext Studios | XenForo Thread Freshness System
+
+## Türkçe
 
 XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama eklentisi.
 
@@ -72,9 +74,15 @@ Bu paket resmi **1.1.0 Stable** sürümüdür. Denetim sırasında kullanılan d
 
 Manuel SQL içe aktarma gerekmez. Kurulum, yükseltme ve kaldırma şema işlemleri `Setup.php` üzerinden yürütülür.
 
+## Destek
+
+Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo eklentileriyle ilgili yardım için destek Discord sunucumuza katılabilirsiniz:
+
+**Discord:** https://discord.gg/tgsV5XMcFS
+
 ---
 
-# English
+## English
 
 Warext Studios Thread Freshness System is a community-driven XenForo 2.3 add-on for validating whether forum threads, solutions, and technical information are still current and working.
 
@@ -147,3 +155,9 @@ This package is the official **1.1.0 Stable** release. The internal XenForo `ver
 ## Database
 
 No manual SQL import is required. Installation, upgrade, and uninstall schema operations are handled through `Setup.php`.
+
+## Support
+
+For questions, bug reports, installation support, and help with Warext Studios XenForo add-ons, you can join our support Discord server:
+
+**Discord:** https://discord.gg/tgsV5XMcFS
