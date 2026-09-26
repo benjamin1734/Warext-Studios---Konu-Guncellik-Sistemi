@@ -24,4 +24,54 @@
   <phrase title="wrxt_freshness_alert_recovered" version_id="1010070" version_string="1.0.0">"{title}" konunuz yeniden güncel olarak doğrulandı.</phrase>
   <phrase title="wrxt_freshness_alert_revalidating" version_id="1010070" version_string="1.0.0">"{title}" konunuz için yeniden doğrulama süreci başladı.</phrase>
   <phrase title="wrxt_thread_freshness_search" version_id="1010070" version_string="1.0.0">Güncel Çözümler</phrase>
+  <phrase title="wrxt_freshness_general_settings" version_id="1020000" version_string="1.2.0"><![CDATA[Genel Ayarlar]]></phrase>
+  <phrase title="wrxt_freshness_content_health_summary" version_id="1020000" version_string="1.2.0"><![CDATA[İçerik sağlığı özeti]]></phrase>
+  <phrase title="wrxt_freshness_status_records" version_id="1020000" version_string="1.2.0"><![CDATA[Durum kaydı]]></phrase>
+  <phrase title="wrxt_freshness_alternative_suggestions" version_id="1020000" version_string="1.2.0"><![CDATA[Alternatif çözüm önerisi]]></phrase>
+  <phrase title="wrxt_freshness_status_current" version_id="1020000" version_string="1.2.0"><![CDATA[Güncel]]></phrase>
+  <phrase title="wrxt_freshness_status_likely_current" version_id="1020000" version_string="1.2.0"><![CDATA[Muhtemelen güncel]]></phrase>
+  <phrase title="wrxt_freshness_status_mixed" version_id="1020000" version_string="1.2.0"><![CDATA[Kararsız]]></phrase>
+  <phrase title="wrxt_freshness_status_questionable" version_id="1020000" version_string="1.2.0"><![CDATA[Güncelliği şüpheli]]></phrase>
+  <phrase title="wrxt_freshness_status_not_working" version_id="1020000" version_string="1.2.0"><![CDATA[Artık çalışmıyor]]></phrase>
+  <phrase title="wrxt_freshness_status_revalidating" version_id="1020000" version_string="1.2.0"><![CDATA[Yeniden doğrulanıyor]]></phrase>
+  <phrase title="wrxt_freshness_status_unverified" version_id="1020000" version_string="1.2.0"><![CDATA[Doğrulanmamış]]></phrase>
+  <phrase title="wrxt_freshness_status" version_id="1020000" version_string="1.2.0"><![CDATA[Durum]]></phrase>
+  <phrase title="wrxt_freshness_negative" version_id="1020000" version_string="1.2.0"><![CDATA[Olumsuz]]></phrase>
+  <phrase title="wrxt_freshness_total_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Toplam oy]]></phrase>
+  <phrase title="wrxt_freshness_recent_negative" version_id="1020000" version_string="1.2.0"><![CDATA[Son olumsuz geri bildirimler]]></phrase>
+  <phrase title="wrxt_freshness_deleted_thread_x" version_id="1020000" version_string="1.2.0"><![CDATA[Silinmiş konu #{id}]]></phrase>
+  <phrase title="wrxt_freshness_reason" version_id="1020000" version_string="1.2.0"><![CDATA[Neden]]></phrase>
+  <phrase title="wrxt_freshness_reason_outdated_version" version_id="1020000" version_string="1.2.0"><![CDATA[Yeni sürümde çalışmıyor]]></phrase>
+  <phrase title="wrxt_freshness_reason_dead_links" version_id="1020000" version_string="1.2.0"><![CDATA[Dosya/bağlantı çalışmıyor]]></phrase>
+  <phrase title="wrxt_freshness_reason_method_invalid" version_id="1020000" version_string="1.2.0"><![CDATA[Yöntem geçersiz]]></phrase>
+  <phrase title="wrxt_freshness_reason_incomplete" version_id="1020000" version_string="1.2.0"><![CDATA[Çözüm eksik]]></phrase>
+  <phrase title="wrxt_freshness_keyword" version_id="1020000" version_string="1.2.0"><![CDATA[Anahtar kelime]]></phrase>
+  <phrase title="wrxt_freshness_search_title_placeholder" version_id="1020000" version_string="1.2.0"><![CDATA[Konu başlığında ara]]></phrase>
+  <phrase title="wrxt_freshness_status_label" version_id="1020000" version_string="1.2.0"><![CDATA[Güncellik durumu]]></phrase>
+  <phrase title="wrxt_freshness_all_statuses" version_id="1020000" version_string="1.2.0"><![CDATA[Tüm durumlar]]></phrase>
+  <phrase title="wrxt_freshness_results" version_id="1020000" version_string="1.2.0"><![CDATA[Sonuçlar]]></phrase>
+  <phrase title="wrxt_freshness_worked" version_id="1020000" version_string="1.2.0"><![CDATA[Çalıştı]]></phrase>
+  <phrase title="wrxt_freshness_did_not_work" version_id="1020000" version_string="1.2.0"><![CDATA[Çalışmadı]]></phrase>
+  <phrase title="wrxt_freshness_last_verification" version_id="1020000" version_string="1.2.0"><![CDATA[Son doğrulama]]></phrase>
+  <phrase title="wrxt_freshness_no_results" version_id="1020000" version_string="1.2.0"><![CDATA[Bu ölçütlere uygun konu bulunamadı.]]></phrase>
+  <phrase title="wrxt_freshness_rule_likely_min_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Muhtemelen güncel: minimum oy]]></phrase>
+  <phrase title="wrxt_freshness_rule_likely_min_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Muhtemelen güncel: minimum çalıştı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_rule_current_min_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Güncel: minimum oy]]></phrase>
+  <phrase title="wrxt_freshness_rule_current_min_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Güncel: minimum çalıştı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_rule_questionable_min_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Şüpheli: minimum oy]]></phrase>
+  <phrase title="wrxt_freshness_rule_questionable_no_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Şüpheli: minimum çalışmadı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_rule_not_working_min_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Artık çalışmıyor: minimum oy]]></phrase>
+  <phrase title="wrxt_freshness_rule_not_working_no_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Artık çalışmıyor: minimum çalışmadı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_rule_mixed_min_votes" version_id="1020000" version_string="1.2.0"><![CDATA[Kararsız: minimum oy]]></phrase>
+  <phrase title="wrxt_freshness_rule_mixed_low_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Kararsız: alt çalıştı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_rule_mixed_high_percent" version_id="1020000" version_string="1.2.0"><![CDATA[Kararsız: üst çalıştı yüzdesi]]></phrase>
+  <phrase title="wrxt_freshness_areas_header" version_id="1020000" version_string="1.2.0"><![CDATA[Güncellik sisteminin çalışacağı alanlar]]></phrase>
+  <phrase title="wrxt_freshness_vote_day_threshold" version_id="1020000" version_string="1.2.0"><![CDATA[Oy verme için gün eşiği]]></phrase>
+  <phrase title="wrxt_freshness_vote_day_threshold_explain" version_id="1020000" version_string="1.2.0"><![CDATA[Seçilen forumlara uygulanır. Test için 1 gün seçebilirsiniz.]]></phrase>
+  <phrase title="wrxt_freshness_age_calculation" version_id="1020000" version_string="1.2.0"><![CDATA[Yaş hesabı]]></phrase>
+  <phrase title="wrxt_freshness_meaningful_update" version_id="1020000" version_string="1.2.0"><![CDATA[Anlamlı güncelleme]]></phrase>
+  <phrase title="wrxt_freshness_last_post" version_id="1020000" version_string="1.2.0"><![CDATA[Son mesaj]]></phrase>
+  <phrase title="wrxt_freshness_category_select_explain" version_id="1020000" version_string="1.2.0"><![CDATA[Bir kategori seçildiğinde altındaki bütün forumlar etkinleştirilir. İsterseniz forumları tek tek de seçebilirsiniz.]]></phrase>
+  <phrase title="wrxt_freshness_threshold_x_days" version_id="1020000" version_string="1.2.0"><![CDATA[eşik: {days} gün]]></phrase>
+  <phrase title="wrxt_freshness_permission_explain" version_id="1020000" version_string="1.2.0"><![CDATA[Oy butonlarının görünmesi için kullanıcı grubunda Konu Güncellik Sistemi oy kullanma izni de açık olmalıdır.]]></phrase>
 </phrases>
