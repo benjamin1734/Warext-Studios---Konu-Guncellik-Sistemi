@@ -161,3 +161,8 @@ Manuel SQL içe aktarma gerekmez. Kurulum, yükseltme ve kaldırma şema işleml
 Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo eklentileriyle ilgili yardım için destek Discord sunucumuza katılabilirsiniz:
 
 **Discord:** https://discord.gg/tgsV5XMcFS
+
+
+## Language support / Dil desteği
+
+Version 1.2.0 adds native Turkish/English language-pack support through XenForo phrases. Import the XML files under `languages/` and use XenForo's normal language selector. See `LANGUAGE.md` for details.
