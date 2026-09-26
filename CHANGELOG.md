@@ -1,3 +1,11 @@
+## 1.2.0 - 2026-09-26
+
+- Added native XenForo Turkish/English phrase-based language support.
+- Moved remaining user-facing Thread Freshness template labels, buttons, status names and descriptions to phrases.
+- Added importable `languages/Turkish.xml` and `languages/English.xml` packages.
+- Language switching now follows the visitor's normal XenForo language selection.
+- Added a no-hard-coded-UI-text development rule for future changes.
+
 # Değişiklik Günlüğü
 
 ## 1.1.0 Stable - Yandan Açılan Oy Ayrıntıları
