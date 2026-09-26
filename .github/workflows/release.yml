@@ -73,6 +73,8 @@ jobs:
           TAG: ${{ steps.meta.outputs.tag }}
           VERSION: ${{ steps.meta.outputs.version }}
           ZIP: build/${{ steps.meta.outputs.zip }}
+          LANG_TR: languages/Turkish.xml
+          LANG_EN: languages/English.xml
         shell: bash
         run: |
           set -euo pipefail
@@ -80,7 +82,7 @@ jobs:
           sed -i "s/__VERSION__/${VERSION}/g" /tmp/release-notes.md
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
-            gh release upload "$TAG" "$ZIP" --clobber
+            gh release upload "$TAG" "$ZIP" "$LANG_TR" "$LANG_EN" --clobber
           else
-            gh release create "$TAG" "$ZIP" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
+            gh release create "$TAG" "$ZIP" "$LANG_TR" "$LANG_EN" --target "$GITHUB_SHA" --title "Warext Studios Konu Güncellik $VERSION" --notes-file /tmp/release-notes.md
           fi
