@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
 <templates>
-  <template type="admin" title="wrxt_thread_freshness_dashboard" version_id="1010070" version_string="1.0.0">&lt;xf:title&gt;Konu Güncellik Sistemi&lt;/xf:title&gt;
+  <template type="admin" title="wrxt_thread_freshness_dashboard" version_id="1010070" version_string="1.0.0">&lt;xf:title&gt;{{ phrase('admin_navigation.wrxtThreadFreshness') }}&lt;/xf:title&gt;
 
 &lt;xf:pageaction&gt;
-    &lt;xf:button href="{{ link('thread-freshness/forums') }}"&gt;Forum/Kategori Ayarları&lt;/xf:button&gt;
-    &lt;xf:button href="{{ link('thread-freshness/settings') }}"&gt;Genel Ayarlar&lt;/xf:button&gt;
+    &lt;xf:button href="{{ link('thread-freshness/forums') }}"&gt;{{ phrase('admin_navigation.wrxtThreadFreshnessForums') }}&lt;/xf:button&gt;
+    &lt;xf:button href="{{ link('thread-freshness/settings') }}"&gt;{{ phrase('wrxt_freshness_general_settings') }}&lt;/xf:button&gt;
 &lt;/xf:pageaction&gt;
 
 &lt;div class="block"&gt;
     &lt;div class="block-container"&gt;
-        &lt;h2 class="block-header"&gt;İçerik sağlığı özeti&lt;/h2&gt;
+        &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_content_health_summary') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;&lt;div class="block-row"&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Etkin forum konusu&lt;/dt&gt;&lt;dd&gt;{$stats.active_threads|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Durum kaydı&lt;/dt&gt;&lt;dd&gt;{$stats.total|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_records') }}&lt;/dt&gt;&lt;dd&gt;{$stats.total|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Toplam oy&lt;/dt&gt;&lt;dd&gt;{$stats.votes|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Alternatif çözüm önerisi&lt;/dt&gt;&lt;dd&gt;{$stats.alternative_suggestions|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_alternative_suggestions') }}&lt;/dt&gt;&lt;dd&gt;{$stats.alternative_suggestions|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Etkin forum&lt;/dt&gt;&lt;dd&gt;{$stats.enabled_forums|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Güncel&lt;/dt&gt;&lt;dd&gt;{$stats.current|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Muhtemelen güncel&lt;/dt&gt;&lt;dd&gt;{$stats.likely_current|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Kararsız&lt;/dt&gt;&lt;dd&gt;{$stats.mixed|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Güncelliği şüpheli&lt;/dt&gt;&lt;dd&gt;{$stats.questionable|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Artık çalışmıyor&lt;/dt&gt;&lt;dd&gt;{$stats.not_working|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Yeniden doğrulanıyor&lt;/dt&gt;&lt;dd&gt;{$stats.revalidating|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Doğrulanmamış kayıt&lt;/dt&gt;&lt;dd&gt;{$stats.unverified|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_current') }}&lt;/dt&gt;&lt;dd&gt;{$stats.current|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_likely_current') }}&lt;/dt&gt;&lt;dd&gt;{$stats.likely_current|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_mixed') }}&lt;/dt&gt;&lt;dd&gt;{$stats.mixed|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_questionable') }}&lt;/dt&gt;&lt;dd&gt;{$stats.questionable|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_not_working') }}&lt;/dt&gt;&lt;dd&gt;{$stats.not_working|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_revalidating') }}&lt;/dt&gt;&lt;dd&gt;{$stats.revalidating|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_unverified') }}&lt;/dt&gt;&lt;dd&gt;{$stats.unverified|number}&lt;/dd&gt;&lt;/dl&gt;
         &lt;/div&gt;&lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
@@ -37,7 +37,7 @@
                         &lt;xf:datarow&gt;
                             &lt;xf:cell class="dataList-cell--main"&gt;
                                 &lt;a href="{{ link('public:threads', $row.thread) }}" target="_blank"&gt;{$row.thread.title}&lt;/a&gt;
-                                &lt;div class="dataList-subRow"&gt;Durum: {$row.effective_status} · Olumsuz: {$row.negative_count|number} · Toplam oy: {$row.vote_count|number}&lt;/div&gt;
+                                &lt;div class="dataList-subRow"&gt;{{ phrase('wrxt_freshness_status') }}: {$row.effective_status} · {{ phrase('wrxt_freshness_negative') }}: {$row.negative_count|number} · {{ phrase('wrxt_freshness_total_votes') }}: {$row.vote_count|number}&lt;/div&gt;
                             &lt;/xf:cell&gt;
                         &lt;/xf:datarow&gt;
                     &lt;/xf:foreach&gt;
@@ -49,18 +49,18 @@
 
 &lt;div class="block"&gt;
     &lt;div class="block-container"&gt;
-        &lt;h2 class="block-header"&gt;Son olumsuz geri bildirimler&lt;/h2&gt;
+        &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_recent_negative') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;
             &lt;xf:if is="$negativeFeedback"&gt;
                 &lt;xf:datalist data-xf-init="responsive-data-list"&gt;
                     &lt;xf:foreach loop="$negativeFeedback" value="$vote"&gt;
                         &lt;xf:datarow&gt;
                             &lt;xf:cell class="dataList-cell--main"&gt;
-                                &lt;xf:if is="$vote.Thread"&gt;&lt;a href="{{ link('public:threads', $vote.Thread) }}" target="_blank"&gt;{$vote.Thread.title}&lt;/a&gt;&lt;xf:else /&gt;Silinmiş konu #{$vote.thread_id}&lt;/xf:if&gt;
+                                &lt;xf:if is="$vote.Thread"&gt;&lt;a href="{{ link('public:threads', $vote.Thread) }}" target="_blank"&gt;{$vote.Thread.title}&lt;/a&gt;&lt;xf:else /&gt;{{ phrase('wrxt_freshness_deleted_thread_x', {'id': $vote.thread_id}) }}&lt;/xf:if&gt;
                                 &lt;div class="dataList-subRow"&gt;
                                     &lt;xf:if is="$vote.User"&gt;{$vote.User.username} · &lt;/xf:if&gt;
                                     &lt;xf:date time="{{ $vote.updated_date ?: $vote.vote_date }}" /&gt;
-                                    &lt;xf:if is="$vote.reason"&gt; · Neden: &lt;xf:if is="$vote.reason == 'outdated_version'"&gt;Yeni sürümde çalışmıyor&lt;xf:elseif is="$vote.reason == 'dead_links'" /&gt;Dosya/bağlantı çalışmıyor&lt;xf:elseif is="$vote.reason == 'method_invalid'" /&gt;Yöntem geçersiz&lt;xf:elseif is="$vote.reason == 'incomplete'" /&gt;Çözüm eksik&lt;xf:elseif is="$vote.reason == 'did_not_work'" /&gt;Sistemde çalışmadı&lt;xf:else /&gt;Diğer&lt;/xf:if&gt;&lt;/xf:if&gt;
+                                    &lt;xf:if is="$vote.reason"&gt; · {{ phrase('wrxt_freshness_reason') }}: &lt;xf:if is="$vote.reason == 'outdated_version'"&gt;{{ phrase('wrxt_freshness_reason_outdated_version') }}&lt;xf:elseif is="$vote.reason == 'dead_links'" /&gt;{{ phrase('wrxt_freshness_reason_dead_links') }}&lt;xf:elseif is="$vote.reason == 'method_invalid'" /&gt;{{ phrase('wrxt_freshness_reason_method_invalid') }}&lt;xf:elseif is="$vote.reason == 'incomplete'" /&gt;{{ phrase('wrxt_freshness_reason_incomplete') }}&lt;xf:elseif is="$vote.reason == 'did_not_work'" /&gt;Sistemde çalışmadı&lt;xf:else /&gt;Diğer&lt;/xf:if&gt;&lt;/xf:if&gt;
                                     &lt;xf:if is="$vote.alternative_thread_id"&gt; · Alternatif konu: #{$vote.alternative_thread_id}&lt;/xf:if&gt;
                                     &lt;xf:if is="$vote.message"&gt;&lt;br /&gt;{$vote.message}&lt;/xf:if&gt;
                                 &lt;/div&gt;
@@ -92,20 +92,20 @@
 	{{ phrase('wrxt_freshness_alert_recovered', {'title': $content.title}) }}
 &lt;/xf:if&gt;
 &lt;push:url&gt;{{ link('canonical:threads', $content) }}&lt;/push:url&gt;</template>
-  <template type="public" title="wrxt_thread_freshness_search" version_id="1010070" version_string="1.0.0">&lt;xf:title&gt;Güncel Çözümler&lt;/xf:title&gt;
+  <template type="public" title="wrxt_thread_freshness_search" version_id="1010070" version_string="1.0.0">&lt;xf:title&gt;{{ phrase('wrxt_thread_freshness_search') }}&lt;/xf:title&gt;
 
 &lt;xf:form action="{{ link('guncel-cozumler') }}" method="get" class="block"&gt;
     &lt;div class="block-container"&gt;&lt;div class="block-body"&gt;
-        &lt;xf:textboxrow name="q" value="{$query}" label="Anahtar kelime" placeholder="Konu başlığında ara" /&gt;
-        &lt;xf:selectrow name="status" value="{$status}" label="Güncellik durumu"&gt;
-            &lt;xf:option value="current"&gt;Güncel çözümler&lt;/xf:option&gt;
-            &lt;xf:option value="likely_current"&gt;Muhtemelen güncel&lt;/xf:option&gt;
-            &lt;xf:option value="mixed"&gt;Kararsız&lt;/xf:option&gt;
-            &lt;xf:option value="questionable"&gt;Güncelliği şüpheli&lt;/xf:option&gt;
-            &lt;xf:option value="not_working"&gt;Artık çalışmıyor&lt;/xf:option&gt;
-            &lt;xf:option value="revalidating"&gt;Yeniden doğrulanıyor&lt;/xf:option&gt;
-            &lt;xf:option value="unverified"&gt;Doğrulanmamış&lt;/xf:option&gt;
-            &lt;xf:option value="all"&gt;Tüm durumlar&lt;/xf:option&gt;
+        &lt;xf:textboxrow name="q" value="{$query}" label="{{ phrase('wrxt_freshness_keyword') }}" placeholder="{{ phrase('wrxt_freshness_search_title_placeholder') }}" /&gt;
+        &lt;xf:selectrow name="status" value="{$status}" label="{{ phrase('wrxt_freshness_status_label') }}"&gt;
+            &lt;xf:option value="current"&gt;{{ phrase('wrxt_freshness_status_current') }}&lt;/xf:option&gt;
+            &lt;xf:option value="likely_current"&gt;{{ phrase('wrxt_freshness_status_likely_current') }}&lt;/xf:option&gt;
+            &lt;xf:option value="mixed"&gt;{{ phrase('wrxt_freshness_status_mixed') }}&lt;/xf:option&gt;
+            &lt;xf:option value="questionable"&gt;{{ phrase('wrxt_freshness_status_questionable') }}&lt;/xf:option&gt;
+            &lt;xf:option value="not_working"&gt;{{ phrase('wrxt_freshness_status_not_working') }}&lt;/xf:option&gt;
+            &lt;xf:option value="revalidating"&gt;{{ phrase('wrxt_freshness_status_revalidating') }}&lt;/xf:option&gt;
+            &lt;xf:option value="unverified"&gt;{{ phrase('wrxt_freshness_status_unverified') }}&lt;/xf:option&gt;
+            &lt;xf:option value="all"&gt;{{ phrase('wrxt_freshness_all_statuses') }}&lt;/xf:option&gt;
         &lt;/xf:selectrow&gt;
         &lt;xf:submitrow submit="Ara" /&gt;
     &lt;/div&gt;&lt;/div&gt;
@@ -113,53 +113,53 @@
 
 &lt;div class="block"&gt;
     &lt;div class="block-container"&gt;
-        &lt;h2 class="block-header"&gt;Sonuçlar&lt;/h2&gt;
+        &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_results') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;
             &lt;xf:if is="$results"&gt;
                 &lt;xf:foreach loop="$results" value="$row"&gt;
                     &lt;div class="block-row"&gt;
                         &lt;a href="{{ link('threads', $row.thread) }}"&gt;&lt;strong&gt;{$row.thread.title}&lt;/strong&gt;&lt;/a&gt;
                         &lt;div class="contentRow-minor"&gt;
-                            Durum:
-                            &lt;xf:if is="$row.effective_status == 'current'"&gt;Güncel
-                            &lt;xf:elseif is="$row.effective_status == 'likely_current'" /&gt;Muhtemelen güncel
-                            &lt;xf:elseif is="$row.effective_status == 'mixed'" /&gt;Kararsız
-                            &lt;xf:elseif is="$row.effective_status == 'questionable'" /&gt;Güncelliği şüpheli
-                            &lt;xf:elseif is="$row.effective_status == 'not_working'" /&gt;Artık çalışmıyor
-                            &lt;xf:elseif is="$row.effective_status == 'revalidating'" /&gt;Yeniden doğrulanıyor
-                            &lt;xf:else /&gt;Doğrulanmamış&lt;/xf:if&gt;
-                            · Çalıştı: {$row.positive_count|number} · Çalışmadı: {$row.negative_count|number} · Toplam oy: {$row.vote_count|number}
-                            &lt;xf:if is="$row.last_verified_date"&gt; · Son doğrulama: &lt;xf:date time="$row.last_verified_date" /&gt;&lt;/xf:if&gt;
+                            {{ phrase('wrxt_freshness_status') }}:
+                            &lt;xf:if is="$row.effective_status == 'current'"&gt;{{ phrase('wrxt_freshness_status_current') }}
+                            &lt;xf:elseif is="$row.effective_status == 'likely_current'" /&gt;{{ phrase('wrxt_freshness_status_likely_current') }}
+                            &lt;xf:elseif is="$row.effective_status == 'mixed'" /&gt;{{ phrase('wrxt_freshness_status_mixed') }}
+                            &lt;xf:elseif is="$row.effective_status == 'questionable'" /&gt;{{ phrase('wrxt_freshness_status_questionable') }}
+                            &lt;xf:elseif is="$row.effective_status == 'not_working'" /&gt;{{ phrase('wrxt_freshness_status_not_working') }}
+                            &lt;xf:elseif is="$row.effective_status == 'revalidating'" /&gt;{{ phrase('wrxt_freshness_status_revalidating') }}
+                            &lt;xf:else /&gt;{{ phrase('wrxt_freshness_status_unverified') }}&lt;/xf:if&gt;
+                            · {{ phrase('wrxt_freshness_worked') }}: {$row.positive_count|number} · {{ phrase('wrxt_freshness_did_not_work') }}: {$row.negative_count|number} · {{ phrase('wrxt_freshness_total_votes') }}: {$row.vote_count|number}
+                            &lt;xf:if is="$row.last_verified_date"&gt; · {{ phrase('wrxt_freshness_last_verification') }}: &lt;xf:date time="$row.last_verified_date" /&gt;&lt;/xf:if&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/xf:foreach&gt;
-            &lt;xf:else /&gt;&lt;div class="block-row"&gt;Bu ölçütlere uygun konu bulunamadı.&lt;/div&gt;&lt;/xf:if&gt;
+            &lt;xf:else /&gt;&lt;div class="block-row"&gt;{{ phrase('wrxt_freshness_no_results') }}&lt;/div&gt;&lt;/xf:if&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</template>
-  <template type="admin" title="wrxt_thread_freshness_option_rules" version_id="1010070" version_string="1.0.0">&lt;xf:numberboxrow name="{$inputName}[likely_min_votes]" value="{$option.option_value.likely_min_votes}" min="1" max="1000" label="Muhtemelen güncel: minimum oy" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[likely_min_percent]" value="{$option.option_value.likely_min_percent}" min="0" max="100" label="Muhtemelen güncel: minimum çalıştı yüzdesi" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[current_min_votes]" value="{$option.option_value.current_min_votes}" min="1" max="1000" label="Güncel: minimum oy" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[current_min_percent]" value="{$option.option_value.current_min_percent}" min="0" max="100" label="Güncel: minimum çalıştı yüzdesi" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[questionable_min_votes]" value="{$option.option_value.questionable_min_votes}" min="1" max="1000" label="Şüpheli: minimum oy" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[questionable_no_percent]" value="{$option.option_value.questionable_no_percent}" min="0" max="100" label="Şüpheli: minimum çalışmadı yüzdesi" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[not_working_min_votes]" value="{$option.option_value.not_working_min_votes}" min="1" max="1000" label="Artık çalışmıyor: minimum oy" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[not_working_no_percent]" value="{$option.option_value.not_working_no_percent}" min="0" max="100" label="Artık çalışmıyor: minimum çalışmadı yüzdesi" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[mixed_min_votes]" value="{$option.option_value.mixed_min_votes}" min="1" max="1000" label="Kararsız: minimum oy" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[mixed_low_percent]" value="{$option.option_value.mixed_low_percent}" min="0" max="100" label="Kararsız: alt çalıştı yüzdesi" /&gt;
-&lt;xf:numberboxrow name="{$inputName}[mixed_high_percent]" value="{$option.option_value.mixed_high_percent}" min="0" max="100" label="Kararsız: üst çalıştı yüzdesi" /&gt;</template>
-  <template type="admin" title="wrxt_thread_freshness_forums" version_id="1010072" version_string="1.0.0">&lt;xf:title&gt;Forum/Kategori Ayarları&lt;/xf:title&gt;
+  <template type="admin" title="wrxt_thread_freshness_option_rules" version_id="1010070" version_string="1.0.0">&lt;xf:numberboxrow name="{$inputName}[likely_min_votes]" value="{$option.option_value.likely_min_votes}" min="1" max="1000" label="{{ phrase('wrxt_freshness_rule_likely_min_votes') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[likely_min_percent]" value="{$option.option_value.likely_min_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_likely_min_percent') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[current_min_votes]" value="{$option.option_value.current_min_votes}" min="1" max="1000" label="{{ phrase('wrxt_freshness_rule_current_min_votes') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[current_min_percent]" value="{$option.option_value.current_min_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_current_min_percent') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[questionable_min_votes]" value="{$option.option_value.questionable_min_votes}" min="1" max="1000" label="{{ phrase('wrxt_freshness_rule_questionable_min_votes') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[questionable_no_percent]" value="{$option.option_value.questionable_no_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_questionable_no_percent') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[not_working_min_votes]" value="{$option.option_value.not_working_min_votes}" min="1" max="1000" label="{{ phrase('wrxt_freshness_rule_not_working_min_votes') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[not_working_no_percent]" value="{$option.option_value.not_working_no_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_not_working_no_percent') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[mixed_min_votes]" value="{$option.option_value.mixed_min_votes}" min="1" max="1000" label="{{ phrase('wrxt_freshness_rule_mixed_min_votes') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[mixed_low_percent]" value="{$option.option_value.mixed_low_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_mixed_low_percent') }}" /&gt;
+&lt;xf:numberboxrow name="{$inputName}[mixed_high_percent]" value="{$option.option_value.mixed_high_percent}" min="0" max="100" label="{{ phrase('wrxt_freshness_rule_mixed_high_percent') }}" /&gt;</template>
+  <template type="admin" title="wrxt_thread_freshness_forums" version_id="1010072" version_string="1.0.0">&lt;xf:title&gt;{{ phrase('admin_navigation.wrxtThreadFreshnessForums') }}&lt;/xf:title&gt;
 
 &lt;xf:form action="{{ link('thread-freshness/forums') }}" class="block"&gt;
     &lt;div class="block-container"&gt;
-        &lt;h2 class="block-header"&gt;Güncellik sisteminin çalışacağı alanlar&lt;/h2&gt;
+        &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_areas_header') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;
-            &lt;xf:numberboxrow name="days" value="{$days}" min="1" max="3650" step="1" label="Oy verme için gün eşiği" explain="Seçilen forumlara uygulanır. Test için 1 gün seçebilirsiniz." /&gt;
-            &lt;xf:selectrow name="age_mode" value="{$ageMode}" label="Yaş hesabı"&gt;
-                &lt;xf:option value="meaningful"&gt;Anlamlı güncelleme&lt;/xf:option&gt;
-                &lt;xf:option value="last_post"&gt;Son mesaj&lt;/xf:option&gt;
+            &lt;xf:numberboxrow name="days" value="{$days}" min="1" max="3650" step="1" label="{{ phrase('wrxt_freshness_vote_day_threshold') }}" explain="{{ phrase('wrxt_freshness_vote_day_threshold_explain') }}" /&gt;
+            &lt;xf:selectrow name="age_mode" value="{$ageMode}" label="{{ phrase('wrxt_freshness_age_calculation') }}"&gt;
+                &lt;xf:option value="meaningful"&gt;{{ phrase('wrxt_freshness_meaningful_update') }}&lt;/xf:option&gt;
+                &lt;xf:option value="last_post"&gt;{{ phrase('wrxt_freshness_last_post') }}&lt;/xf:option&gt;
             &lt;/xf:selectrow&gt;
-            &lt;div class="block-row"&gt;Bir kategori seçildiğinde altındaki bütün forumlar etkinleştirilir. İsterseniz forumları tek tek de seçebilirsiniz.&lt;/div&gt;
+            &lt;div class="block-row"&gt;{{ phrase('wrxt_freshness_category_select_explain') }}&lt;/div&gt;
             &lt;xf:foreach loop="$nodes" value="$node"&gt;
                 &lt;xf:if is="$node.node_type_id == 'Category'"&gt;
                     &lt;div class="block-row"&gt;
@@ -170,14 +170,14 @@
                 &lt;xf:else /&gt;
                     &lt;div class="block-row"&gt;
                         &lt;xf:checkbox name="forum_ids[]"&gt;
-                            &lt;xf:option value="{$node.node_id}" selected="$node.wrxt_freshness_enabled"&gt;{$node.title} · eşik: {$node.wrxt_freshness_days} gün&lt;/xf:option&gt;
+                            &lt;xf:option value="{$node.node_id}" selected="$node.wrxt_freshness_enabled"&gt;{$node.title} · {{ phrase('wrxt_freshness_threshold_x_days', {'days': $node.wrxt_freshness_days}) }}&lt;/xf:option&gt;
                         &lt;/xf:checkbox&gt;
                     &lt;/div&gt;
                 &lt;/xf:if&gt;
             &lt;/xf:foreach&gt;
-            &lt;div class="block-row formRow-explain"&gt;Oy butonlarının görünmesi için kullanıcı grubunda Konu Güncellik Sistemi oy kullanma izni de açık olmalıdır.&lt;/div&gt;
+            &lt;div class="block-row formRow-explain"&gt;{{ phrase('wrxt_freshness_permission_explain') }}&lt;/div&gt;
         &lt;/div&gt;
-        &lt;xf:submitrow submit="Kaydet" /&gt;
+        &lt;xf:submitrow submit="{{ phrase('save') }}" /&gt;
     &lt;/div&gt;
 &lt;/xf:form&gt;</template>
   <template type="public" title="wrxt_thread_freshness.less" version_id="1011170" version_string="1.1.0">.wrxtFreshness{width:100%;max-width:340px;margin:6px 0 10px auto;position:relative;z-index:3;font-size:12px}.wrxtFreshness&gt;.block-container{border:1px solid @xf-borderColor;border-radius:8px;background:@xf-contentBg;box-shadow:0 2px 7px rgba(0,0,0,.1);overflow:visible}.wrxtFreshness-main{padding:8px}.wrxtFreshness-top{display:flex;align-items:center;justify-content:space-between;gap:6px}.wrxtFreshness-heading{display:flex;align-items:center;gap:5px;min-width:0;flex-wrap:wrap}.wrxtFreshness-title{font-size:12px;line-height:1.2;white-space:nowrap}.wrxtFreshness-heading .label{font-size:9px;line-height:1.2;padding:2px 5px}.wrxtFreshness-icons{display:flex;align-items:center;gap:4px;flex:0 0 auto}.wrxtFreshness-pop{position:relative}.wrxtFreshness-pop&gt;summary,.wrxtFreshness-more&gt;summary{list-style:none;cursor:pointer}.wrxtFreshness-pop&gt;summary::-webkit-details-marker,.wrxtFreshness-more&gt;summary::-webkit-details-marker{display:none}.wrxtFreshness-toolButton.button,.wrxtFreshness-moreButton.button{min-width:0;padding:4px 7px;font-size:10px;line-height:1.15;border-radius:6px}.wrxtFreshness-pop[open]&gt;.wrxtFreshness-toolButton{border-color:@xf-linkColor;box-shadow:inset 0 0 0 1px @xf-linkColor}.wrxtFreshness-popBody{position:absolute;right:0;top:calc(100% + 5px);width:255px;padding:9px;border:1px solid @xf-borderColor;border-radius:7px;background:@xf-contentBg;box-shadow:0 7px 22px rgba(0,0,0,.22);z-index:30;font-size:11px}.wrxtFreshness-popBody p{margin:4px 0 0;color:@xf-textColorMuted;line-height:1.35}.wrxtFreshness-popBody--actions form+form{margin-top:6px}.wrxtFreshness-actionForm{display:flex;gap:5px;align-items:center}.wrxtFreshness-actionForm .input,.wrxtFreshness-actionForm select{min-width:0;flex:1 1 auto}.wrxtFreshness-meta{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:6px}.wrxtFreshness-meta&gt;span{display:inline-flex;align-items:center;min-height:20px;padding:1px 6px;border:1px solid @xf-borderColor;border-radius:999px;background:@xf-contentAltBg;color:@xf-textColorMuted;font-size:10px}.wrxtFreshness-meta b{color:@xf-textColor}.wrxtFreshness-ownerBadge{color:@xf-linkColor!important}.wrxtFreshness-replacement{margin-top:6px;font-size:11px}.wrxtFreshness-voteForm{margin-top:7px;padding-top:7px;border-top:1px solid @xf-borderColor;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;position:relative}.wrxtFreshness-choiceGroup{display:flex;align-items:center;gap:5px;min-width:0}.wrxtFreshness-choice{position:relative;display:block;min-width:0;cursor:pointer}.wrxtFreshness-choiceInput{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}.wrxtFreshness-choiceSurface.button{width:auto;min-width:0;min-height:32px;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:4px 8px;text-align:center;white-space:nowrap;border-radius:6px;border:1px solid @xf-borderColor;background:@xf-contentAltBg;color:@xf-textColor;box-shadow:none;transition:border-color .12s ease,background .12s ease,box-shadow .12s ease}.wrxtFreshness-choice:hover .wrxtFreshness-choiceSurface{border-color:@xf-linkColor}.wrxtFreshness-choiceInput:focus+.wrxtFreshness-choiceSurface{box-shadow:0 0 0 2px fade(@xf-linkColor,22%)}.wrxtFreshness-choiceMark{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px;border:1px solid @xf-borderColor;background:@xf-contentBg;font-size:10px;font-weight:700}.wrxtFreshness-choiceText{display:inline-flex;align-items:center;line-height:1}.wrxtFreshness-choiceText b{font-size:11px}.wrxtFreshness-choice--yes .wrxtFreshness-choiceInput:checked+.wrxtFreshness-choiceSurface{border-color:#43a047;background:fade(#43a047,16%);box-shadow:inset 0 0 0 1px fade(#43a047,40%)}.wrxtFreshness-choice--yes .wrxtFreshness-choiceInput:checked+.wrxtFreshness-choiceSurface .wrxtFreshness-choiceMark{border-color:#43a047;background:#43a047;color:#fff}.wrxtFreshness-choice--no .wrxtFreshness-choiceInput:checked+.wrxtFreshness-choiceSurface{border-color:#d9534f;background:fade(#d9534f,15%);box-shadow:inset 0 0 0 1px fade(#d9534f,40%)}.wrxtFreshness-choice--no .wrxtFreshness-choiceInput:checked+.wrxtFreshness-choiceSurface .wrxtFreshness-choiceMark{border-color:#d9534f;background:#d9534f;color:#fff}.wrxtFreshness-saveBar{grid-column:2;grid-row:1;margin:0;padding:0;border:0}.wrxtFreshness-saveButton.button{min-width:0;min-height:32px;padding:4px 9px;font-size:11px}.wrxtFreshness-voteDetails{grid-column:1/-1;margin-top:0;position:static;justify-self:start}.wrxtFreshness-moreButton.button{display:inline-flex}.wrxtFreshness-fields,.wrxtFreshness-resultsBody{margin-top:6px;padding:7px;border:1px solid @xf-borderColor;border-radius:7px;background:@xf-contentAltBg}.wrxtFreshness-voteDetails&gt;.wrxtFreshness-fields{position:absolute;right:calc(100% + 10px);top:0;width:300px;margin:0;padding:10px;background:@xf-contentBg;border:1px solid @xf-borderColor;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:60}.wrxtFreshness-fieldsHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:-2px 0 8px;padding-bottom:7px;border-bottom:1px solid @xf-borderColor}.wrxtFreshness-fieldsHead strong{font-size:12px}.wrxtFreshness-fieldsClose.button{min-width:0;padding:2px 6px;font-size:11px;line-height:1.2}.wrxtFreshness-fields{display:grid;gap:6px}.wrxtFreshness-fields label{display:grid;gap:3px}.wrxtFreshness-fields label&gt;span{color:@xf-textColorMuted;font-size:10px}.wrxtFreshness-more{margin-top:6px}.wrxtFreshness-resultsBody strong{display:block;margin:5px 0 3px;font-size:10px}.wrxtFreshness-main--waiting{padding:8px}.wrxtFreshness-detailBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999}.wrxtFreshness-detailSheetOpen{overflow:hidden}@media(max-width:900px){.wrxtFreshness-voteDetails&gt;.wrxtFreshness-fields{position:fixed;left:50%;right:auto;top:50%;bottom:auto;width:min(360px,calc(100vw - 24px));max-height:78vh;overflow:auto;margin:0;transform:translate(-50%,-50%);z-index:1000;box-shadow:0 18px 50px rgba(0,0,0,.42)}}@media(max-width:@xf-responsiveMedium){.wrxtFreshness{width:100%;max-width:none;margin:6px 0 9px}.wrxtFreshness-popBody{position:fixed;left:12px;right:12px;top:auto;width:auto}}@media(max-width:420px){.wrxtFreshness-main{padding:7px}.wrxtFreshness-voteForm{grid-template-columns:1fr auto;gap:5px}.wrxtFreshness-choiceGroup{gap:4px}.wrxtFreshness-choiceSurface.button{min-height:30px;padding:3px 6px}.wrxtFreshness-choiceMark{width:16px;height:16px;flex-basis:16px}.wrxtFreshness-choiceText b{font-size:10px}.wrxtFreshness-saveButton.button{min-height:30px;padding:3px 7px}.wrxtFreshness-voteDetails&gt;.wrxtFreshness-fields{width:calc(100vw - 20px);max-height:82vh;padding:9px}}@media(min-width:651px){.p-title&gt;.wrxtFreshness{flex:0 0 340px;align-self:flex-start;min-width:285px}.p-title&gt;.wrxtFreshness&gt;.block-container{margin:0}}</template>
