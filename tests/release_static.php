@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.2.2' || ($addonJson['version_id'] ?? 0) !== 1020020)
+if (($addonJson['version_string'] ?? '') !== '1.2.3' || ($addonJson['version_id'] ?? 0) !== 1020030)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -176,6 +176,41 @@ if (str_contains($mods, 'modification_key="wrxt_thread_freshness_replacement"') 
 {
     throw new RuntimeException('Legacy standalone freshness panels still exist');
 }
+$hardCodedUi = [
+    'Etkin forum konusu',
+    'Toplam oy',
+    'Etkin forum',
+    'Kontrol gerektiren konular',
+    'Kontrol gerektiren konu bulunmuyor.',
+    'Sistemde çalışmadı',
+    'Olumsuz geri bildirim bulunmuyor.',
+    'submit="Ara"',
+    ' forum aktif)',
+    '>Bilgi<',
+    '>İşlemler<',
+    'Oy verme açılış tarihi:'
+];
+foreach ($hardCodedUi as $literal)
+{
+    if (str_contains($mods, $literal) || str_contains((string)file_get_contents($addon . '/_data/templates.xml'), $literal))
+    {
+        throw new RuntimeException('Hard-coded localized UI text remains: ' . $literal);
+    }
+}
+foreach ([
+    'wrxt_freshness_error_invalid_vote',
+    'wrxt_freshness_error_version_required',
+    'wrxt_freshness_error_invalid_vote_payload',
+    'wrxt_freshness_error_invalid_moderator_status',
+    'wrxt_freshness_error_invalid_replacement'
+] as $phraseKey)
+{
+    if (!str_contains($threadController, "XF::phrase('" . $phraseKey . "')"))
+    {
+        throw new RuntimeException('Controller error is not phrase-backed: ' . $phraseKey);
+    }
+}
+
 $templatesData = (string)file_get_contents($addon . '/_data/templates.xml');
 if (!str_contains($templatesData, 'wrxt_thread_freshness.less'))
 {
