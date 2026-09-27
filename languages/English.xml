@@ -74,4 +74,51 @@
   <phrase title="wrxt_freshness_category_select_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Selecting a category enables all forums under it. You can also select forums individually.]]></phrase>
   <phrase title="wrxt_freshness_threshold_x_days" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[threshold: {days} days]]></phrase>
   <phrase title="wrxt_freshness_permission_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[The user group must also have the Thread Freshness System voting permission for vote buttons to be shown.]]></phrase>
+  <phrase title="wrxt_freshness_enable_forum" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Enable thread freshness verification]]></phrase>
+  <phrase title="wrxt_freshness_enable_forum_hint" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Enables community freshness verification for older threads in this forum.]]></phrase>
+  <phrase title="wrxt_freshness_help_title" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[What does this system do?]]></phrase>
+  <phrase title="wrxt_freshness_actions" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Actions]]></phrase>
+  <phrase title="wrxt_freshness_solution_result" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Solution result]]></phrase>
+  <phrase title="wrxt_freshness_close" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Close]]></phrase>
+  <phrase title="wrxt_freshness_info" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Info]]></phrase>
+  <phrase title="wrxt_freshness_days_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Number of days that must pass before the verification panel appears]]></phrase>
+  <phrase title="wrxt_freshness_age_method" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Age calculation method]]></phrase>
+  <phrase title="wrxt_freshness_age_meaningful_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Meaningful update (recommended): posts by the thread owner and edits to the first post]]></phrase>
+  <phrase title="wrxt_freshness_age_last_post_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Every latest post refreshes the thread]]></phrase>
+  <phrase title="wrxt_freshness_versions_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Allowed versions, one value per line. Leave blank to allow free-form version entry.]]></phrase>
+  <phrase title="wrxt_freshness_filter" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Freshness filter]]></phrase>
+  <phrase title="wrxt_freshness_all" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[All]]></phrase>
+  <phrase title="wrxt_freshness_solution_freshness" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Solution freshness]]></phrase>
+  <phrase title="wrxt_freshness_status_questionable_short" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Questionable]]></phrase>
+  <phrase title="wrxt_freshness_status_not_working_short" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Not working]]></phrase>
+  <phrase title="wrxt_freshness_help_question" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Is this solution still valid?]]></phrase>
+  <phrase title="wrxt_freshness_help_threshold" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[This thread passed the freshness threshold. If you actually tested the solution, report the result.]]></phrase>
+  <phrase title="wrxt_freshness_help_owner_moderator" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Thread owner and moderator verifications are evaluated together with community votes.]]></phrase>
+  <phrase title="wrxt_freshness_use_community_result" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Use community result]]></phrase>
+  <phrase title="wrxt_freshness_moderator_current" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Moderator: current]]></phrase>
+  <phrase title="wrxt_freshness_review_required" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Review required]]></phrase>
+  <phrase title="wrxt_freshness_moderator_not_working" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Moderator: not working]]></phrase>
+  <phrase title="wrxt_freshness_save" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Save]]></phrase>
+  <phrase title="wrxt_freshness_current_thread" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Current thread]]></phrase>
+  <phrase title="wrxt_freshness_no_votes" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[No votes yet]]></phrase>
+  <phrase title="wrxt_freshness_owner_verified" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Owner verified]]></phrase>
+  <phrase title="wrxt_freshness_open_newer_solution" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Open newer solution]]></phrase>
+  <phrase title="wrxt_freshness_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[+ Details]]></phrase>
+  <phrase title="wrxt_freshness_vote_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Vote details]]></phrase>
+  <phrase title="wrxt_freshness_version" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Version]]></phrase>
+  <phrase title="wrxt_freshness_select" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Select]]></phrase>
+  <phrase title="wrxt_freshness_prefer_not_select" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Prefer not to select]]></phrase>
+  <phrase title="wrxt_freshness_failed_on_system" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Did not work on system]]></phrase>
+  <phrase title="wrxt_freshness_other" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Other]]></phrase>
+  <phrase title="wrxt_freshness_description" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Description]]></phrase>
+  <phrase title="wrxt_freshness_current_thread_id" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Current thread ID]]></phrase>
+  <phrase title="wrxt_freshness_result_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Result details]]></phrase>
+  <phrase title="wrxt_freshness_failure_reasons" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Failure reasons]]></phrase>
+  <phrase title="wrxt_freshness_version_results" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Version results]]></phrase>
+  <phrase title="wrxt_freshness_voting" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Freshness voting]]></phrase>
+  <phrase title="wrxt_freshness_not_open_yet" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Not open yet]]></phrase>
+  <phrase title="wrxt_freshness_voting_opens" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Voting opens:]]></phrase>
+  <phrase title="wrxt_freshness_remove_verification" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Remove verification]]></phrase>
+  <phrase title="wrxt_freshness_owner_still_valid" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Thread owner: still valid]]></phrase>
+  <phrase title="wrxt_freshness_update" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Update]]></phrase>
 </language>
