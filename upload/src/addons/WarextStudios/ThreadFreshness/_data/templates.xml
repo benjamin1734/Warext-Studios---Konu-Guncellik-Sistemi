@@ -11,11 +11,11 @@
     &lt;div class="block-container"&gt;
         &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_content_health_summary') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;&lt;div class="block-row"&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Etkin forum konusu&lt;/dt&gt;&lt;dd&gt;{$stats.active_threads|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_active_forum_threads') }}&lt;/dt&gt;&lt;dd&gt;{$stats.active_threads|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_records') }}&lt;/dt&gt;&lt;dd&gt;{$stats.total|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Toplam oy&lt;/dt&gt;&lt;dd&gt;{$stats.votes|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_total_votes') }}&lt;/dt&gt;&lt;dd&gt;{$stats.votes|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_alternative_suggestions') }}&lt;/dt&gt;&lt;dd&gt;{$stats.alternative_suggestions|number}&lt;/dd&gt;&lt;/dl&gt;
-            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;Etkin forum&lt;/dt&gt;&lt;dd&gt;{$stats.enabled_forums|number}&lt;/dd&gt;&lt;/dl&gt;
+            &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_enabled_forums') }}&lt;/dt&gt;&lt;dd&gt;{$stats.enabled_forums|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_current') }}&lt;/dt&gt;&lt;dd&gt;{$stats.current|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_likely_current') }}&lt;/dt&gt;&lt;dd&gt;{$stats.likely_current|number}&lt;/dd&gt;&lt;/dl&gt;
             &lt;dl class="pairs pairs--columns"&gt;&lt;dt&gt;{{ phrase('wrxt_freshness_status_mixed') }}&lt;/dt&gt;&lt;dd&gt;{$stats.mixed|number}&lt;/dd&gt;&lt;/dl&gt;
@@ -29,7 +29,7 @@
 
 &lt;div class="block"&gt;
     &lt;div class="block-container"&gt;
-        &lt;h2 class="block-header"&gt;Kontrol gerektiren konular&lt;/h2&gt;
+        &lt;h2 class="block-header"&gt;{{ phrase('wrxt_freshness_threads_requiring_attention') }}&lt;/h2&gt;
         &lt;div class="block-body"&gt;
             &lt;xf:if is="$criticalThreads"&gt;
                 &lt;xf:datalist data-xf-init="responsive-data-list"&gt;
@@ -42,7 +42,7 @@
                         &lt;/xf:datarow&gt;
                     &lt;/xf:foreach&gt;
                 &lt;/xf:datalist&gt;
-            &lt;xf:else /&gt;&lt;div class="block-row"&gt;Kontrol gerektiren konu bulunmuyor.&lt;/div&gt;&lt;/xf:if&gt;
+            &lt;xf:else /&gt;&lt;div class="block-row"&gt;{{ phrase('wrxt_freshness_no_threads_requiring_attention') }}&lt;/div&gt;&lt;/xf:if&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
@@ -60,15 +60,15 @@
                                 &lt;div class="dataList-subRow"&gt;
                                     &lt;xf:if is="$vote.User"&gt;{$vote.User.username} · &lt;/xf:if&gt;
                                     &lt;xf:date time="{{ $vote.updated_date ?: $vote.vote_date }}" /&gt;
-                                    &lt;xf:if is="$vote.reason"&gt; · {{ phrase('wrxt_freshness_reason') }}: &lt;xf:if is="$vote.reason == 'outdated_version'"&gt;{{ phrase('wrxt_freshness_reason_outdated_version') }}&lt;xf:elseif is="$vote.reason == 'dead_links'" /&gt;{{ phrase('wrxt_freshness_reason_dead_links') }}&lt;xf:elseif is="$vote.reason == 'method_invalid'" /&gt;{{ phrase('wrxt_freshness_reason_method_invalid') }}&lt;xf:elseif is="$vote.reason == 'incomplete'" /&gt;{{ phrase('wrxt_freshness_reason_incomplete') }}&lt;xf:elseif is="$vote.reason == 'did_not_work'" /&gt;Sistemde çalışmadı&lt;xf:else /&gt;Diğer&lt;/xf:if&gt;&lt;/xf:if&gt;
-                                    &lt;xf:if is="$vote.alternative_thread_id"&gt; · Alternatif konu: #{$vote.alternative_thread_id}&lt;/xf:if&gt;
+                                    &lt;xf:if is="$vote.reason"&gt; · {{ phrase('wrxt_freshness_reason') }}: &lt;xf:if is="$vote.reason == 'outdated_version'"&gt;{{ phrase('wrxt_freshness_reason_outdated_version') }}&lt;xf:elseif is="$vote.reason == 'dead_links'" /&gt;{{ phrase('wrxt_freshness_reason_dead_links') }}&lt;xf:elseif is="$vote.reason == 'method_invalid'" /&gt;{{ phrase('wrxt_freshness_reason_method_invalid') }}&lt;xf:elseif is="$vote.reason == 'incomplete'" /&gt;{{ phrase('wrxt_freshness_reason_incomplete') }}&lt;xf:elseif is="$vote.reason == 'did_not_work'" /&gt;{{ phrase('wrxt_freshness_reason_did_not_work') }}&lt;xf:else /&gt;{{ phrase('wrxt_freshness_other') }}&lt;/xf:if&gt;&lt;/xf:if&gt;
+                                    &lt;xf:if is="$vote.alternative_thread_id"&gt; · {{ phrase('wrxt_freshness_alternative_thread_x', {'id': $vote.alternative_thread_id}) }}&lt;/xf:if&gt;
                                     &lt;xf:if is="$vote.message"&gt;&lt;br /&gt;{$vote.message}&lt;/xf:if&gt;
                                 &lt;/div&gt;
                             &lt;/xf:cell&gt;
                         &lt;/xf:datarow&gt;
                     &lt;/xf:foreach&gt;
                 &lt;/xf:datalist&gt;
-            &lt;xf:else /&gt;&lt;div class="block-row"&gt;Olumsuz geri bildirim bulunmuyor.&lt;/div&gt;&lt;/xf:if&gt;
+            &lt;xf:else /&gt;&lt;div class="block-row"&gt;{{ phrase('wrxt_freshness_no_negative_feedback') }}&lt;/div&gt;&lt;/xf:if&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</template>
@@ -107,7 +107,7 @@
             &lt;xf:option value="unverified"&gt;{{ phrase('wrxt_freshness_status_unverified') }}&lt;/xf:option&gt;
             &lt;xf:option value="all"&gt;{{ phrase('wrxt_freshness_all_statuses') }}&lt;/xf:option&gt;
         &lt;/xf:selectrow&gt;
-        &lt;xf:submitrow submit="Ara" /&gt;
+        &lt;xf:submitrow submit="{{ phrase('search') }}" /&gt;
     &lt;/div&gt;&lt;/div&gt;
 &lt;/xf:form&gt;
 
@@ -164,7 +164,7 @@
                 &lt;xf:if is="$node.node_type_id == 'Category'"&gt;
                     &lt;div class="block-row"&gt;
                         &lt;xf:checkbox name="category_ids[]"&gt;
-                            &lt;xf:option value="{$node.node_id}" selected="$node.category_selected"&gt;&lt;strong&gt;{$node.title}&lt;/strong&gt; ({$node.enabled_children|number}/{$node.forum_children|number} forum aktif)&lt;/xf:option&gt;
+                            &lt;xf:option value="{$node.node_id}" selected="$node.category_selected"&gt;&lt;strong&gt;{$node.title}&lt;/strong&gt; {{ phrase('wrxt_freshness_forums_active_x_y', {'enabled': $node.enabled_children, 'total': $node.forum_children}) }}&lt;/xf:option&gt;
                         &lt;/xf:checkbox&gt;
                     &lt;/div&gt;
                 &lt;xf:else /&gt;
