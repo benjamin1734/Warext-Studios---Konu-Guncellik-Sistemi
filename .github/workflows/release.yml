@@ -5,7 +5,13 @@ on:
     branches:
       - main
     paths:
-      - 'upload/src/addons/WarextStudios/ThreadFreshness/addon.json'
+      - 'upload/**'
+      - 'languages/**'
+      - 'LANGUAGE.md'
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'tools/**'
+      - 'tests/**'
       - '.github/workflows/release.yml'
   workflow_dispatch:
 
