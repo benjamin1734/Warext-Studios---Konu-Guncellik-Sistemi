@@ -4,15 +4,11 @@
 
 Warext Studios Thread Freshness System is a community-driven XenForo 2.3 add-on for validating whether forum threads, solutions, and technical information are still current and working.
 
-## Version
-
-**1.2.3 Stable - Complete Turkish/English interface coverage**
-
 ## Direct XenForo ACP installation
 
 **Ready-to-install ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip`
 
-**One-click download:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.2.3/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip
+**Download:** Use the latest package from the [Releases](https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases) page.
 
 Upload this ZIP directly from XenForo ACP → Add-ons → Install/upgrade from archive without extracting it.
 
@@ -66,10 +62,6 @@ After installation:
 4. Configure the waiting period, age-calculation method, and version list when needed.
 5. Adjust status-calculation thresholds in ACP options if required.
 
-## Release note
-
-This package is the official **1.2.3 Stable** release with complete native Turkish/English phrase coverage for the remaining dashboard, forum settings, voting and validation UI. The internal XenForo `version_id` used during testing has not been rolled back, preventing downgrade conflicts on systems that previously installed a test build.
-
 ## Database
 
 No manual SQL import is required. Installation, upgrade, and uninstall schema operations are handled through `Setup.php`.
@@ -86,15 +78,11 @@ For questions, bug reports, installation support, and help with Warext Studios X
 
 XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama eklentisi.
 
-## Sürüm
-
-**1.2.3 Stable - Tam Türkçe/İngilizce arayüz kapsamı**
-
 ## Doğrudan XenForo ACP kurulumu
 
 **Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip`
 
-**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.2.3/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip
+**İndirme:** En güncel paketi [Releases](https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases) sayfasından kullanın.
 
 Bu ZIP'i çıkartmadan doğrudan XenForo ACP → Add-ons → Install/upgrade from archive ekranından seçip yükleyin.
 
@@ -148,10 +136,6 @@ Kurulumdan sonra:
 4. Forum için bekleme süresini, yaş hesabı yöntemini ve gerekiyorsa sürüm listesini ayarlayın.
 5. Gerekiyorsa durum hesaplama eşiklerini ACP seçeneklerinden özelleştirin.
 
-## Sürüm notu
-
-Bu paket resmi **1.2.3 Stable** sürümüdür; kalan dashboard, forum ayarları, oylama ve doğrulama arayüzleri de native XenForo phrase tabanlı Türkçe/İngilizce desteğe geçirilmiştir. Denetim sırasında kullanılan dahili XenForo `version_id` değeri geriye çekilmemiştir; bu sayede daha önce test paketini kurmuş sistemlerde sürüm düşürme riski oluşturulmaz.
-
 ## Veri tabanı
 
 Manuel SQL içe aktarma gerekmez. Kurulum, yükseltme ve kaldırma şema işlemleri `Setup.php` üzerinden yürütülür.
@@ -162,7 +146,5 @@ Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo 
 
 **Discord:** https://discord.gg/tgsV5XMcFS
 
-
 ## Language support / Dil desteği
 
-Version 1.2.3 completes native Turkish/English language-pack coverage through XenForo phrases. Import the XML files under `languages/` and use XenForo's normal language selector. See `LANGUAGE.md` for details.
