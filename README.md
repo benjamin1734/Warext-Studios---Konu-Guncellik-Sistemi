@@ -6,13 +6,13 @@ Warext Studios Thread Freshness System is a community-driven XenForo 2.3 add-on 
 
 ## Version
 
-**1.1.0 Stable - Title alignment and vote changing**
+**1.2.3 Stable - Complete Turkish/English interface coverage**
 
 ## Direct XenForo ACP installation
 
-**Ready-to-install ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip`
+**Ready-to-install ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip`
 
-**One-click download:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.1.0/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip
+**One-click download:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.2.3/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip
 
 Upload this ZIP directly from XenForo ACP → Add-ons → Install/upgrade from archive without extracting it.
 
@@ -56,7 +56,7 @@ The archive installer must be enabled:
 
 ## Installation
 
-Upload `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip` through XenForo ACP's archive-based add-on install/upgrade screen.
+Upload `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip` through XenForo ACP's archive-based add-on install/upgrade screen.
 
 After installation:
 
@@ -68,7 +68,7 @@ After installation:
 
 ## Release note
 
-This package is the official **1.1.0 Stable** release. The internal XenForo `version_id` used during testing has not been rolled back, preventing downgrade conflicts on systems that previously installed a test build.
+This package is the official **1.2.3 Stable** release with complete native Turkish/English phrase coverage for the remaining dashboard, forum settings, voting and validation UI. The internal XenForo `version_id` used during testing has not been rolled back, preventing downgrade conflicts on systems that previously installed a test build.
 
 ## Database
 
@@ -88,13 +88,13 @@ XenForo 2.3 için topluluk tabanlı konu ve çözüm güncellik doğrulama eklen
 
 ## Sürüm
 
-**1.1.0 Stable - Başlık Hizası ve Oy Değiştirme**
+**1.2.3 Stable - Tam Türkçe/İngilizce arayüz kapsamı**
 
 ## Doğrudan XenForo ACP kurulumu
 
-**Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip`
+**Hazır ZIP:** `XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip`
 
-**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.1.0/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip
+**Tek tık indirme:** https://github.com/benjamin1734/Warext-Studios---Konu-Guncellik-Sistemi/releases/download/v1.2.3/XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip
 
 Bu ZIP'i çıkartmadan doğrudan XenForo ACP → Add-ons → Install/upgrade from archive ekranından seçip yükleyin.
 
@@ -138,7 +138,7 @@ Arşiv kurucusunun açık olması gerekir:
 
 ## Kurulum
 
-`XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.1.0.zip` paketini XenForo yönetim panelindeki arşivden eklenti kurma/yükseltme ekranından yükleyin.
+`XenForo-ACP-Direct-Install-Warext-Konu-Guncellik-1.2.3.zip` paketini XenForo yönetim panelindeki arşivden eklenti kurma/yükseltme ekranından yükleyin.
 
 Kurulumdan sonra:
 
@@ -150,7 +150,7 @@ Kurulumdan sonra:
 
 ## Sürüm notu
 
-Bu paket resmi **1.1.0 Stable** sürümüdür. Denetim sırasında kullanılan dahili XenForo `version_id` değeri geriye çekilmemiştir; bu sayede daha önce test paketini kurmuş sistemlerde sürüm düşürme riski oluşturulmaz.
+Bu paket resmi **1.2.3 Stable** sürümüdür; kalan dashboard, forum ayarları, oylama ve doğrulama arayüzleri de native XenForo phrase tabanlı Türkçe/İngilizce desteğe geçirilmiştir. Denetim sırasında kullanılan dahili XenForo `version_id` değeri geriye çekilmemiştir; bu sayede daha önce test paketini kurmuş sistemlerde sürüm düşürme riski oluşturulmaz.
 
 ## Veri tabanı
 
@@ -165,4 +165,4 @@ Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo 
 
 ## Language support / Dil desteği
 
-Version 1.2.0 adds native Turkish/English language-pack support through XenForo phrases. Import the XML files under `languages/` and use XenForo's normal language selector. See `LANGUAGE.md` for details.
+Version 1.2.3 completes native Turkish/English language-pack coverage through XenForo phrases. Import the XML files under `languages/` and use XenForo's normal language selector. See `LANGUAGE.md` for details.
