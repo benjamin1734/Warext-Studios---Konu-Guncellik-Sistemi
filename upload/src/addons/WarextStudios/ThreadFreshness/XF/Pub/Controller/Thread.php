@@ -27,7 +27,7 @@ class Thread extends XFCP_Thread
 
         if (!in_array($input['vote'], [-1, 1], true))
         {
-            return $this->error('Geçersiz oy değeri.');
+            return $this->error(\XF::phrase('wrxt_freshness_error_invalid_vote'));
         }
 
         if ($input['vote'] === 1)
@@ -39,7 +39,7 @@ class Thread extends XFCP_Thread
         $configuredVersions = $thread->getWrxtFreshnessConfiguredVersions();
         if ($configuredVersions && !in_array(trim($input['version']), $configuredVersions, true))
         {
-            return $this->error('Geçerli bir sürüm seçmelisiniz.');
+            return $this->error(\XF::phrase('wrxt_freshness_error_version_required'));
         }
 
         $service = $this->service(
@@ -59,7 +59,7 @@ class Thread extends XFCP_Thread
         }
         catch (\InvalidArgumentException $e)
         {
-            return $this->error('Oy bilgileri veya önerilen güncel konu geçersiz.');
+            return $this->error(\XF::phrase('wrxt_freshness_error_invalid_vote_payload'));
         }
 
         return $this->redirect($this->buildLink('threads', $thread) . '#wrxt-thread-freshness');
@@ -78,7 +78,7 @@ class Thread extends XFCP_Thread
         $status = trim($this->filter('moderator_status', 'str'));
         if (ModeratorStatus::normalize($status) !== $status)
         {
-            return $this->error('Geçersiz moderatör durumu.');
+            return $this->error(\XF::phrase('wrxt_freshness_error_invalid_moderator_status'));
         }
 
         $service = $this->service(
@@ -137,7 +137,7 @@ class Thread extends XFCP_Thread
         }
         catch (\InvalidArgumentException $e)
         {
-            return $this->error('Geçerli, görüntülenebilir ve bu konudan daha yeni bir çözüm konusu seçmelisiniz.');
+            return $this->error(\XF::phrase('wrxt_freshness_error_invalid_replacement'));
         }
 
         return $this->redirect($this->buildLink('threads', $thread) . '#wrxt-thread-freshness-replacement');
