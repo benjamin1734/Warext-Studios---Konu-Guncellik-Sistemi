@@ -1,3 +1,9 @@
+## 1.2.1 - 2026-09-27
+
+- Fixed CI/template validation so mixed historical and new phrase metadata are accepted.
+- Keeps the Turkish/English language packs and phrase-backed interface from 1.2.0.
+- Triggers a fresh direct-install release with both language XML assets.
+
 ## 1.2.0 - 2026-09-26
 
 - Added native XenForo Turkish/English phrase-based language support.
