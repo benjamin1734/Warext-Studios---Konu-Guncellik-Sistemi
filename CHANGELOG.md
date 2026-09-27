@@ -1,3 +1,9 @@
+## 1.2.2 - 2026-09-27
+
+- Completed phrase coverage for forum settings, filters, thread badges, vote panel, owner/moderator actions and detail UI.
+- Updated release regression tests to validate phrase-backed UI rather than Turkish literals.
+- Turkish and English language packs remain separate release assets.
+
 ## 1.2.1 - 2026-09-27
 
 - Fixed CI/template validation so mixed historical and new phrase metadata are accepted.
