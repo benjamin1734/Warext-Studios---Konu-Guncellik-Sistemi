@@ -1,3 +1,19 @@
+## 1.2.3 - 2026-09-27
+
+### English
+- Removed the remaining hard-coded Turkish labels from the ACP dashboard, forum selector, voting details and public validation errors.
+- Added matching English and Turkish phrases for every newly localized string.
+- Added regression checks that fail when localized UI text is hard-coded again.
+- Added language-pack coverage validation so every base add-on phrase must exist in both English and Turkish XML packages.
+- Fixed stale release metadata checks that still expected version 1.1.0.
+
+### Türkçe
+- ACP dashboard, forum seçimi, oy ayrıntıları ve public doğrulama hatalarında kalan sabit Türkçe metinler phrase sistemine taşındı.
+- Yeni phrase anahtarlarının Türkçe ve İngilizce karşılıkları eklendi.
+- Arayüze yeniden hard-coded yerelleştirilmiş metin eklenmesini engelleyen regresyon kontrolleri eklendi.
+- Ana eklenti phrase listesindeki her anahtarın hem Turkish.xml hem English.xml içinde bulunmasını doğrulayan dil paketi testi eklendi.
+- Hâlâ 1.1.0 sürümünü bekleyen eski release metadata testleri düzeltildi.
+
 ## 1.2.2 - 2026-09-27
 
 - Completed phrase coverage for forum settings, filters, thread badges, vote panel, owner/moderator actions and detail UI.
