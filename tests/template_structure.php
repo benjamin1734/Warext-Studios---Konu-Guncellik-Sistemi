@@ -49,9 +49,10 @@ if (!$phrases)
 }
 foreach ($phrases->phrase as $phrase)
 {
-    if ((string)$phrase['version_string'] !== '1.0.0')
+    $versionString = (string)$phrase['version_string'];
+    if (!preg_match('/^\d+\.\d+\.\d+$/', $versionString))
     {
-        throw new RuntimeException('Phrase sürüm metadata değeri hatalı');
+        throw new RuntimeException('Phrase sürüm metadata değeri hatalı: ' . $versionString);
     }
 }
 
