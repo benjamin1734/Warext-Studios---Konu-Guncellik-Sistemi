@@ -231,7 +231,7 @@ $0</replace>
               &lt;div class="wrxtFreshness-heading"&gt;&lt;strong class="wrxtFreshness-title"&gt;{{ phrase('wrxt_freshness_voting') }}&lt;/strong&gt;&lt;span class="label"&gt;{$thread.getWrxtFreshnessDaysUntilEligible()} gün&lt;/span&gt;&lt;/div&gt;
               &lt;details class="wrxtFreshness-pop wrxtFreshness-help"&gt;
                   &lt;summary class="button button--link wrxtFreshness-toolButton" title="{{ phrase('wrxt_freshness_info') }}"&gt;&lt;span aria-hidden="true"&gt;ⓘ&lt;/span&gt; Bilgi&lt;/summary&gt;
-                  &lt;div class="wrxtFreshness-popBody"&gt;&lt;strong&gt;{{ phrase('wrxt_freshness_not_open_yet') }}&lt;/strong&gt;&lt;p&gt;Oy verme açılış tarihi: &lt;xf:date time="{$thread.getWrxtFreshnessEligibleDate()}" /&gt;&lt;/p&gt;&lt;/div&gt;
+                  &lt;div class="wrxtFreshness-popBody"&gt;&lt;strong&gt;{{ phrase('wrxt_freshness_not_open_yet') }}&lt;/strong&gt;&lt;p&gt;{{ phrase('wrxt_freshness_voting_opens') }}: &lt;xf:date time="{$thread.getWrxtFreshnessEligibleDate()}" /&gt;&lt;/p&gt;&lt;/div&gt;
               &lt;/details&gt;
           &lt;/div&gt;
       &lt;/div&gt;
