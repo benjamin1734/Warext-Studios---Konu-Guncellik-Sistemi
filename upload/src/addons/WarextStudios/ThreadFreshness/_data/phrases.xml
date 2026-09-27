@@ -121,4 +121,17 @@
   <phrase title="wrxt_freshness_remove_verification" version_id="1020020" version_string="1.2.2"><![CDATA[Doğrulamayı kaldır]]></phrase>
   <phrase title="wrxt_freshness_owner_still_valid" version_id="1020020" version_string="1.2.2"><![CDATA[Konu sahibi: hâlâ geçerli]]></phrase>
   <phrase title="wrxt_freshness_update" version_id="1020020" version_string="1.2.2"><![CDATA[Güncelle]]></phrase>
+  <phrase title="wrxt_freshness_active_forum_threads" version_id="1020030" version_string="1.2.3"><![CDATA[Etkin forum konusu]]></phrase>
+  <phrase title="wrxt_freshness_enabled_forums" version_id="1020030" version_string="1.2.3"><![CDATA[Etkin forum]]></phrase>
+  <phrase title="wrxt_freshness_threads_requiring_attention" version_id="1020030" version_string="1.2.3"><![CDATA[Kontrol gerektiren konular]]></phrase>
+  <phrase title="wrxt_freshness_no_threads_requiring_attention" version_id="1020030" version_string="1.2.3"><![CDATA[Kontrol gerektiren konu bulunmuyor.]]></phrase>
+  <phrase title="wrxt_freshness_reason_did_not_work" version_id="1020030" version_string="1.2.3"><![CDATA[Sistemde çalışmadı]]></phrase>
+  <phrase title="wrxt_freshness_alternative_thread_x" version_id="1020030" version_string="1.2.3"><![CDATA[Alternatif konu: #{id}]]></phrase>
+  <phrase title="wrxt_freshness_no_negative_feedback" version_id="1020030" version_string="1.2.3"><![CDATA[Olumsuz geri bildirim bulunmuyor.]]></phrase>
+  <phrase title="wrxt_freshness_forums_active_x_y" version_id="1020030" version_string="1.2.3"><![CDATA[{enabled}/{total} forum aktif]]></phrase>
+  <phrase title="wrxt_freshness_error_invalid_vote" version_id="1020030" version_string="1.2.3"><![CDATA[Geçersiz oy değeri.]]></phrase>
+  <phrase title="wrxt_freshness_error_version_required" version_id="1020030" version_string="1.2.3"><![CDATA[Geçerli bir sürüm seçmelisiniz.]]></phrase>
+  <phrase title="wrxt_freshness_error_invalid_vote_payload" version_id="1020030" version_string="1.2.3"><![CDATA[Oy bilgileri veya önerilen güncel konu geçersiz.]]></phrase>
+  <phrase title="wrxt_freshness_error_invalid_moderator_status" version_id="1020030" version_string="1.2.3"><![CDATA[Geçersiz moderatör durumu.]]></phrase>
+  <phrase title="wrxt_freshness_error_invalid_replacement" version_id="1020030" version_string="1.2.3"><![CDATA[Geçerli, görüntülenebilir ve bu konudan daha yeni bir çözüm konusu seçmelisiniz.]]></phrase>
 </phrases>
