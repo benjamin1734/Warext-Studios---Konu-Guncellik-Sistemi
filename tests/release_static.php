@@ -186,8 +186,8 @@ $hardCodedUi = [
     'Olumsuz geri bildirim bulunmuyor.',
     'submit="Ara"',
     ' forum aktif)',
-    '>Bilgi<',
-    '>İşlemler<',
+    ' Bilgi&lt;/summary&gt;',
+    ' İşlemler&lt;/summary&gt;',
     'Oy verme açılış tarihi:'
 ];
 foreach ($hardCodedUi as $literal)
