@@ -29,7 +29,7 @@ if (str_contains($mods, 'xf:submitrow submit="{{ $thread.hasWrxtFreshnessOwnerCl
 {
     throw new RuntimeException('Owner claim still uses oversized submitrow');
 }
-if (!str_contains($mods, 'Konu sahibi: hâlâ geçerli'))
+if (!str_contains($mods, "phrase('wrxt_freshness_owner_still_valid')"))
 {
     throw new RuntimeException('Compact owner claim action missing');
 }
