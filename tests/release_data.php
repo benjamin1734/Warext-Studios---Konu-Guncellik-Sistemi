@@ -31,7 +31,7 @@ foreach ($required as $file)
 }
 
 $addon = json_decode((string)file_get_contents($root . '/addon.json'), true);
-if (($addon['version_id'] ?? 0) !== 1011170 || ($addon['version_string'] ?? '') !== '1.1.0')
+if (($addon['version_id'] ?? 0) !== 1020030 || ($addon['version_string'] ?? '') !== '1.2.3')
 {
     fwrite(STDERR, "Sürüm metadata hatalı\n");
     exit(1);
@@ -96,6 +96,37 @@ if (is_dir($root . '/_output'))
 {
     fwrite(STDERR, "Stable kaynakta eski _output bulunmamalı\n");
     exit(1);
+}
+
+$basePhraseXml = simplexml_load_file($root . '/_data/phrases.xml');
+$languageRoot = dirname(__DIR__) . '/languages';
+$englishPhraseXml = simplexml_load_file($languageRoot . '/English.xml');
+$turkishPhraseXml = simplexml_load_file($languageRoot . '/Turkish.xml');
+if (!$basePhraseXml || !$englishPhraseXml || !$turkishPhraseXml)
+{
+    fwrite(STDERR, "Dil paketleri okunamadı\n");
+    exit(1);
+}
+$phraseTitles = static function(SimpleXMLElement $xml): array
+{
+    $titles = [];
+    foreach ($xml->phrase as $phrase)
+    {
+        $titles[(string)$phrase['title']] = true;
+    }
+    ksort($titles);
+    return $titles;
+};
+$baseTitles = $phraseTitles($basePhraseXml);
+$englishTitles = $phraseTitles($englishPhraseXml);
+$turkishTitles = $phraseTitles($turkishPhraseXml);
+foreach (array_keys($baseTitles) as $title)
+{
+    if (!isset($englishTitles[$title]) || !isset($turkishTitles[$title]))
+    {
+        fwrite(STDERR, "Dil paketinde phrase eksik: $title\n");
+        exit(1);
+    }
 }
 
 echo "OK\n";
