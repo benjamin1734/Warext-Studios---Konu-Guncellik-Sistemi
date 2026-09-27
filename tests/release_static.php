@@ -4,7 +4,7 @@ $root = dirname(__DIR__);
 $addon = $root . '/upload/src/addons/WarextStudios/ThreadFreshness';
 
 $addonJson = json_decode((string)file_get_contents($addon . '/addon.json'), true, 512, JSON_THROW_ON_ERROR);
-if (($addonJson['version_string'] ?? '') !== '1.1.0' || ($addonJson['version_id'] ?? 0) !== 1011170)
+if (($addonJson['version_string'] ?? '') !== '1.2.2' || ($addonJson['version_id'] ?? 0) !== 1020020)
 {
     throw new RuntimeException('addon.json version is invalid');
 }
@@ -187,7 +187,7 @@ if (!is_file($widgetJs) || !str_contains((string)file_get_contents($widgetJs), "
     throw new RuntimeException('Freshness widget responsive placement script is missing');
 }
 
-if (!str_contains($mods, '$thread.isWrxtFreshnessEnabled()') || !str_contains($mods, 'Oy verme açılış tarihi'))
+if (!str_contains($mods, '$thread.isWrxtFreshnessEnabled()') || !str_contains($mods, 'wrxt_freshness_voting_opens'))
 {
     throw new RuntimeException('Pre-eligibility thread panel is missing');
 }
@@ -196,7 +196,7 @@ if (!str_contains($adminNav, 'wrxtThreadFreshnessForums') || !str_contains($dash
     throw new RuntimeException('Central forum/category settings are missing');
 }
 
-if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, "'Güncelle' : 'Kaydet'") || !str_contains($mods, 'required="required"'))
+if (!str_contains($mods, 'wrxtFreshness-choiceSurface') || !str_contains($mods, "phrase('wrxt_freshness_update') : phrase('wrxt_freshness_save')") || !str_contains($mods, 'required="required"'))
 {
     throw new RuntimeException('Two-step selectable vote UI is missing');
 }
@@ -221,7 +221,7 @@ if (str_contains($voteService, "if (!\$this->user->hasPermission('wrxtFreshness'
 {
     throw new RuntimeException('Vote service still blocks the topic owner after owner verification is removed');
 }
-if (!str_contains($mods, "'Güncelle' : 'Kaydet'"))
+if (!str_contains($mods, "phrase('wrxt_freshness_update') : phrase('wrxt_freshness_save')"))
 {
     throw new RuntimeException('Vote update UX is missing');
 }
@@ -230,7 +230,7 @@ if (str_contains($mods, 'Bu çözüm sende çalıştı mı?') || str_contains($m
 {
     throw new RuntimeException('Verbose vote UI text still exists');
 }
-if (!str_contains($mods, "'Güncelle' : 'Kaydet'") || !str_contains($templatesData, 'grid-template-columns:minmax(0,1fr) auto') || !str_contains($templatesData, 'min-height:32px'))
+if (!str_contains($mods, "phrase('wrxt_freshness_update') : phrase('wrxt_freshness_save')") || !str_contains($templatesData, 'grid-template-columns:minmax(0,1fr) auto') || !str_contains($templatesData, 'min-height:32px'))
 {
     throw new RuntimeException('Compact vote UI contract is missing');
 }
