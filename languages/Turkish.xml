@@ -74,4 +74,51 @@
   <phrase title="wrxt_freshness_category_select_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Bir kategori seçildiğinde altındaki bütün forumlar etkinleştirilir. İsterseniz forumları tek tek de seçebilirsiniz.]]></phrase>
   <phrase title="wrxt_freshness_threshold_x_days" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[eşik: {days} gün]]></phrase>
   <phrase title="wrxt_freshness_permission_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Oy butonlarının görünmesi için kullanıcı grubunda Konu Güncellik Sistemi oy kullanma izni de açık olmalıdır.]]></phrase>
+  <phrase title="wrxt_freshness_enable_forum" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Konu güncellik doğrulamasını etkinleştir]]></phrase>
+  <phrase title="wrxt_freshness_enable_forum_hint" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Bu forumdaki eski konularda topluluk güncellik doğrulaması açılır.]]></phrase>
+  <phrase title="wrxt_freshness_help_title" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Bu sistem ne işe yarar?]]></phrase>
+  <phrase title="wrxt_freshness_actions" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[İşlemler]]></phrase>
+  <phrase title="wrxt_freshness_solution_result" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Çözüm sonucu]]></phrase>
+  <phrase title="wrxt_freshness_close" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Kapat]]></phrase>
+  <phrase title="wrxt_freshness_info" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Bilgi]]></phrase>
+  <phrase title="wrxt_freshness_days_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Doğrulama panelinin görünmesi için geçmesi gereken gün sayısı]]></phrase>
+  <phrase title="wrxt_freshness_age_method" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Yaş hesabı yöntemi]]></phrase>
+  <phrase title="wrxt_freshness_age_meaningful_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Anlamlı güncelleme (önerilen): konu sahibinin mesajları ve ilk mesaj düzenlemeleri]]></phrase>
+  <phrase title="wrxt_freshness_age_last_post_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Her son mesaj konuyu yeniler]]></phrase>
+  <phrase title="wrxt_freshness_versions_explain" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[İzin verilen sürümler, her satıra bir değer. Boş bırakılırsa serbest sürüm girişi kullanılır.]]></phrase>
+  <phrase title="wrxt_freshness_filter" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Güncellik filtresi]]></phrase>
+  <phrase title="wrxt_freshness_all" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Tümü]]></phrase>
+  <phrase title="wrxt_freshness_solution_freshness" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Çözüm güncelliği]]></phrase>
+  <phrase title="wrxt_freshness_status_questionable_short" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Şüpheli]]></phrase>
+  <phrase title="wrxt_freshness_status_not_working_short" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Çalışmıyor]]></phrase>
+  <phrase title="wrxt_freshness_help_question" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Bu çözüm hâlâ geçerli mi?]]></phrase>
+  <phrase title="wrxt_freshness_help_threshold" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Konu güncellik eşiğini geçti. Çözümü gerçekten denediyseniz sonucu bildirin.]]></phrase>
+  <phrase title="wrxt_freshness_help_owner_moderator" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Konu sahibi ve moderatör doğrulamaları topluluk oylarıyla birlikte değerlendirilir.]]></phrase>
+  <phrase title="wrxt_freshness_use_community_result" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Topluluk sonucunu kullan]]></phrase>
+  <phrase title="wrxt_freshness_moderator_current" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Moderatör: güncel]]></phrase>
+  <phrase title="wrxt_freshness_review_required" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Kontrol gerekli]]></phrase>
+  <phrase title="wrxt_freshness_moderator_not_working" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Moderatör: çalışmıyor]]></phrase>
+  <phrase title="wrxt_freshness_save" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Kaydet]]></phrase>
+  <phrase title="wrxt_freshness_current_thread" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Güncel konu]]></phrase>
+  <phrase title="wrxt_freshness_no_votes" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Henüz oy yok]]></phrase>
+  <phrase title="wrxt_freshness_owner_verified" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Sahibi doğruladı]]></phrase>
+  <phrase title="wrxt_freshness_open_newer_solution" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Daha güncel çözümü aç]]></phrase>
+  <phrase title="wrxt_freshness_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[＋ Ayrıntı]]></phrase>
+  <phrase title="wrxt_freshness_vote_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Oy ayrıntısı]]></phrase>
+  <phrase title="wrxt_freshness_version" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Sürüm]]></phrase>
+  <phrase title="wrxt_freshness_select" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Seçin]]></phrase>
+  <phrase title="wrxt_freshness_prefer_not_select" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Seçmek istemiyorum]]></phrase>
+  <phrase title="wrxt_freshness_failed_on_system" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Sistemde çalışmadı]]></phrase>
+  <phrase title="wrxt_freshness_other" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Diğer]]></phrase>
+  <phrase title="wrxt_freshness_description" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Açıklama]]></phrase>
+  <phrase title="wrxt_freshness_current_thread_id" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Güncel konu ID]]></phrase>
+  <phrase title="wrxt_freshness_result_details" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Sonuç ayrıntıları]]></phrase>
+  <phrase title="wrxt_freshness_failure_reasons" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Çalışmama nedenleri]]></phrase>
+  <phrase title="wrxt_freshness_version_results" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Sürüm sonuçları]]></phrase>
+  <phrase title="wrxt_freshness_voting" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Güncellik oylaması]]></phrase>
+  <phrase title="wrxt_freshness_not_open_yet" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Henüz açılmadı]]></phrase>
+  <phrase title="wrxt_freshness_voting_opens" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Oy verme açılış tarihi:]]></phrase>
+  <phrase title="wrxt_freshness_remove_verification" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Doğrulamayı kaldır]]></phrase>
+  <phrase title="wrxt_freshness_owner_still_valid" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Konu sahibi: hâlâ geçerli]]></phrase>
+  <phrase title="wrxt_freshness_update" addon_id="WarextStudios/ThreadFreshness" global_cache="0" version_id="1020020" version_string="1.2.2"><![CDATA[Güncelle]]></phrase>
 </language>
